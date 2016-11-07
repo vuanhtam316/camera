@@ -10,9 +10,30 @@
 <script src="/Scripts/goSamples.js"></script>  <!-- this is only for the GoJS Samples framework -->
 <link rel='stylesheet' href='/Scripts/dataInspector.css' />
 <script src="/Scripts/dataInspector.js"></script>
-<script id="code">
-    var nodeIdCounter = -1; // use a sequence to guarantee key uniqueness as we add/remove/modify nodes
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    var nodeIdCounter = -1; // use a sequence to guarantee key uniqueness as we add/remove/modify nodes
+    function nodeDoubleClick() {
+        var userid = $("#0").val();
+        //alert(userid);
+        //var clicked = obj.part;
+        //if (clicked !== null) {
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("InfoOfUser", "HomeAgency")",
+            data: { userId: userid },
+            success: function (data) {
+
+                $('#frmInfoOfUser').html(data);
+                $('#myModalInfoOfUser').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+        });
+    }
     function init() {
         if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
         var $ = go.GraphObject.make;  // for conciseness in defining templates
@@ -112,33 +133,32 @@
         }
 
         // when a node is double-clicked, add a child to it
-        function nodeDoubleClick(e, obj) {
+        @*function nodeDoubleClick(e, obj) {
             //var clicked = obj.part;
             //if (clicked !== null) {
-                $.ajax({
-                    type: 'GET',
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Action("InfoOfUser", "HomeAgency")",
+                //data: { userId: userId },
+                success: function (data) {
 
-                    url: "@Url.Action("InfoOfUser", "HomeAgency")",
-                    //data: { userId: userId },
-                    success: function (data) {
-                        alert("1234");
-                        $('#frmInfoOfUser').html(data);
-                        $('#myModalInfoOfUser').modal('show');
-                    },
-                    error: function () {
-                        MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
-                    },
-                });
+                    $('#frmInfoOfUser').html(data);
+                    $('#myModalInfoOfUser').modal('show');
+                },
+                error: function () {
+                    MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+                },
+            });
 
-                //    var thisemp = clicked.data;
-                //    myDiagram.startTransaction("add employee");
-                //    var nextkey = getNextKey();
-                //var newemp = { key: nextkey, name: "(new person)", title: "", parent: thisemp.key };
-                //myDiagram.model.addNodeData(newemp);
-                //myDiagram.commitTransaction("add employee");
-                
+            //    var thisemp = clicked.data;
+            //    myDiagram.startTransaction("add employee");
+            //    var nextkey = getNextKey();
+            //var newemp = { key: nextkey, name: "(new person)", title: "", parent: thisemp.key };
+            //myDiagram.model.addNodeData(newemp);
+            //myDiagram.commitTransaction("add employee");
+
             //}
-        }
+        }*@
 
         // this is used to determine feedback during drags
         function mayWorkFor(node1, node2) {
@@ -164,42 +184,42 @@
         myDiagram.nodeTemplate =
           $(go.Node, "Auto",
             { doubleClick: nodeDoubleClick },
-            { // handle dragging a Node onto a Node to (maybe) change the reporting relationship
-                mouseDragEnter: function (e, node, prev) {
-                    var diagram = node.diagram;
-                    var selnode = diagram.selection.first();
-                    if (!mayWorkFor(selnode, node)) return;
-                    var shape = node.findObject("SHAPE");
-                    if (shape) {
-                        shape._prevFill = shape.fill;  // remember the original brush
-                        shape.fill = "darkred";
-                    }
-                },
-                mouseDragLeave: function (e, node, next) {
-                    var shape = node.findObject("SHAPE");
-                    if (shape && shape._prevFill) {
-                        shape.fill = shape._prevFill;  // restore the original brush
-                    }
-                },
-                mouseDrop: function (e, node) {
-                    var diagram = node.diagram;
-                    var selnode = diagram.selection.first();  // assume just one Node in selection
-                    if (mayWorkFor(selnode, node)) {
-                        // find any existing link into the selected node
-                        var link = selnode.findTreeParentLink();
-                        if (link !== null) {  // reconnect any existing link
-                            link.fromNode = node;
-                        } else {  // else create a new link
-                            diagram.toolManager.linkingTool.insertLink(node, node.port, selnode, selnode.port);
-                        }
-                    }
-                }
-            },
+            //{ // handle dragging a Node onto a Node to (maybe) change the reporting relationship
+            //    mouseDragEnter: function (e, node, prev) {
+            //        var diagram = node.diagram;
+            //        var selnode = diagram.selection.first();
+            //        if (!mayWorkFor(selnode, node)) return;
+            //        var shape = node.findObject("SHAPE");
+            //        if (shape) {
+            //            shape._prevFill = shape.fill;  // remember the original brush
+            //            shape.fill = "darkred";
+            //        }
+            //    },
+            //    mouseDragLeave: function (e, node, next) {
+            //        var shape = node.findObject("SHAPE");
+            //        if (shape && shape._prevFill) {
+            //            shape.fill = shape._prevFill;  // restore the original brush
+            //        }
+            //    },
+            //    mouseDrop: function (e, node) {
+            //        var diagram = node.diagram;
+            //        var selnode = diagram.selection.first();  // assume just one Node in selection
+            //        if (mayWorkFor(selnode, node)) {
+            //            // find any existing link into the selected node
+            //            var link = selnode.findTreeParentLink();
+            //            if (link !== null) {  // reconnect any existing link
+            //                link.fromNode = node;
+            //            } else {  // else create a new link
+            //                diagram.toolManager.linkingTool.insertLink(node, node.port, selnode, selnode.port);
+            //            }
+            //        }
+            //    }
+            //},
             // for sorting, have the Node.text be the data.name
             new go.Binding("text", "name"),
-            // bind the Part.layerName to control the Node's layer depending on whether it isSelected
+        // bind the Part.layerName to control the Node's layer depending on whether it isSelected
             new go.Binding("layerName", "isSelected", function (sel) { return sel ? "Foreground" : ""; }).ofObject(),
-            // define the node's outer shape
+        // define the node's outer shape
             $(go.Shape, "Rectangle",
               {
                   name: "SHAPE", fill: "white", stroke: null,

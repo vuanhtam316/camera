@@ -156,8 +156,8 @@ warning 6013: The table/view 'REMOTECAMERA.BIN$PEnbFOpslZvgUD4KlgFqgA==$0' does 
             <PropertyRef Name="USER_ID" />
           </Key>
           <Property Name="USER_ID" Type="number" Precision="15" Scale="0" Nullable="false" StoreGeneratedPattern="Identity"/>
-          <Property Name="NAME" Type="varchar2" MaxLength="50" />
-          <Property Name="DISPLAY_NAME" Type="varchar2" MaxLength="50" />
+          <Property Name="NAME" Type="varchar2" MaxLength="4000" />
+          <Property Name="DISPLAY_NAME" Type="varchar2" MaxLength="4000" />
           <Property Name="USER_NAME" Type="varchar2" MaxLength="150" Nullable="false" />
           <Property Name="PASSWORDS" Type="varchar2" MaxLength="150" Nullable="false" />
           <Property Name="EMAIL" Type="varchar2" MaxLength="150" />
@@ -172,6 +172,7 @@ warning 6013: The table/view 'REMOTECAMERA.BIN$PEnbFOpslZvgUD4KlgFqgA==$0' does 
           <Property Name="IMAGE_URL" Type="varchar2" MaxLength="4000" />
           <Property Name="CONFIGPASSWORDS" Type="varchar2" MaxLength="150" />
           <Property Name="REVIEW" Type="number" Precision="1" Scale="0" />
+          <Property Name="TOKEN_KEY" Type="varchar2" MaxLength="4000" />
         </EntityType>
         <EntityType Name="TBL_USER_ROLE">
           <Key>
@@ -727,6 +728,7 @@ warning 6013: The table/view 'REMOTECAMERA.BIN$PEnbFOpslZvgUD4KlgFqgA==$0' does 
           <Property Name="IMAGE_URL" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
           <Property Name="CONFIGPASSWORDS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="REVIEW" Type="Int16" />
+          <Property Name="TOKEN_KEY" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TBL_USER_ROLE">
           <Key>
@@ -1263,6 +1265,7 @@ warning 6013: The table/view 'REMOTECAMERA.BIN$PEnbFOpslZvgUD4KlgFqgA==$0' does 
           <EntitySetMapping Name="TBL_USER">
             <EntityTypeMapping TypeName="Model.TBL_USER">
               <MappingFragment StoreEntitySet="TBL_USER">
+                <ScalarProperty Name="TOKEN_KEY" ColumnName="TOKEN_KEY" />
                 <ScalarProperty Name="REVIEW" ColumnName="REVIEW" />
                 <ScalarProperty Name="CONFIGPASSWORDS" ColumnName="CONFIGPASSWORDS" />
                 <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />

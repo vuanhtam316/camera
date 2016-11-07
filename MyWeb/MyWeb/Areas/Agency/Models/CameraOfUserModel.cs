@@ -8,7 +8,8 @@ namespace MyWeb.Areas.Agency.Models
 {
     public class CameraOfUserModel
     {
-        public IEnumerable<CameraOfUser> CameraInUser { get; set; }    
+        public IEnumerable<CameraOfUser> CameraInUser { get; set; }
+        public string Role { get; set; }
     }
     
 }

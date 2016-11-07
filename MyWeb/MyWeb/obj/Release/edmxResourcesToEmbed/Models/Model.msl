@@ -138,6 +138,7 @@
     <EntitySetMapping Name="TBL_USER">
       <EntityTypeMapping TypeName="Model.TBL_USER">
         <MappingFragment StoreEntitySet="TBL_USER">
+          <ScalarProperty Name="TOKEN_KEY" ColumnName="TOKEN_KEY" />
           <ScalarProperty Name="REVIEW" ColumnName="REVIEW" />
           <ScalarProperty Name="CONFIGPASSWORDS" ColumnName="CONFIGPASSWORDS" />
           <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />

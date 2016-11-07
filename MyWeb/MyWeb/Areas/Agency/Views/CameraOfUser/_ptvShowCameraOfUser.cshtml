@@ -15,6 +15,7 @@
         text-align: center;
         background: #2A3F54;
     }
+
     thead, tfoot {
         background: #2A3F54;
         text-align: center;
@@ -50,8 +51,8 @@
         alternatingRowStyle: "alt",
         mode: WebGridPagerModes.All | WebGridPagerModes.FirstLast | WebGridPagerModes.NextPrevious | WebGridPagerModes.Numeric,
          columns: grid.Columns(
-         grid.Column("STT", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, style: "text-center vertical-center",canSort:false),
-         grid.Column("CameraName", "Tên Camera", style: "text-center  vertical-center", canSort:false),
+         grid.Column("STT", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, style: "text-center vertical-center", canSort: false),
+         grid.Column("CameraName", "Tên Camera", style: "text-center  vertical-center", canSort: false),
             grid.Column(format: (item) => new MvcHtmlString(item.Status == "isConnected:True" ? "<span class='label label-success'>Bật</span>" : "<span class='label label-danger'>Tắt</span>"), header: "Trạng thái", style: "text-center  vertical-center"),
         //grid.Column("FullName", "Tên khách hàng", style: "text-center  vertical-center hidden-sm hidden-xs"),
         //grid.Column(format: item => new MvcHtmlString(string.Format("<a title='Xem chức năng' href='javascript:void(0)' onclick='RegisterAllFunction(" + item.CameraId + ")'><i class='fa fa-cog' style='font-size: 20px; color:#2A3F54'></i></a>")), header: "Chọn gói", style: "text-center vertical-center"),

@@ -179,6 +179,7 @@
     <Property Name="IMAGE_URL" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
     <Property Name="CONFIGPASSWORDS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="REVIEW" Type="Int16" />
+    <Property Name="TOKEN_KEY" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="TBL_USER_ROLE">
     <Key>

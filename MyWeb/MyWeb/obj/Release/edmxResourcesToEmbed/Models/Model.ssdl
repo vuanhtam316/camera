@@ -151,8 +151,8 @@ warning 6013: The table/view 'REMOTECAMERA.BIN$PEnbFOpslZvgUD4KlgFqgA==$0' does 
       <PropertyRef Name="USER_ID" />
     </Key>
     <Property Name="USER_ID" Type="number" Precision="15" Scale="0" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="NAME" Type="varchar2" MaxLength="50" />
-    <Property Name="DISPLAY_NAME" Type="varchar2" MaxLength="50" />
+    <Property Name="NAME" Type="varchar2" MaxLength="4000" />
+    <Property Name="DISPLAY_NAME" Type="varchar2" MaxLength="4000" />
     <Property Name="USER_NAME" Type="varchar2" MaxLength="150" Nullable="false" />
     <Property Name="PASSWORDS" Type="varchar2" MaxLength="150" Nullable="false" />
     <Property Name="EMAIL" Type="varchar2" MaxLength="150" />
@@ -167,6 +167,7 @@ warning 6013: The table/view 'REMOTECAMERA.BIN$PEnbFOpslZvgUD4KlgFqgA==$0' does 
     <Property Name="IMAGE_URL" Type="varchar2" MaxLength="4000" />
     <Property Name="CONFIGPASSWORDS" Type="varchar2" MaxLength="150" />
     <Property Name="REVIEW" Type="number" Precision="1" Scale="0" />
+    <Property Name="TOKEN_KEY" Type="varchar2" MaxLength="4000" />
   </EntityType>
   <EntityType Name="TBL_USER_ROLE">
     <Key>

@@ -61,6 +61,10 @@ namespace MyWeb.Areas.Agency.Models
     }
     public class CameraOfUser
     {
+        public string User_name { get; set; }
+        public int Total_Camera { get; set; }
+
+
         public int CameraId { get; set; }
         public int UserId { get; set; }
         [Required(ErrorMessage = "Vui lòng nhập tên camera.")]

@@ -1,6 +1,41 @@
-﻿@{
-    ViewBag.Title = "_ptvInfoOfUser";
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Areas.Agency.Models.CameraOfUserModel
+@*@model MyWeb.Areas.Agency.Models.ListFunctionModel*@
+@{
+    //Layout = "~/Areas/Agency/Views/Shared/_MasterAgencyLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
 }
-<div id="myModalInfoOfUser">
-    <h2>_ptvInfoOfUser</h2>
+<div class="modal fade" id="myModalInfoOfUser" tabindex='-1' style="z-index: 9999999999" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border-radius: 6px !important; width: 65%; height: auto; margin: auto">
+            <div class="modal-header" style="background-color: #2A3F54; border-radius: 5px 5px 0 0;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title text-center" style="color:white">THÔNG TIN</h3>
+            </div>
+            <div class="modal-body" style="padding-top: 0">
+                <div class="row mbl" style="margin-bottom: 0 !important;padding-bottom: 0 !important;">
+                    <div class="col-md-12">
+                        <div id="message" style="text-align:center"></div>
+                        <div id="uploadFunction" class="pal">
+                            @*@Html.Partial("_ptvAddNewFunction", Model.ListFunction)*@
+                            @{
+                                if (Model.Role == "Customer")
+                                {
+                                    @Html.Partial("~/Areas/Agency/Views/HomeAgency/_ptvShowInfoOfUser.cshtml", Model.CameraInUser)
+                                }
+                                else
+                                {
+                                    @Html.Partial("~/Areas/Agency/Views/HomeAgency/_ptvShowListUserOfAgency.cshtml", Model.CameraInUser)
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="margin-top: 0">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Quay lại</button>
+            </div>
+        </div>
+    </div>
 </div>

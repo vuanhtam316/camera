@@ -44,6 +44,7 @@ namespace MyWeb.Models
         public string IMAGE_URL { get; set; }
         public string CONFIGPASSWORDS { get; set; }
         public Nullable<short> REVIEW { get; set; }
+        public string TOKEN_KEY { get; set; }
     
         public virtual ICollection<TBL_CAMERA> TBL_CAMERA { get; set; }
         public virtual ICollection<TBL_CAMERA_FUNCTION> TBL_CAMERA_FUNCTION { get; set; }

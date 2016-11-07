@@ -212,7 +212,7 @@ Inspector.prototype.buildPropertyRow = function(propertyName, propertyValue) {
   var td2 = document.createElement("td");
   var input = document.createElement("input");
   var decProp = this.declaredProperties[propertyName];
-  input.tabIndex = this.tabIndex++;
+  input.id = this.tabIndex++;
 
   var self = this;
   function setprops() { self.updateAllProperties(); }

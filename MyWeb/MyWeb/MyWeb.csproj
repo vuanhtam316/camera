@@ -4885,6 +4885,8 @@
     <Content Include="Areas\Agency\Views\User\_ptvCreateAgency.cshtml" />
     <Content Include="Areas\Agency\Views\User\ptvCreateAgency.cshtml" />
     <Content Include="Areas\Agency\Views\HomeAgency\_ptvInfoOfUser.cshtml" />
+    <Content Include="Areas\Agency\Views\HomeAgency\_ptvShowInfoOfUser.cshtml" />
+    <Content Include="Areas\Agency\Views\HomeAgency\_ptvShowListUserOfAgency.cshtml" />
     <None Include="Scripts\jquery-1.10.1.intellisense.js" />
     <None Include="Scripts\jquery-3.1.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.1.0.js" />

@@ -118,7 +118,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/15/2016 10:07:17</publishTime>
     </File>
     <File Include="Areas/Agency/Views/CameraOfUser/_ptvShowCameraOfUser.cshtml">
-      <publishTime>09/23/2016 12:06:13</publishTime>
+      <publishTime>11/07/2016 14:42:11</publishTime>
     </File>
     <File Include="Areas/Agency/Views/CameraOfUser/_ptvShowFunction.cshtml">
       <publishTime>09/24/2016 09:39:11</publishTime>
@@ -130,13 +130,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/20/2016 15:53:14</publishTime>
     </File>
     <File Include="Areas/Agency/Views/FeedBack/Index.cshtml">
-      <publishTime>10/31/2016 16:40:20</publishTime>
+      <publishTime>11/07/2016 09:21:57</publishTime>
     </File>
     <File Include="Areas/Agency/Views/FeedBack/_ptvFeedBack.cshtml">
       <publishTime>11/01/2016 16:19:38</publishTime>
     </File>
     <File Include="Areas/Agency/Views/HomeAgency/Index.cshtml">
-      <publishTime>11/04/2016 16:51:25</publishTime>
+      <publishTime>11/07/2016 12:37:53</publishTime>
+    </File>
+    <File Include="Areas/Agency/Views/HomeAgency/_ptvInfoOfUser.cshtml">
+      <publishTime>11/07/2016 15:44:11</publishTime>
+    </File>
+    <File Include="Areas/Agency/Views/HomeAgency/_ptvShowInfoOfUser.cshtml">
+      <publishTime>11/07/2016 15:28:50</publishTime>
+    </File>
+    <File Include="Areas/Agency/Views/HomeAgency/_ptvShowListUserOfAgency.cshtml">
+      <publishTime>11/07/2016 15:42:24</publishTime>
     </File>
     <File Include="Areas/Agency/Views/LiveStream/LiveStreamOfFourCamera.cshtml">
       <publishTime>09/22/2016 15:35:07</publishTime>
@@ -943,7 +952,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/05/2015 10:00:46</publishTime>
     </File>
     <File Include="bin/MyWeb.dll">
-      <publishTime>11/04/2016 17:58:08</publishTime>
+      <publishTime>11/07/2016 15:48:05</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>08/19/2016 09:13:44</publishTime>
@@ -17884,7 +17893,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/04/2016 16:40:20</publishTime>
     </File>
     <File Include="Scripts/DataInspector.js">
-      <publishTime>11/01/2016 14:36:22</publishTime>
+      <publishTime>11/07/2016 12:31:13</publishTime>
     </File>
     <File Include="Scripts/floater_xlib.js">
       <publishTime>10/08/2015 15:23:43</publishTime>

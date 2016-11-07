@@ -4,6 +4,8 @@ using MyWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -39,7 +41,7 @@ namespace MyWeb.Areas.Agency.Controllers
                 var ag = new UserOfAgency();
                 ag.UserId = Convert.ToInt32(agency.USER_ID);
                 ag.Total = data.Count.ToString() + "chi nhanh";
-                ag.FullName = agency.NAME;
+                ag.FullName = agency.USER_NAME;
                 list.Add(ag);
 
 
@@ -47,7 +49,7 @@ namespace MyWeb.Areas.Agency.Controllers
                 {
                     var user = new UserOfAgency();
                     user.UserId = Convert.ToInt32(item.USER_ID);
-                    user.FullName = item.NAME;
+                    user.FullName = item.USER_NAME;
                     if (item.TBL_CAMERA.Count != 0)
                     {
                         user.Total = item.TBL_CAMERA.Count.ToString();
@@ -77,7 +79,7 @@ namespace MyWeb.Areas.Agency.Controllers
                     {
                         var user1 = new UserOfAgency();
                         user1.UserId = Convert.ToInt32(item2.USER_ID);
-                        user1.FullName = item2.NAME;
+                        user1.FullName = item2.USER_NAME;
                         user1.Total = item2.TBL_CAMERA.Count.ToString();
                         user1.Agency_Id = Convert.ToInt32(item2.AGENCY_ID);
                         list.Add(user1);
@@ -218,9 +220,98 @@ namespace MyWeb.Areas.Agency.Controllers
             }
         }
         #region
-        public ActionResult InfoOfUser()
+        public async Task<ActionResult> InfoOfUser(int userId)
         {
-            return PartialView("_ptvInfoOfUser");
+            var role = GetContext().TBL_USER_ROLE.FirstOrDefault(x => x.USER_ID == userId);
+            if (role.ROLE_NAME == "Custommer")
+            {
+                var model = new CameraOfUserModel { CameraInUser = await GetListCameraAllUser(userId), Role = "Customer" };
+                return PartialView("_ptvInfoOfUser", model);
+            }
+            else
+            {
+                var model = new CameraOfUserModel { CameraInUser = await GetListCameraAllUser(userId), Role = "Agency" };
+                return PartialView("_ptvInfoOfUser", model);
+            }
+
+        }
+        #endregion
+        #region GetList User In Agency
+        private async Task<List<CameraOfUser>> GetListCameraAllUser(int userid)
+        {
+            try
+            {
+                ViewBag.UserId = userid;
+                var list = new List<CameraOfUser>();
+                var data = GetContext().TBL_USER.FirstOrDefault(x => x.USER_ID == userid);
+                ViewBag.NameUser = data.NAME;
+                var role = GetContext().TBL_USER_ROLE.FirstOrDefault(x => x.USER_ID == userid);
+                if (role.ROLE_NAME == "Custommer")
+                {
+                    //foreach (var item in data)
+                    //{
+                    var cam = GetContext().TBL_CAMERA.Where(c => c.USER_ID == userid).ToList();
+                    foreach (var i in cam)
+                    {
+                        var s = GetContext().TBL_CAMERA_STATUS.FirstOrDefault(x => x.CAMERA_ID == i.CAMERA_ID);
+                        var model = new CameraOfUser();
+                        model.CameraId = Convert.ToInt32(i.CAMERA_ID);
+                        model.CameraName = i.CAMERA_NAME;
+                        model.FullName = data.NAME;
+                        model.Status = await GetStatusCamera(i.CAMERA_URL_STREAM);
+                        if (s != null)
+                        {
+                            model.Status_Function = 1;
+                        }
+                        else
+                        {
+                            model.Status_Function = 0;
+                        }
+                        list.Add(model);
+                    }
+                }
+                else
+                {
+                    var user = GetContext().TBL_USER.Where(c => c.AGENCY_ID == userid).ToList();
+                    foreach (var i in user)
+                    {
+                        //var s = GetContext().TBL_CAMERA_STATUS.FirstOrDefault(x => x.CAMERA_ID == i.CAMERA_ID);
+                        var model = new CameraOfUser();
+                        model.User_name = i.NAME;
+                        model.Total_Camera = i.TBL_CAMERA.Count;
+                        //model.CameraId = Convert.ToInt32(i.CAMERA_ID);
+                        //model.CameraName = i.CAMERA_NAME;
+                        //model.FullName = data.NAME;
+                        //model.Status = await GetStatusCamera(i.CAMERA_URL_STREAM);
+                        //if (s != null)
+                        //{
+                        //    model.Status_Function = 1;
+                        //}
+                        //else
+                        //{
+                        //    model.Status_Function = 0;
+                        //}
+                        list.Add(model);
+                    }
+                }
+                //}
+                return list;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(String.Format("An error occurred in the process get Customer list with erro: {0}", ex));
+                return null;
+            }
+        }
+
+        private async Task<string> GetStatusCamera(string name)
+        {
+            string s = "http://10.62.1.152:9999/viewstatus?name=" + name;
+            var client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync(s);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadAsStringAsync();
+            return result;
         }
         #endregion
     }

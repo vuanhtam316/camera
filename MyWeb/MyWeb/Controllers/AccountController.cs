@@ -578,8 +578,8 @@ namespace MyWeb.Controllers
 
                                 string st = "Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi. </br> Mời bạn click vào Đăng Nhập đề hoàn tất việc đăng kí: <a href=\""
                                                        + callbackUrl + "\">Đăng Nhập</a>";
-                                SendEmail(user.Email, st);
                                 GetContext().SaveChanges();
+                                SendEmail(user.Email, st);
                                 messageModel.MessageContent = "Vào mail để kích hoạt tài khoản";
                                 messageModel.MessageType = MesageModel.MessageType.Success;
                             }
