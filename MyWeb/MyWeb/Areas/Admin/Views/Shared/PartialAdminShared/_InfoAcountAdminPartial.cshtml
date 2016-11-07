@@ -1,0 +1,9 @@
+﻿<a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>
+<ul class="nav navbar navbar-top-links navbar-right mbn">
+    <li class="dropdown topbar-user">
+        <a data-hover="dropdown" href="#" class="dropdown-toggle"><span class="hidden-xs">@HttpContext.Current.User.Identity.Name</span>&nbsp;<span class="caret"></span></a>
+        <ul class="dropdown-menu dropdown-user pull-right">
+            <li><a href="@Url.Action("Logout", "Home")"><i class="fa fa-key"></i>Log Out</a></li>
+        </ul>
+    </li>
+</ul>

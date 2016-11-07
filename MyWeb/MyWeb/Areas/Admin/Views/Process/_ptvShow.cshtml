@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MyWeb.Areas.Admin.Models.ProcessModel>
+@{
+    var grid = new WebGrid(Model,
+           rowsPerPage: 10,
+           canPage: true,
+           canSort: true,
+           ajaxUpdateContainerId: "gridShow"
+           );
+}
+@if (Model.Any())
+{
+    <div id="gridShow" class="table-responsive">
+        @grid.GetHtml(
+        tableStyle: "table webGrid table-hover table-bordered table-striped table-hover-color",
+        headerStyle: "text-center hidden-sm hidden-xs",
+        alternatingRowStyle: "alt",
+        mode: WebGridPagerModes.All | WebGridPagerModes.FirstLast | WebGridPagerModes.NextPrevious | WebGridPagerModes.Numeric,
+         columns: grid.Columns(
+         grid.Column("STT", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, style: "text-center vertical-center"),
+          grid.Column("CustomerName", "Tên khách hàng", style: "vertical-center"),
+           grid.Column("CameraName", "Tên camera", style: "vertical-center"),
+          grid.Column("FunctionName", "Chức năng", style: "text-center  vertical-center"),
+         grid.Column(format: (item) => new MvcHtmlString(item.Status == 1 ? "<span class='label label-success'>Enable</span>" : "<span class='label label-danger'>Disible</span>"), header: "Trạng thái", style: "text-center  vertical-center")
+
+                            ))
+    </div>
+}
+else
+{
+    <div class="form-group">
+        <div class="alert alert-warning">Chưa có dữ liệu hiển thị.</div>
+    </div>
+}

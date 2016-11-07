@@ -1,0 +1,149 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Areas.Front.Models.UpdateCameraModel
+@{
+    //Layout = "~/Areas/Admin/Views/Shared/_MasterAdminLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<link href="~/Content/Front/Styles/timepicki.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/timepicki.js"></script>
+
+@*<script src="@Url.Content("~/Content/Front/Scripts/jquery-1.8.2.js")"></script>*@
+
+<div class="modal fade" id="myModalUpdateCamera2" tabindex='-1' style="z-index: 9999999999" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border-radius: 6px !important;">
+            <div class="modal-header" style="background-color: #bf4346; border-radius: 5px 5px 0 0;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" style="color: white;">Cập nhật thông tin camera</h4>
+            </div>
+            @using (Ajax.BeginForm("Edit2", "Camera", new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST",
+                OnFailure = "failure",
+                UpdateTargetId = "messageInfoModalUpdate",
+                OnSuccess = "success2"
+            }, new { id = "frmUpdateModal", @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.CameraModel.CAMERA_ID)
+                @Html.HiddenFor(model => model.CameraModel.USER_ID)
+                <div class="modal-body" style="padding-top: 0">
+                    <div class="row mbl" style="margin-bottom: 0 !important;padding-bottom: 0 !important;">
+                        <div class="col-md-12">
+                            <div class="pal">
+                                <div class="" id="messageInfoModalUpdate">
+                                    @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                                </div>
+                                <h4 style="margin-bottom:20px">Cập nhật thông tin camera</h4>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CameraModel.CAMERA_NAME, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.CameraModel.CAMERA_NAME, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.CameraModel.CAMERA_NAME, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CameraModel.CAMERA_URL, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.CameraModel.CAMERA_URL, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.CameraModel.CAMERA_URL, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CameraModel.CAMERA_URL_STREAM, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.CameraModel.CAMERA_URL_STREAM, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.CameraModel.CAMERA_URL_STREAM, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                @*<div class="form-group">
+                                        @Html.LabelFor(model => model.CameraModel.CAMERA_IP, new { @class = "col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.ValidationHtmlMessageFor(model => model.CameraModel.CAMERA_IP, "", new { @class = "field-validation-valid" })
+                                            @Html.TextBoxFor(model => model.CameraModel.CAMERA_IP, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CameraModel.CAMERA_NUMBER, new { @class = "col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.ValidationHtmlMessageFor(model => model.CameraModel.CAMERA_NUMBER, "", new { @class = "field-validation-valid" })
+                                            @Html.TextBoxFor(model => model.CameraModel.CAMERA_NUMBER, new { @class = "form-control" })
+                                        </div>
+                                    </div>*@
+                                <hr />
+                                <h4>Cập nhật chức năng camera</h4>
+                                @{
+                if (Model.FunctionsModel != null && Model.FunctionsModel.Any())
+                {
+                    <div class="" style="margin-top:10px">
+                        @for (var i = 0; i < Model.FunctionsModel.Count; i++)
+                        {
+                            <div class="col-md-4" style="padding-top: 8px; margin-left:-15px">@Model.FunctionsModel[i].FunctionName</div>
+                            <div class="col-md-1" style="padding-top:8px">
+                                @Html.CheckBoxFor(m => m.FunctionsModel[i].Status)
+                                @Html.HiddenFor(m => m.FunctionsModel[i].FunctionId)
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.FunctionsModel[i].Start, new { @class = "timepicker form-control" })
+                            </div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => m.FunctionsModel[i].End, new { @class = "timepicker form-control" })
+                            </div>
+                            <div class="col-md-1" style="padding-top:8px">
+                                @if (!string.IsNullOrEmpty(@Model.FunctionsModel[i].FunctionImage))
+                                {
+                                    <a href="#" onclick="showImageFunction('@Model.FunctionsModel[i].FunctionImage')"><i class="fa fa-picture-o"></i></a>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <div class="alert alert-warning" style="text-align:left; margin-top:10px">Chưa có chức năng nào.</div>
+                    </div>
+                }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top: 0">
+                    @*<button type="submit" id="btnOkFunction" onclick="CloseModal();" class="btn btn-red">OK</button>*@
+                    <button type="submit" id="btnCapnhatFunction" class="btn btn-red">Cập nhật</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Quay lại</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div id="showImgFunction">
+    @Html.Partial("_ptvShowImgFunction")
+</div>
+@*<div id="showImgFunction">
+        @Html.Partial("_ptvShowImgFunction")
+    </div>*@
+<script>
+    $('.timepicker').timepicki();
+    //$("#btnCapnhatFunction").click(function () {
+    //    document.getElementById("frmUpdateModal").submit();
+    //    $(this).prop('disabled', true);
+    //});
+    function DisbleBtn() {
+        $("#btnCapnhatFunction").prop('disabled', true);
+        $("#btnCapnhatFunction").removeClass('btn-red').addClass('btn-default');
+    }
+    function CloseModal() {
+        $('#myModalUpdateCamera2').modal('hide');
+    }
+    function showImageFunction(img) {
+        $('#imagepreview').attr('src', img);
+        $('#imagemodal').modal('show');
+    }
+</script>

@@ -1,0 +1,13 @@
+﻿@using MyWeb.Models
+@model MyWeb.Areas.Agency.Models.AgencyModel
+
+@{
+    ViewBag.Title = "_Avatar";
+}
+@*@Html.Partial("~/Areas/Agency/Views/Shared/PartialAgencyShared/_ptvShowAvatar.cshtml", Model.getAgency)*@
+<a href="@Url.Action("Index","HomeAgency")">
+    <img src="@Model.avatar" title="@Model.Agency_Name" style="width:230px; height:68px" />
+</a>
+@*<img src="@Model.avatar" alt="..." title="logo đại lý" style="width:230px; height:68px" />*@
+
+

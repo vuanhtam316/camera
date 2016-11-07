@@ -1,0 +1,52 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Areas.Agency.Models.UserOfAgency
+@{
+
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<style>
+    #btnOkFunction:hover {
+        background: #B2001F;
+    }
+</style>
+<div class="modal fade" id="myModalDeleteUserOfAgency" tabindex='-1' style="z-index: 9999999999" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" style="margin-top:15.8%">
+        <div class="modal-content" style="border-radius: 6px !important; width: 500px; margin: auto; width: 500px; margin: auto">
+            <div class="modal-header" style="background-color: #bf4346; border-radius: 5px 5px 0 0;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" style="color: white">Xóa khách hàng</h4>
+            </div>
+            @using (Ajax.BeginForm("_ptvDeleteUserOfAgency", "User", new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST",
+                OnFailure = "failure",
+                UpdateTargetId = "messageInfoModalDelete",
+                OnSuccess = "success2"
+            }, new { id = "frmDeleteModal", @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.UserId)
+                @Html.HiddenFor(model => model.FullName)
+                @Html.HiddenFor(model => model.Email)
+                @Html.HiddenFor(model => model.Username)
+                <div>
+                    <h5 style="color:black">Bạn có muốn xóa khách hàng này không?</h5>
+                </div>
+                <div class="modal-footer" style="margin-top: 0; border-top: none">
+                    <button type="submit" id="btnOkFunction" class="btn btn-red" style="width: 78px; background: #bf4346; color: white;" onclick="Close();">Xóa</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">
+                        Quay lại
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    function Close() {
+        $('#myModalDeleteUserOfAgency').modal('hide');
+    }
+</script>

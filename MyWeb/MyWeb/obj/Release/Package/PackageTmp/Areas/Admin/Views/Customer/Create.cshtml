@@ -1,0 +1,137 @@
+﻿@using MyWeb.HtmlHelpers
+@using MyWeb.Models
+@model MyWeb.Models.CustomerModel
+@{
+    ViewBag.Title = "Tạo mới khách hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_MasterAdminLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+@using (Ajax.BeginForm("Create", "Customer", new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                    OnFailure = "failure",
+                    UpdateTargetId = "messageInfo",
+                    OnSuccess = "success"
+                }, new { id = "frmCreate", @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row mbl">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            Thêm mới khách hàng
+                        </div>
+                        <div class="panel-body pan">
+                            <div class="pal">
+                                <div class="form-group" id="messageInfo">
+                                    @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CustomerNumber, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.CustomerNumber, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.CustomerNumber, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.Name, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.FullName, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.FullName, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.FullName, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.DisplayName, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.DisplayName, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.DisplayName, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.Email, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.UserName, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.UserName, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Password, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.Password, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Phone, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.Phone, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.Phone, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Address, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.Address, "", new { @class = "field-validation-valid" })
+                                        @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <div class="checkbox">
+                                            <label>@Html.CheckBoxFor(model => model.Active, new { @class = "form-control" }) Kích hoạt</label>
+                                            <label>@Html.CheckBoxFor(model => model.Sex, new { @class = "form-control" }) Nam</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions pal">
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-9">
+                                        <input type="submit" id="btnSubmit" value="Tạo mới" class="btn btn-red" />
+                                        <input id="resetform" type="reset" value="Làm mới" class="btn btn-default" />
+                                        <a class="btn" href="@Url.Action("Index","Customer")"><i class="fa fa-mail-reply"></i>&nbsp; Quay về danh sách</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section jsmore
+{
+    <script type="text/javascript">
+        $('#resetform').click(function () {
+            $('#frmCreate').each(function () {
+                this.reset();
+            });
+        });
+        function failure() {
+            MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+            $("#totop").click();
+        }
+        function success() {
+            $("#totop").click();
+        }
+    </script>
+}
+

@@ -1,0 +1,87 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@*@model MyWeb.Areas.Front.Models.FunctionModel*@
+@model IEnumerable<MyWeb.Areas.Front.Models.ViewModel>
+@*@model IEnumerable<MyWeb.Models.CameraModel>*@
+@*@{
+        //Layout = "~/Areas/Admin/Views/Shared/_MasterAdminLayout.cshtml";
+        var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+    }*@
+<style>
+    .disable {
+        pointer-events: none;
+        cursor: default;
+        /*opacity: 0.6;*/
+    }
+
+    .disabled {
+        pointer-events: none;
+        cursor: default;
+        opacity: 0.6;
+    }
+</style>
+<div class="panel-body">
+    @{
+        var grid = new WebGrid(Model,
+            rowsPerPage: 20,
+            canPage: true,
+            canSort: true,
+            ajaxUpdateContainerId: "gridShow3"
+            );
+    }
+    @if (Model.Any())
+    {
+        <div id="gridShow3" class="table-responsive" style="width:550px; margin:auto; margin-top:20px">
+            @grid.GetHtml(
+                                    tableStyle: "table webGrid table-hover table-bordered table-striped table-hover-color table-center",
+                                    headerStyle: "text-center hidden-sm hidden-xs",
+                                    alternatingRowStyle: "alt",
+                                    mode: WebGridPagerModes.All | WebGridPagerModes.FirstLast | WebGridPagerModes.NextPrevious | WebGridPagerModes.Numeric,
+                                    columns: grid.Columns(
+                                    grid.Column("CAMERA_NAME", "Tên camera", style: "vertical-center"),
+
+                                    grid.Column(header: "Đăng ký", format: item =>
+                                        {
+                                            if (item.Function_regis == null)
+                                            {
+                                                string s = Convert.ToString(item.CAMERA_ID);
+                                                return Html.Raw(string.Format("<a href='javascript:void(0)' title=' Chưa đăng ký' id='id" + s + "' onclick='regis(" + item.CAMERA_ID + ");'><img src='/Images/regis2.png' style='height:35px; width:35px' /></a>"));
+                                            }
+                                            else
+                                            {
+                                                return Html.Raw(string.Format("<a href='#' title='Đã đăng ký' class='disable'><img src='/Images/tick.png' style='height:30px; width:30px' /></a>"));
+                                            }
+                                        }, style: "text-center vertical-center", canSort: true),
+
+            //new MvcHtmlString(string.Format("<button type='submit' id='btnOkFunction' class='btn btn-red' onclick='regis(" + item.CAMERA_ID + ");'>Đăng ký</button>"))),
+            //<button type="submit" id="btnOkFunction" class="btn btn-red">OK</button>
+            //grid.Column(format: item => new MvcHtmlString(string.Format("<a href='javascript:void(0)' onclick='Validate(" + item.CAMERA_ID + ");' title='Kích hoạt'><img src='/Images/kichhoat.png' style='height:40px; width:40px' /></a>")))
+                                    grid.Column(header: "Kích hoạt", format: (item) =>
+                                        {
+                                            if (item.Function_regis == 1)
+                                            {
+                                                return Html.Raw(string.Format("<a href='#' title='Đã kích hoạt' class='disable'><img src='/Images/tick.png' style='height:30px; width:30px' /></a>"));
+
+                                            }
+                                            else
+                                            {
+                                                if (item.Function_regis == 0)
+                                                {
+                                                    return Html.Raw(string.Format("<a href='javascript:void(0)' onclick='Validate(" + item.CAMERA_ID + ");' title='Chưa kích hoạt'><img src='/Images/kichhoat.png' style='height:40px; width:40px' /></a>"));
+                                                }
+                                                else
+                                                {
+                                                    return Html.Raw(string.Format("<a href='#' class='disabled' title='Chưa kích hoạt'><img src='/Images/kichhoat.png' style='height:40px; width:40px' /></a>"));
+                                                }
+                                            }
+                                        }, style: "text-center vertical-center", canSort: true)
+                                        ))
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <div class="alert alert-warning">Chưa có camera.</div>
+        </div>
+    }
+</div>

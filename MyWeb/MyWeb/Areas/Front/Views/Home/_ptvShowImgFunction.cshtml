@@ -1,0 +1,485 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Areas.Front.Models.Camera_Function
+<meta charset="utf-8" />
+<style>
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #main {
+        margin: 50px;
+        position: relative;
+    }
+
+    #paint {
+        float: left;
+        display: inline-block;
+    }
+
+    #ChoiseFreature {
+        float: left;
+        display: inline-block;
+        width: 200px;
+        float: left;
+        font-size: 18px;
+        height: 400px;
+    }
+</style>
+
+<div class="modal fade" id="imagemodal" style="z-index: 9999999999" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content" style="border-radius: 6px !important; height: 542px; width: 900px;margin-left: -150px;">
+            <div class="modal-header" style="background-color: #bf4346;border-radius: 5px 5px 0 0;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" style="color: white;">Chọn vùng giám sát</h4>
+            </div>
+            @*@using (Ajax.BeginForm("GetPolygon", "Home", new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                    OnFailure = "failure",
+                    //UpdateTargetId = "messageInfoModalDelete",
+                    //OnSuccess = "success2"
+                }, new { id = "frm", @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)*@
+
+            <div class="modal-body" style="width: 650px; float: left; padding: 1px;">
+                <canvas id="imagepreview" width=640 height=480></canvas>
+            </div>
+            <div id="ChoiseFreature">
+                <form>
+                    @*<input type="text" id="idfunc" value="@ViewBag" />*@
+                    <input type="radio" value="0" name="loai" />Chọn vùng giám sát<br />
+                    <a href="#" onclick="showimage('@Model.functionId')">Click vào đây để lấy ảnh</a>
+                    <div id="info"></div>
+                    @*<input type="radio" value="1" name="loai" />Vẽ đường biên<br />*@
+                    @*<input type="radio" value="2" name="loai" />Hinh chu nhat<br />*@
+                    @*<div id="log"></div>*@
+                    <div id="message"></div>
+                    @*<h5>Danh sách tọa độ</h5>*@
+                    @*<div id="toaDo"></div>*@
+                </form>
+            </div>
+
+            <div class="modal-footer" style="width: 240px; height: 70px; float: left">
+                <input type="button" id="Done" class="btn btn-red" value="Lưu" onclick="clickSavePolygon('@Model.functionId')" />
+                <button type="button" id="delete" class="btn btn-red">Xóa</button>
+                <button type="button" id="_btn" class="btn btn-warning" data-dismiss="modal">Quay lại</button>
+                @*<button type="button" id="_btnOkConfirm" class="btn btn-red">OK</button>*@
+            </div>
+            @*}*@
+        </div>
+    </div>
+</div>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>*@
+<script>
+    var imgOb = new Image();
+    //var url = $("#url").val();
+    var url = "@Model.urlImage";
+    imgOb.src = url;
+    imgOb.onload = function () {
+        realSize.x = this.width;
+        realSize.y = this.height;
+        ctx.drawImage(imgOb, 0, 0, 640, 480);
+        $(document).ready(function () {
+
+            //draw default
+            /*abc là chuỗi các điểm nha ca*/
+            var strCoor = "@Model.polygon";
+            var arrX = [];
+            var arrY = [];
+            var arrCorr = [];
+            if (strCoor != null) {
+                arrCorr = strCoor.split('|');
+                for (var i = 0; i < arrCorr.length; i++) {
+                    if (i % 2 == 0) {
+                        arrX.push(arrCorr[i]);
+                    } else {
+                        arrY.push(arrCorr[i]);
+                    }
+                }
+
+                for (var j = 0; j < arrX.length; j++) {
+                    ctx.beginPath();
+                    if (j == arrX.length - 2) {
+                        //alert(j);
+                        ctx.moveTo(arrX[arrX.length - 2], arrY[arrX.length - 2]);
+                        ctx.lineTo(arrX[0], arrY[0]);
+                        ctx.strokeStyle = "#00CC00";
+                    }
+                    else {
+                        ctx.moveTo(arrX[j], arrY[j]);
+                        ctx.lineTo(arrX[j + 1], arrY[j + 1]);
+                        ctx.strokeStyle = "#00CC00";
+                    }
+                    ctx.closePath();
+                    ctx.stroke();
+                }
+
+
+
+            }
+        });
+    };
+    var realSize = { x: 0, y: 0 };
+    var Coordinates = [];
+    var posStart = { x: 0, y: 0 };
+    var posLast = { x: 0, y: 0 };
+    /*Khai báo biến toàn cục*/
+    var Coordinates1;
+    var canvas = document.getElementById('imagepreview');
+    var Done = document.getElementById("Done");
+    var ctx = canvas.getContext('2d');
+    var loai = document.getElementsByName('loai');
+    //Đối tượng xác định vị trí con trỏ chuột
+    var mouse = { x: 0, y: 0 };
+    //Handle khi di chuyển con trỏ trong khung canvas
+    canvas.addEventListener('mousemove', function (e) {
+        var offset = $("#imagepreview").offset();
+        mouse.x = e.pageX - offset.left;
+        mouse.y = e.pageY - offset.top;
+    }, false);
+
+
+
+
+    function XuatToaDo() {
+        $("#toaDo").append("<p>(" + mouse.x + ", " + mouse.y + ")</p>");
+    }
+    function XuatToaDoXY(x, y) {
+        $("#toaDo").append("<p>(" + x + ", " + y + ")</p>");
+    }
+
+    function ToaDoLuu(x, y) {
+        var pos = {
+            x: Math.round(x * realSize.x / 640),
+            y: Math.round(y * realSize.y / 480)
+        }
+
+        Coordinates.push(pos);
+    }
+
+
+
+    function clickEvent() {
+        ctx.beginPath();
+
+        if (posLast.x == 0 & posLast.y == 0) {
+
+            ctx.moveTo(mouse.x, mouse.y);
+            ctx.lineTo(mouse.x + 1, mouse.y + 1);
+            posStart.x = mouse.x;
+            posStart.y = mouse.y;
+            ctx.stroke();
+            //ctx.closePath();
+        } else {
+            if (canvas.width >= mouse.x && canvas.height >= mouse.y) {
+                ctx.moveTo(posLast.x, posLast.y);
+                ctx.lineTo(mouse.x, mouse.y);
+                ctx.stroke();
+                //ctx.closePath();
+
+            }
+
+        } XuatToaDo();
+        ToaDoLuu(mouse.x, mouse.y);
+        posLast.x = mouse.x;
+        posLast.y = mouse.y;
+    }
+    /*Vẽ đa giác*/
+    function DaGiac() {
+        //alert("Bạn đã chọn chế độ vẽ đa giác");
+        //Hàm sự kiện kích hoạt khi  click vào radio button 0
+
+        //function clickEvent() {
+        //    ctx.beginPath();
+
+        //    if (posLast.x == 0 & posLast.y == 0) {
+
+        //        ctx.moveTo(mouse.x, mouse.y);
+        //        ctx.lineTo(mouse.x + 1, mouse.y + 1);
+        //        posStart.x = mouse.x;
+        //        posStart.y = mouse.y;
+        //        ctx.stroke();
+        //        //ctx.closePath();
+        //    } else {
+        //        if (canvas.width >= mouse.x && canvas.height >= mouse.y) {
+        //            ctx.moveTo(posLast.x, posLast.y);
+        //            ctx.lineTo(mouse.x, mouse.y);
+        //            ctx.stroke();
+        //            //ctx.closePath();
+
+        //        }
+
+        //    }
+        //    XuatToaDo();
+        //    ToaDoLuu(mouse.x, mouse.y);
+        //    posLast.x = mouse.x;
+        //    posLast.y = mouse.y;
+        //}
+        //Hàm sự kiện khi dblclick trong khung canvas
+        function dblEvent() {
+            if (canvas.width >= mouse.x && canvas.height >= mouse.y) {
+                ctx.moveTo(posLast.x, posLast.y);
+                ctx.lineTo(posStart.x, posStart.y);
+
+                ctx.stroke();
+                canvas.removeEventListener('click', clickEvent, false);
+                canvas.removeEventListener('dblclick', dblEvent, false);
+                Coordinates.pop();
+                //alert("Ban da ve xong!");
+            }
+        }
+        //Vị trí đầu tiên
+
+        //Vị trí kết thúc
+
+        ctx.lineWidth = 2;
+        ctx.lineJoin = 'bevel';
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = '#FF0000';
+        //thêm handle cho canvas
+
+        canvas.addEventListener('click', clickEvent, false);
+        canvas.addEventListener('dblclick', dblEvent, false);
+    }
+    /*Feature Vẽ tự do*/
+    function VeTuDo() {
+
+        //alert("Bạn đã chọn chế độ vẽ tự do");
+        ctx.lineWidth = 3;
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = '#FF0000';
+
+        function mouseDownEvent() {
+            ctx.beginPath();
+            ctx.moveTo(mouse.x, mouse.y);
+            canvas.addEventListener('mousemove', onPaint, false);
+        }
+        canvas.addEventListener('mousedown', mouseDownEvent, false);
+        canvas.addEventListener('mouseup', function () {
+            canvas.removeEventListener('mousemove', onPaint, false);
+            canvas.removeEventListener('mousedown', mouseDownEvent, false);
+        }, false);
+
+        var onPaint = function () {
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+            XuatToaDo();
+            ToaDoLuu(mouse.x, mouse.y);
+        };
+
+    }
+    /*
+    Vẽ hình chữ nhật
+    */
+    function VeHCN() {
+
+        //alert("Ve hinh chu nhat");
+        var posFrist = { x: 0, y: 0 };
+        var wid = 0;
+        var hei = 0;
+        function mouseDown() {
+            posFrist.x = mouse.x;
+            posFrist.y = mouse.y;
+            XuatToaDo();
+            ToaDoLuu(mouse.x, mouse.y);
+
+        }
+        canvas.addEventListener('mousedown', mouseDown, false);
+
+        function mouseUp() {
+            wid = mouse.x - posFrist.x;
+            hei = mouse.y - posFrist.y;
+            ctx.beginPath();
+
+            ctx.rect(posFrist.x, posFrist.y, wid, hei);
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = '#00CC99';
+            XuatToaDoXY(posFrist.x + wid, posFrist.y);
+            ToaDoLuu(posFrist.x + wid, posFrist.y);
+
+            ToaDoLuu(mouse.x, mouse.y);
+
+            ToaDoLuu(posFrist.x, posFrist.y + hei);
+            Coordinates1 = { x: mouse.x, y: mouse.y };
+            ctx.closePath();
+
+            ctx.stroke();
+            canvas.removeEventListener('mousedown', mouseDown, false);
+            canvas.removeEventListener('mouseup', mouseUp, false);
+        }
+        canvas.addEventListener('mouseup', mouseUp, false);
+    }
+
+
+
+    $(document).ready(function () {
+        $("input[name='loai']").change(function () {
+            var type = $("input[name='loai']:checked").val();
+            switch (type) {
+                case '0':
+                    //DaGiac();
+                    VeHCN();
+                    break;
+                    //case '1':
+                    //    VeTuDo();
+                    //    break;
+
+                    //case '2':
+                    //    VeHCN();
+                    //    break;
+            }
+
+
+        });
+    });
+    document.getElementById('delete').addEventListener('click', function () {
+        canvas.removeEventListener('click', clickEvent, false);
+
+        ctx.closePath();
+        while (Coordinates.length != 0) {
+            Coordinates.pop();
+        }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        imgOb.src = url;
+        imgOb.onload = function () {
+            realSize.x = this.width;
+            realSize.y = this.height;
+            ctx.drawImage(imgOb, 0, 0, 640, 480);
+            ctx = canvas.getContext('2d');
+            posLast.x = 0;
+            posLast.y = 0;
+            VeHCN();
+            ctx.restore();
+        }
+        //ctx.clearRect(0, 0, canvas.width, canvas.height);
+        //var m = confirm("Want to clear");
+        //if (m) {
+        //    ctx.clearRect(0, 0, width, height);
+        //    document.getElementById("imagepreview").style.display = "none";
+        //}
+        //ctx.clearRect(mouse.x, mouse.y, canvas.width, canvas.height);
+        //ctx.restore();
+
+    }, false);
+    //#Done click là truyền thẳng vào controller để lưu dữ liệu luôn
+    //document.getElementById('Done').addEventListener('click', function () {
+    @*$('#Done').click(function () {
+
+
+        //function click() {
+        var idfunc = $("#idfunc").val();
+        var idcam = $("#camid").val();
+        //var dataJson = { idfunction: idfunc, idcamera: idcam };
+        //var dataJson = { Coordinates: Coordinates, idfunc: idfunc, idcam: idcam };
+        $.ajax({
+            url: '@Url.Action("SaveCoor", "Home")',
+            dataType: 'json',
+            type: 'POST',
+            data: JSON.stringify({ Coordinates: Coordinates, idfunc: idfunc, idcam: idcam }),
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                $("#message").fadeIn();
+                $("#message").append("<h4 style='color:#33FF33>Thành công!</h4>")
+                setTimeout(function () {
+                    $("#message").fadeOut().empty();
+                }, 2000);
+
+            },
+            error: function (xhr) {
+                $("#message").fadeIn();
+                $("#message").append("<h4 style='color:red'>Thử lại!</h4>")
+                $("#message").append("<h4 style='color:#33FF33>Thành công!</h4>")
+                setTimeout(function () {
+                    $("#message").fadeOut().empty();
+                }, 2000);
+                //alert("aaa");
+            }
+        });
+
+    });*@
+
+    function clickSavePolygon(idfunc) {
+        var idfun = idfunc;
+        var idcam = $("#camid").val();
+        var url = '@Model.urlImage';
+        var dataJson = { Coordinates: Coordinates, idfunc: idfun, idcam: idcam, url: url };
+        $.ajax({
+            url: '@Url.Action("SaveCoor", "Home")',
+            dataType: 'json',
+            type: 'POST',
+            data: JSON.stringify(dataJson),
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                //alert("Lưu thành công!");
+                $("#message").fadeIn();
+                $("#message").append("<h4 style='color:blue'>Thành công</h4>");
+                //$("#message").append("<h4 style='color:#33FF33>Thành công!</h4>");
+                setTimeout(function () {
+                    $("#message").fadeOut().empty();
+                }, 2000);
+
+            },
+            error: function (xhr) {
+                $("#message").fadeIn();
+                $("#message").append("<h4 style='color:red'>Thử lại!</h4>");
+                setTimeout(function () {
+                    $("#message").fadeOut().empty();
+                }, 2000);
+            }
+        });
+
+    };
+
+
+    $("#_btn").live("click", function () {
+        ctx.closePath();
+        while (Coordinates.length != 0) {
+            Coordinates.pop();
+        }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        imgOb.src = url;
+        imgOb.onload = function () {
+            realSize.x = this.width;
+            realSize.y = this.height;
+            ctx.drawImage(imgOb, 0, 0, 640, 480);
+            ctx = canvas.getContext('2d');
+            posLast.x = 0;
+            posLast.y = 0;
+            posStart.x = 0;
+            posStart.y = 0;
+            //DaGiac();
+            ctx.restore();
+        }
+        $("#message").prop("disabled", true);
+        $("#imagemodal").dialog("close");
+    });
+    function showimage(idfunc) {
+        //var idfun = idfunc;
+        var idcam = $("#camid").val();
+        $('#info').append($("<li style='list-style: none'>Loading...</li>"));
+        $.ajax({
+            url: '@Url.Action("ShowImage", "Home")',
+            //dataType: 'json',
+            type: 'GET',
+            data: { idcam: idcam, idfunc: idfunc },
+            //contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $('#info').fadeOut('slow');
+            },
+            error: function (xhr) {
+                //$("#message").fadeIn();
+                //$("#message").append("<h4 style='color:red'>Thử lại!</h4>");
+                //setTimeout(function () {
+                //    $("#message").fadeOut().empty();
+                //}, 2000);
+            }
+        });
+    };
+</script>

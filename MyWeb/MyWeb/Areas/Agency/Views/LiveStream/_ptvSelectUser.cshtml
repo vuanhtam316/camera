@@ -1,0 +1,57 @@
+﻿@using MyWeb.HtmlHelpers
+@using MyWeb.Models
+@model MyWeb.Areas.Agency.Models.SelectListUserInAgency
+<input type="text" value="@ViewBag.Action" id="action" style="display:none">
+@*@Html.ValidationHtmlMessageFor(model => model.UserId, "", new { @class = "field-validation-valid" })*@
+@Html.DropDownListFor(m => m.UserId, new SelectList(Model.GetListUser_Agency, "Value", "Text"), "Chọn khách hàng", new { @class = "form-control pull-right", @id = "selectUser" })
+<script src="~/Content/Agency/vendors/jquery/dist/jquery.min.js"></script>
+<script>
+    $('select#selectUser').change(function () {
+        var action = $("#action").val();
+        if (action = "ListFourCamera") {
+            var userid = $(this).val();
+            $.ajax({
+                url: '@Url.Action("ListFourCamera", "LiveStream")',
+                type: 'POST',
+                cache: false,
+                data: { userid: userid },
+                success: function (data) {
+                    $('#StreamByFourCamera').html(data.listFourCamera);
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText);
+                }
+            });
+        }
+        if (action = "ListNineCamera") {
+            var userid = $(this).val();
+            $.ajax({
+                url: '@Url.Action("ListNineCamera", "LiveStream")',
+                type: 'POST',
+                cache: false,
+                data: { userid: userid },
+                success: function (data) {
+                    $('#StreamByNineCamera').html(data.listNineCamera);
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText);
+                }
+            });
+        }
+        if (action = "ListLimitCamera") {
+            var userid = $(this).val();
+            $.ajax({
+                url: '@Url.Action("ListLimitCamera", "LiveStream")',
+                type: 'POST',
+                cache: false,
+                data: { userid: userid },
+                success: function (data) {
+                    $('#StreamByLimitCamera').html(data.listLimitCamera);
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText);
+                }
+            });
+        }
+    });
+</script>

@@ -1,0 +1,47 @@
+﻿@using MyWeb.Models
+@model MyWeb.Areas.Agency.Models.UserAgencyModel
+@{
+    ViewBag.Title = "Danh sách khách hàng";
+    Layout = "~/Areas/Agency/Views/Shared/_MasterAgencyLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<div class="row mbl">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-red" style="height: 550px;">
+                    <div class="panel-heading">
+                        <h1 style="text-align:center">DANH SÁCH KHÁCH HÀNG</h1>
+                    </div>
+                    <hr />
+                    <div class="panel-body">
+
+                        @*@Html.Partial("_ptvSearch", Model)*@
+                        <div class="form-group" id="messageInfo">
+                            @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                        </div>
+                        @Html.Partial("~/Areas/Agency/Views/User/_ptvShowUser.cshtml", Model.UserModel)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="frmDeleteUserOfAgency"></div>
+<script>
+    function DeleteUserOfAgency(userId) {
+        $("#messageInfo").html('');
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("_ptvDeleteUserOfAgency", "User")",
+            data: { userId: userId },
+        success: function (data) {
+            $('#frmDeleteUserOfAgency').html(data);
+            $('#myModalDeleteUserOfAgency').modal('show');
+        },
+        error: function () {
+            MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+        },
+        });
+    }
+</script>

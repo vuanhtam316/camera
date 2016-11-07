@@ -1,0 +1,69 @@
+﻿@using MyWeb.HtmlHelpers
+@*@model IEnumerable<MyWeb.Models.CustomerModel>*@
+@model IEnumerable<MyWeb.Areas.Agency.Models.CameraOfUser>
+@{
+    var grid = new WebGrid(Model,
+           rowsPerPage: 8,
+           canPage: true,
+           canSort: true,
+           ajaxUpdateContainerId: "gridShowCamera"
+           );
+}
+<style>
+    th {
+        color: white;
+        text-align: center;
+        background: #2A3F54;
+    }
+    thead, tfoot {
+        background: #2A3F54;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    a:hover {
+        color: #BFCAE6;
+    }
+
+    tbody {
+        color: black;
+        background: white;
+    }
+
+    #btAdd:hover {
+        background: #2990af;
+    }
+</style>
+<div>
+    <input class="ccformfield" id="txtUserId" type="text" value="@ViewBag.UserId" style="display:none">
+    @*<input class="ccformfield" id="txtUserId" type="text" value="@ViewBag.UserId">*@
+    <h2 style="width: 60%; float: left;">Tên khách hàng: @ViewBag.NameUser</h2>
+    <input id="btAdd" type="button" value="Thêm mới camera" style="width: 25%; float: right; height: 35px; border: none; background: #2A3F54; color: white; font-size: 14px; border-radius: 20px; " onclick="CreateCamera()">
+</div>
+<br />
+@if (Model.Any())
+{
+    <div id="gridShowCamera" class="table-responsive" style="width: 100%;margin-top: 5.5%;">
+        @grid.GetHtml(
+        tableStyle: "table webGrid table-hover table-bordered table-striped table-hover-color",
+        headerStyle: "text-left hidden-sm hidden-xs",
+        alternatingRowStyle: "alt",
+        mode: WebGridPagerModes.All | WebGridPagerModes.FirstLast | WebGridPagerModes.NextPrevious | WebGridPagerModes.Numeric,
+         columns: grid.Columns(
+         grid.Column("STT", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, style: "text-center vertical-center",canSort:false),
+         grid.Column("CameraName", "Tên Camera", style: "text-center  vertical-center", canSort:false),
+            grid.Column(format: (item) => new MvcHtmlString(item.Status == "isConnected:True" ? "<span class='label label-success'>Bật</span>" : "<span class='label label-danger'>Tắt</span>"), header: "Trạng thái", style: "text-center  vertical-center"),
+        //grid.Column("FullName", "Tên khách hàng", style: "text-center  vertical-center hidden-sm hidden-xs"),
+        //grid.Column(format: item => new MvcHtmlString(string.Format("<a title='Xem chức năng' href='javascript:void(0)' onclick='RegisterAllFunction(" + item.CameraId + ")'><i class='fa fa-cog' style='font-size: 20px; color:#2A3F54'></i></a>")), header: "Chọn gói", style: "text-center vertical-center"),
+                  grid.Column(format: (item) => new MvcHtmlString(item.Status_Function == 0 ? "<a title='Xem chức năng' href='javascript:void(0)' onclick='RegisterAllFunction(" + item.CameraId + ")'><i class='fa fa-cog' style='font-size: 20px; color:#2A3F54'></i></a>" : "<span class='label label-success'>Đã mở</span>"), header: "Chọn gói", style: "text-center  vertical-center"),
+              grid.Column(format: item => new MvcHtmlString(string.Format("<a title='Xem chức năng' href='javascript:void(0)' onclick='ViewFunction(" + item.CameraId + ")'><i class='fa fa-cog' style='font-size: 20px; color:#2A3F54'></i></a>")), header: "Chức năng", style: "text-center vertical-center")
+
+                            ))
+    </div>
+}
+else
+{
+    <div class="form-group" style="margin-top: 5.5%; text-align:center">
+        <div class="alert alert-warning">Chưa có camera nào!</div>
+    </div>
+}

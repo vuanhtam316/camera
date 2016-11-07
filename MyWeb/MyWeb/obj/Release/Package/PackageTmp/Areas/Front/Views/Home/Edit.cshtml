@@ -1,0 +1,281 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Areas.Front.Models.UpdateCameraModel
+@{
+    //Layout = "~/Areas/Admin/Views/Shared/_MasterAdminLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<link href="~/Content/Front/Styles/timepicki.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/timepicki.js"></script>
+
+<div class="modal fade" id="myModalUpdateCamera" tabindex='-1' style="z-index: 9999999999" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border-radius: 6px !important;">
+            <div class="modal-header" style="background-color: #bf4346; border-radius: 5px 5px 0 0;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" style="color: white;">Cập nhật thông tin camera</h4>
+            </div>
+            @using (Ajax.BeginForm("Edit", "Camera", new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST",
+                OnFailure = "failure",
+                UpdateTargetId = "messageInfoModalUpdate",
+                OnSuccess = "success2"
+            }, new { id = "frmUpdateModal", @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.CameraModel.CAMERA_ID)
+                @Html.HiddenFor(model => model.CameraModel.CAMERA_URL_STREAM)
+                @Html.HiddenFor(model => model.CameraModel.CAMERA_URL)
+                @Html.HiddenFor(model => model.CameraModel.USERNAME_CAMERA)
+                @Html.HiddenFor(model => model.CameraModel.PASSWORD_CAMERA)
+                @Html.HiddenFor(model => model.CameraModel.PORT_RTSP)
+                @Html.HiddenFor(model => model.CameraModel.IP_CAMERA)
+                @Html.HiddenFor(model => model.CameraModel.USER_ID)
+                <div class="modal-body" style="padding-top: 0">
+                    <div class="row mbl" style="margin-bottom: 0 !important;padding-bottom: 0 !important;">
+                        <div class="col-md-12">
+                            <div class="pal">
+                                <div class="" id="messageInfoModalUpdate">
+                                    @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                                </div>
+                                <h4 style="margin-bottom:10px">Cập nhật thông tin camera</h4>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.CameraModel.CAMERA_NAME, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.CameraModel.CAMERA_NAME, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.CameraModel.CAMERA_NAME, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                @*<div class="form-group">
+                                        @Html.LabelFor(model => model.CameraModel.CAMERA_URL, new { @class = "col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.ValidationHtmlMessageFor(model => model.CameraModel.CAMERA_URL, "", new { @class = "field-validation-valid" })
+                                            @Html.TextBoxFor(model => model.CameraModel.CAMERA_URL, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CameraModel.CAMERA_URL_STREAM, new { @class = "col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.ValidationHtmlMessageFor(model => model.CameraModel.CAMERA_URL_STREAM, "", new { @class = "field-validation-valid" })
+                                            @Html.TextBoxFor(model => model.CameraModel.CAMERA_URL_STREAM, new { @class = "form-control" })
+                                        </div>
+                                    </div>*@
+                                <hr />
+                                <h4>Bật/tắt chức năng</h4>
+                                @{
+                if (Model.FunctionsModel != null && Model.FunctionsModel.Any())
+                {
+                    @*<div class="" style="margin-top:10px">
+                            @for (var i = 0; i < Model.FunctionsModel.Count; i++)
+                            {
+                                <div class="col-md-4" style="padding-top: 8px; margin-left:-15px">@Model.FunctionsModel[i].FunctionName</div>
+                                <div class="col-md-1" style="padding-top:8px">
+                                    @Html.CheckBoxFor(m => m.FunctionsModel[i].Status)
+                                    @Html.HiddenFor(m => m.FunctionsModel[i].FunctionId)
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(m => m.FunctionsModel[i].Start, new { @class = "timepicker form-control" })
+                                </div>
+                                <div class="col-md-3">
+                                    @Html.TextBoxFor(m => m.FunctionsModel[i].End, new { @class = "timepicker form-control" })
+                                </div>
+                                <div class="col-md-1" style="padding-top:8px">
+                                    @if (!string.IsNullOrEmpty(@Model.FunctionsModel[i].FunctionImage))
+                                    {
+                                        <a href="#" onclick="showImageFunction('@Model.FunctionsModel[i].FunctionImage')"><i class="fa fa-picture-o"></i></a>
+                                    }
+                                </div>
+                            }
+                        </div>*@
+                                    <div class="" style="margin-top:10px">
+                                        @for (var i = 0; i < Model.FunctionsModel.Count; i++)
+                                        {
+                                            string s = "FunctionsModel_" + i + "__Status";
+                                            <div class="col-md-4" style="padding-top: 8px; margin-left:-15px">@Model.FunctionsModel[i].FunctionName</div>
+                                            <div class="col-md-1" style="padding-top:8px">
+                                                @Html.CheckBoxFor(m => m.FunctionsModel[i].Status)
+                                                @Html.HiddenFor(m => m.FunctionsModel[i].FunctionId)
+
+
+                                                @Html.HiddenFor(m => m.FunctionsModel[i].FunctionId)
+                                            </div>
+                                            <div class="col-md-3">
+                                                @{
+                                            if (Model.FunctionsModel[i].Status == false)
+                                            {
+                                                @Html.TextBoxFor(m => m.FunctionsModel[i].Start, new { @class = "timepicker form-control ", @disabled = "disabled" })
+                                            }
+                                            else
+                                            {
+                                                @Html.TextBoxFor(m => m.FunctionsModel[i].Start, new { @class = "timepicker form-control" })
+                                            }
+                                                }
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                @{
+                                            if (Model.FunctionsModel[i].Status == false)
+                                            {
+                                                @Html.TextBoxFor(m => m.FunctionsModel[i].End, new { @class = "timepicker form-control ", @disabled = "disabled" })
+                                            }
+                                            else
+                                            {
+                                                @Html.TextBoxFor(m => m.FunctionsModel[i].End, new { @class = "timepicker form-control" })
+                                            }
+                                                }
+
+                                            </div>
+                                            @*<div class="col-md-3">
+                                                    @Html.TextBoxFor(m => m.FunctionsModel[i].Start, new { @class = "timepicker form-control" })
+                                                </div>
+                                                <div class="col-md-3">
+                                                    @Html.TextBoxFor(m => m.FunctionsModel[i].End, new { @class = "timepicker form-control" })
+                                                </div>*@
+                                            @*<link href="~/Scripts/jquery.tzCheckbox.css" rel="stylesheet" />*@
+                                            @*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>*@
+                                            @*<script src="~/Scripts/jquery.tzCheckbox.js"></script>
+                                                <script src="~/Scripts/script.js"></script>*@
+                                            <script>
+                                                $("#@s").change(function () {
+                                                    var isChecked = this.checked;
+                                                    var start = "#FunctionsModel_" +@i +"__Start";
+                                                    var end = "#FunctionsModel_" +@i +"__End";
+                                                    if (isChecked) {
+                                                        $(start).prop("disabled", false);
+                                                        $(end).prop("disabled", false);
+                                                    }
+                                                    else {
+                                                        $(start).prop("disabled", true);
+                                                        //$(start).val(null);
+
+                                                        $(end).prop("disabled", true);
+                                                        //$(end).val(null);
+                                                    }
+
+                                                })
+                                            </script>
+                                            @*<div class="col-md-4" style="padding-top: 8px; margin-left:-15px">@Model.FunctionsModel[i].FunctionName</div>
+                                                <div class="col-md-1" style="padding-top:8px">
+
+                                                    <input type="checkbox" id="@s" checked="@(Model.FunctionsModel[i].Start == null ? false : true)" />
+                                                    @Html.HiddenFor(m => m.FunctionsModel[i].FunctionId)
+                                                </div>*@
+                                            @*<div class="col-md-3">
+                                                    @{
+                                                if (Model.FunctionsModel[i].Start == null)
+                                                {
+                                                    @Html.TextBoxFor(m => m.FunctionsModel[i].Start, new { @class = "timepicker form-control ", @disabled = "disabled" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.TextBoxFor(m => m.FunctionsModel[i].Start, new { @class = "timepicker form-control" })
+                                                }
+                                                    }
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    @{
+                                                if (Model.FunctionsModel[i].End == null)
+                                                {
+                                                    @Html.TextBoxFor(m => m.FunctionsModel[i].End, new { @class = "timepicker form-control ", @disabled = "disabled" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.TextBoxFor(m => m.FunctionsModel[i].End, new { @class = "timepicker form-control" })
+                                                }
+                                                    }
+
+                                                </div>*@
+
+
+                                            <div class="col-md-1" style="padding-top:8px">
+                                                @*@if (!string.IsNullOrEmpty(@Model.FunctionsModel[i].FunctionImage))
+                                                    {
+                                                        <a href="#" onclick="showImageFunction('@Model.FunctionsModel[i].FunctionId')"><i class="fa fa-picture-o"></i></a>
+                                                    }*@
+                                                @if (@Model.FunctionsModel[i].FunctionImage == "http://nsc3.negatech.vn/")
+                                                {
+                                                    <a href="#" style="pointer-events: none;cursor: default;opacity: 0.6;"><i class="fa fa-picture-o"></i></a>
+                                                }
+                                                else
+                                                {
+                                                    <a href="#" onclick="showImageFunction('@Model.FunctionsModel[i].FunctionId')"><i class="fa fa-picture-o"></i></a>
+                                                }
+
+                                            </div>
+                                        }
+                                    </div>
+                }
+                else
+                {
+                    <div class="form-group">
+                        <div class="alert alert-warning" style="text-align:left; margin-top:10px">Chưa có chức năng nào.</div>
+                    </div>
+                }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="text" id="url" value="@ViewBag.url" style="display:none" />
+                <input type="text" id="camid" value="@ViewBag.cameraid" style="display:none" />
+
+                <div class="modal-footer" style="margin-top: 0">
+                    <button type="submit" id="btnCapnhatFunction" class="btn btn-red">Cập nhật</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Quay lại</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div id="showImgFunction">
+    @*@Html.Partial("_ptvShowImgFunction")*@
+</div>
+<script>
+
+
+
+    $('.timepicker').timepicki();
+    //$("#btnCapnhatFunction").click(function () {
+    //    document.getElementById("frmUpdateModal").submit();
+    //    $(this).prop('disabled', true);
+    //});
+    function DisbleBtn() {
+        $("#btnCapnhatFunction").prop('disabled', true);
+        $("#btnCapnhatFunction").removeClass('btn-red').addClass('btn-default');
+    }
+    function CloseModal() {
+        $('#myModalUpdateCamera').modal('hide');
+    }
+    function showImageFunction(idfunction) {
+       
+        //$('#imagepreview').attr('src', img);
+        $('#idfunc').attr('value', idfunction);
+        var idfunction = idfunction;
+        var idcamera = $("#camid").val();
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("GetPolygon", "Home")",
+            data: { idfunction: idfunction, idcamera: idcamera },
+            success: function (data) {
+                $('#showImgFunction').html(data);
+                $('#imagemodal').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+        });
+
+    }
+    //$('#Done').click(function () {
+
+
+    
+    
+    
+</script>

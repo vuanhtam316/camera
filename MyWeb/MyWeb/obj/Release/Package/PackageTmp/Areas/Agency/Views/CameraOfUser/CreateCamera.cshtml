@@ -1,0 +1,215 @@
+﻿@using MyWeb.HtmlHelpers
+@using MyWeb.Models
+@model MyWeb.Areas.Agency.Models.CameraOfUser
+
+@{
+    ViewBag.Title = "Thêm mới camera";
+    Layout = "~/Areas/Agency/Views/Shared/_MasterAgencyLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<style>
+    /* Form CSS*/
+    select{
+        cursor:pointer;
+    }
+    .form-control {
+        width: 92%;
+        height: 51px;
+        border: none;
+        background: #73879C;
+        color: white;
+    }
+
+    .ccform {
+        margin: 0 auto;
+        width: 60%;
+    }
+
+    .ccfield-prepend {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .ccform-addon {
+        color: white;
+        float: left;
+        padding: 12px;
+        width: 8%;
+        background: #73879C;
+        text-align: center;
+    }
+
+    .ccformfield {
+        color: white;
+        background: #73879C;
+        border: none;
+        padding: 15.5px;
+        width: 92%;
+        display: block;
+        font-family: 'Lato',Arial,sans-serif;
+        font-size: 14px;
+    }
+
+    .ccformfield {
+        font-family: 'Lato',Arial,sans-serif;
+    }
+
+    .ccbtn {
+        display: block;
+        border: none;
+        background: #73879C;
+        float: right;
+        color: #FFFFFF;
+        padding: 10px;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .ccbtn:hover {
+            background: #2990af;
+        }
+
+    .credit {
+        float: left;
+        margin: 25px;
+        text-align: center;
+    }
+
+        .credit em {
+            margin-right: 5px;
+        }
+
+        .credit a {
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+</style>
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<script src="~/Content/Agency/vendors/jquery/dist/jquery.min.js"></script>
+
+<div class="panel-heading" style="background:white; margin-top:6%">
+    <h1 style="text-align:center">THÊM MỚI CAMERA</h1>
+</div>
+<div style="background:white; height:450px">
+    <form method="post" action="CreateCamera" class="ccform" id="myformCamera">
+        <div class="ccfield-prepend">
+            @Html.ValidationHtmlMessageFor(model => model.CameraName, "", new { @class = "field-validation-valid" })
+            <span class="ccform-addon"><i class="fa fa-camera fa-2x"></i></span>
+            <input class="ccformfield" type="text" placeholder="Tên camera" name="CameraName" required id="CameraName" onclick="Clear1(this.id);" onblur="Clear2(this.id);">
+        </div>
+        <div class="ccfield-prepend">
+            @*@Html.ValidationHtmlMessageFor(model => model.Email, "", new { @class = "field-validation-valid" })*@
+            <div style="width:47.5%; float:left; margin-bottom:10px">
+                <span class="ccform-addon"><i class="fa fa-cog fa-2x"></i></span>
+                @{
+                    var listItems = new List<System.Web.UI.WebControls.ListItem>
+                                            { new System.Web.UI.WebControls.ListItem { Text = "Vantech", Value = "id1" },
+                                              new System.Web.UI.WebControls.ListItem { Text = "Foscam", Value = "id2" },
+                                              new System.Web.UI.WebControls.ListItem { Text = "Tiandy", Value = "id3" },
+                                                new System.Web.UI.WebControls.ListItem { Text = "DaHua", Value = "id4" },
+                                                new System.Web.UI.WebControls.ListItem{ Text="Hikvision", Value= "id5"}
+                                            };
+                }
+                @Html.ValidationHtmlMessageFor(model => model.Model_camera, "", new { @class = "field-validation-valid" })
+                @Html.DropDownListFor(model => model.Model_camera, new SelectList(listItems), "Chọn hãng camera", new { @class = "form-control", @id = "selectModel" })
+            </div>
+            <div style="width: 47.5%; float: left; margin-left: 5%; margin-bottom: 10px">
+                <div id="selectUser">
+                </div>
+            </div>
+            @*<input class="ccformfield" type="text" placeholder="Username camera" name="Username">*@
+        </div>
+        <div class="ccfield-prepend">
+            @*@Html.ValidationHtmlMessageFor(model => model.Email, "", new { @class = "field-validation-valid" })*@
+            <span class="ccform-addon"><i class="fa fa-users fa-2x"></i></span>
+            <input class="ccformfield" type="text" placeholder="Username camera" name="Username" id="Username" required onclick="Clear1(this.id);" onblur="Clear2(this.id);">
+        </div>
+        <div class="ccfield-prepend">
+            <span class="ccform-addon"><i class="fa fa-key fa-2x"></i></span>
+            <input class="ccformfield" type="text" placeholder="Password camera" name="Password" id="Password" required onclick="Clear1(this.id);" onblur="Clear2(this.id);">
+        </div>
+        <div class="ccfield-prepend">
+            <span class="ccform-addon"><i class="fa fa-krw fa-2x"></i></span>
+            <input class="ccformfield" type="text" placeholder="Domain" name="Domain" id="Domain" required onclick="Clear1(this.id);" onblur="Clear2(this.id);">
+        </div>
+        <div class="ccfield-prepend">
+            <span class="ccform-addon"><i class="fa fa-bookmark fa-2x"></i></span>
+            <input class="ccformfield" type="text" placeholder="Cổng RTSP" name="Port" id="Port" required onclick="Clear1(this.id);" onblur="Clear2(this.id);">
+        </div>
+
+        <div class="ccfield-prepend">
+            <input class="ccbtn" type="submit" value="Thêm mới" />
+        </div>
+        <div class="form-group" id="messageCreateCamera" style="text-align:center; margin-top:9%">
+            @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var url = "/CameraOfUser/GetListUserOfAgency";
+    $.post(url, null, function (data) {
+        $("#selectUser").html(data.listUser);
+    });
+
+    $(window).load(function () {
+        $("#myformCamera").submit(function (e) {
+            e.preventDefault();
+            var idUser = $('select#selectUser').val();
+            var Model_camera = $('select#selectModel').val();
+            var CameraName = $('#CameraName').val();
+            var Username = $('#Username').val();
+            var Password = $('#Password').val();
+            var Domain = $('#Domain').val();
+            var Port = $('#Port').val();
+            $.ajax({
+                type: 'POST',
+                @*url: "@Url.Action("CreateCamera", "CameraOfUser")",*@
+                data: { idUser: idUser, CameraName: CameraName, Model_camera: Model_camera, Username: Username, Password: Password, Domain: Domain, Port: Port },
+                success: function (data) {
+                    //$("#messageCreateCamera").fadeIn();
+                    //$("#messageCreateCamera").append("<h4 style='color:blue'>Thành công</h4>");
+                    //$("#message").append("<h4 style='color:#33FF33>Thành công!</h4>");
+                    //setTimeout(function () {
+                    //    $("#messageCreateCamera").fadeOut().empty();
+                    //}, 2000);
+                    //setTimeout(function () { $('#messageCreateCamera').fadeOut('slow'); }, 2000);
+                    //$('#camera').html(data);
+                    //$('#modalValidate').modal('show');
+                },
+                error: function () {
+                    MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+                },
+            });
+        });
+    });
+    function Clear1(str) {
+        document.getElementById(str).value = "";
+    }
+
+    function Clear2(str2) {
+        var aa1 = document.getElementById(str2);
+        if (aa1.value == "") {
+            //document.getElementById(str2).style.backgroundColor = "#ffcccc";
+        } else {
+            //document.getElementById(str2).style.backgroundColor = "#ffffff";
+        }
+    }
+</script>
+
+@*<script>
+        //$(window).load(function () {
+        //    $("#myform").submit(function (e) {
+        //        e.preventDefault();
+        //        setTimeout(function () {
+        //            alert("me after 1000 mili seconds");
+        //        }, 1000);
+        //    });
+        //});
+
+        //function myFunction() {
+        //    setTimeout(function () { $('#flashes').fadeOut('slow'); }, 3000);
+        //}
+    </script>*@

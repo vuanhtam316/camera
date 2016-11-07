@@ -1,0 +1,90 @@
+﻿@using MyWeb.HtmlHelpers
+@model IEnumerable<MyWeb.Areas.Agency.Models.FeedBack>
+@{
+    var grid = new WebGrid(Model,
+           rowsPerPage: 13,
+           canPage: true,
+           canSort: true,
+           ajaxUpdateContainerId: "gridShowFeedBack"
+           );
+}
+<style>
+    .hidden-column {
+        display: none;
+    }
+    th {
+        color: white;
+        text-align: center;
+    }
+
+    thead, tfoot {
+        background: #2A3F54;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    a:hover {
+        color: #BFCAE6;
+    }
+
+    tbody {
+        color: black;
+        background: white;
+    }
+
+    tr {
+        cursor: pointer;
+    }
+
+    .clickable {
+        cursor: pointer;
+        background: #ffff99;
+    }
+</style>
+@if (Model.Any())
+{
+    <div id="gridShowFeedBack" class="table-responsive" style="width:100%">
+        @grid.GetHtml(
+         htmlAttributes: new { id = "tbFeedBack" },
+        tableStyle: "table webGrid table-hover table-bordered table-striped table-hover-color",
+        headerStyle: "text-left hidden-sm hidden-xs",
+        alternatingRowStyle: "alt",
+        mode: WebGridPagerModes.All | WebGridPagerModes.FirstLast | WebGridPagerModes.NextPrevious | WebGridPagerModes.Numeric,
+         columns: grid.Columns(
+         grid.Column("STT", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, style: "text-center vertical-center", canSort: false),
+         grid.Column("FullName", "Tên khách hàng", style: "text-center  vertical-center", canSort: false),
+             grid.Column("Time", "Thời gian", style: "text-center  vertical-center hidden-sm hidden-xs", canSort: false),
+             grid.Column("Title", "Tiêu đề", style: "text-center  vertical-center hidden-sm hidden-xs", canSort: false),
+              grid.Column("Summary", "Nội dung", style: "text-center  vertical-center hidden-sm hidden-xs", canSort: false),
+            grid.Column("Content", "", canSort: false, style: "hidden-column")
+
+        //grid.Column("Phone", "Số điện thoại", style: "text-center  vertical-center hidden-sm hidden-xs"),
+        //grid.Column(format: item => new MvcHtmlString(string.Format("<a title='Xóa khách hàng' href='javascript:void(0)' onclick='DeleteUserOfAgency(" + item.UserId + ")' data-toggle='modal' data-target='#myModal' ><i class='fa fa-trash-o' style='font-size: 20px; color:#2A3F54'></i></a>")), header: "Xóa", style: "text-center vertical-center")
+                            ))
+    </div>
+}
+else
+{
+    <div class="form-group">
+        <div class="alert alert-warning">Chưa có dữ liệu hiển thị.</div>
+    </div>
+}
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $('#tbFeedBack tr').click(function (event) {
+        $('tr').css('background', '#ffffff');
+        $(this).css('background', '#00B2BF');
+        $('thead tr').css('background', '#2A3F54');
+        $('tfoot tr').css('background', '#2A3F54');
+        $('td', this).each(function (i) {
+            $('#infoFeedback .input').eq(i).val(this.textContent);
+        });
+    });
+
+    (function () {
+        $('#tbFeedBack tbody tr:first').find('td.hidden-column').each(function (i, td) {
+            var indexOfHiddenColumn = $(td).index();
+            $('#tbFeedBack thead th').eq(indexOfHiddenColumn).addClass('hidden');
+        });
+    }());
+</script>*@

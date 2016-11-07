@@ -1,0 +1,149 @@
+﻿@model List<MyWeb.Models.FunctionsModel>
+
+
+<div id="listFunction">
+    @{
+        if (Model.Any() && Model != null)
+        {
+            var count = Model.Count();
+            foreach (var item in Model)
+            {
+                <div class="col-md-2" style="padding:5px">
+                    <div class="thumbnail" style="border:none; height:220px; margin-bottom:10px">
+                        <div class="picCard">
+                            <a><img class="lazy" alt="" style="width:130px; height:130px; background :url('http://static.appvn.com/i/uploads/thumbnails/102014/2c787138d9a933ff7cb490492ca57151-4-icon.png') no-repeat center;" src="@item.FunctionImage"><span class="mask"></span></a>
+                        </div>
+                        <div class="caption" style="text-align: center">
+                            <h5 class="titleCard" style="height: 25px; font-size: 12px;">
+                                <a>@item.FunctionName</a>
+                            </h5>
+                            <a href="javascript:void(0)" onclick="showFuncDescription(@item.FunctionId);"><img src="~/Images/register.png" style="height:40px; width:100px" /></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+</div>
+<div id="showDescription"></div>
+<div id="showRegiter"></div>
+<div id="validate"></div>
+<script>
+    function showFuncDescription(idFunction) {
+        $("#messageInfo").html('');
+        $("#hidenFunction").val(idFunction);
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("ShowFuncDescription", "Home")",
+            data: { idFunction: idFunction },
+            success: function (data) {
+                $('#showDescription').html(data);
+                $('#showFunctionDescription').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+        });
+    }
+
+
+    function showFuncRegister(idfunction) {
+        $('#showFunctionDescription').modal('hide');
+
+        $("#messageInfo").html('');
+        $.ajax({
+            type: 'GET',
+            data: { idfunction: idfunction },
+            url: "@Url.Action("_ptvFunctionRegister", "Home")",
+            //data: { idFunction: idFunction },
+            success: function (data) {
+                $('#showRegiter').html(data);
+                $('#FunctionRegister').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+        });
+    }
+
+    function regis(idCamera) {
+        //$('#FunctionRegister').modal('hide');
+        var idFunction = $("#hidenFunction").val();
+        $("#messageInfo").html('');
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("_ptvFunctionRegister", "Home")',
+            data: { idCamera: idCamera, idFunction: idFunction },
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+        }).done(function (partialViewResult) {
+            $("#RegisterFunction").html(partialViewResult);
+        });
+    }
+
+
+    function dangki() {
+        //$('#FunctionRegister').modal('hide');
+        var idCamera = $("#hidenFunction1").val();
+        var idFuction = $("#hidenFunction2").val();
+        $("#messageInfo").html('');
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("_ptvValidate", "Home")",
+            data: { idCamera: idCamera, idFuction: idFuction },
+            //success: function (data) {
+            //    $('#validate').html(data);
+            //    $('#modalValidate').modal('show');
+            //},
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+        });
+    }
+
+
+
+    function Validate(idCamera) {
+        $('#FunctionRegister').modal('hide');
+        $("#messageInfo").html('');
+        var idFuction = $("#hidenFunction").val();
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("_ptvValidate", "Home")",
+            //data: '?idCamera= ' + idCamera + '&idFuction=' + idFuction,
+            data: { 'idCamera': idCamera, 'idFuction': idFuction },
+            success: function (data) {
+                $('#validate').html(data);
+                $('#modalValidate').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+        });
+    }
+
+
+
+
+    //$('#showFunctionDescription').modal('hide');
+
+    @*$("#messageInfo").html('');
+    $.ajax({
+        type: 'GET',
+        data: { idCamera: idCamera, idFuction: idFuction },
+        url: "@Url.Action("_ptvValidate", "Home")",
+        //data: { idCamera: idCamera },
+        success: function (data) {
+            $('#validate').html(data);
+            $('#modalValidate').modal('show');
+        },
+        error: function () {
+            MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+        },
+    });
+    }*@
+
+
+
+</script>

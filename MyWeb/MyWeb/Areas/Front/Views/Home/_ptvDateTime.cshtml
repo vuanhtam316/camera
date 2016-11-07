@@ -1,0 +1,354 @@
+﻿@model MyWeb.Areas.Front.Models.DateTimeModel
+<link href="~/Content/Admin/styles/timeLine/style.css" rel="stylesheet" />
+<link href="~/Content/Admin/styles/timeLine/reset.css" rel="stylesheet" />
+<link href="~/Content/Front/Styles/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Content/Admin/styles/timeLine/main.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
+
+
+@*<script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>*@
+@*<script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>*@
+@*<script src="@Url.Content("~/Scripts/JavaScript1.js")"></script>*@
+
+@*<script src="@Url.Content("~/Content/ckfinder/plugins/gallery/colorbox/jquery.min.js")"></script>*@
+
+<link href="~/Content/ckfinder/plugins/gallery/colorbox/jquery.min.js" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<script src="~/Content/Admin/script/ion.rangeSlider.js"></script>
+<script src="~/Content/Admin/script/ion.rangeSlider.min.js"></script>
+@*
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.vi.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.fr.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker2.js"></script>
+    <script src="~/Scripts/bootstrap-timepicker.min.js"></script>*@
+@*<script src="~/Content/ckfinder/plugins/gallery/colorbox/jquery.min.js"></script>*@
+@*<script src="@Url.Content("~/Content/ckfinder/plugins/gallery/colorbox/jquery.min.js")"></script>*@
+
+@*<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>*@
+
+
+<style>
+    /*---datetiem item*/
+    .date-item {
+        background: none repeat scroll 0 0 #cccccc;
+        border: 1px solid #c0c0c0;
+        -ms-border-radius: 3px;
+        border-radius: 3px;
+        color: #ffffff;
+        display: inline-block;
+        margin: 0 2px;
+        padding: 4px 8px;
+        text-align: right;
+        text-decoration: none !important;
+    }
+        /*---datetiem item*/
+        .date-item:hover {
+            background: cadetblue;
+        }
+</style>
+
+<link href="~/Content/Admin/styles/normalize.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/Admin/styles/ion.rangeSlider.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/Admin/styles/ion.rangeSlider.skinHTML5.css" rel="stylesheet" type="text/css" />
+@{
+    if (Model != null && Model.DataDates.Any())
+    {
+        <div class="col-md-12 nomarginbottom">
+            <div class='col-sm-6 nomarginbottom'>
+                <div class="form-group">
+                    <div class='input-group date' id='history_date_from'>
+                        <input type='text' id="history_date_frominput" class="form-control" placeholder="Chọn ngày" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            @*<div id="slider-range"></div>
+                <div class="leftGrip"></div>
+                <div class="rightGrip"></div>*@
+
+            @*<div style="margin-top: 50px; margin-bottom: 10px">
+                    <div id="leftLabel" style="width:20px; float:left" />
+                    <div class="nstSlider" data-range_min="0" data-range_max="23"
+                         data-cur_min="0" data-cur_max="23" style="width:290px; float:left">
+                        <div class="bar"></div>
+                        <div class="leftGrip"></div>
+                        <div class="rightGrip"></div>
+                    </div>
+                    <div id="rightLabel" style="margin-left:320px" />
+                </div>*@
+
+
+
+            @*<div id="slider"></div>*@
+
+            @*<div id="double_number_range" style="margin-top: 60px; margin-left:5px"></div>*@
+            @*<div style="margin-top:35px"><h5>Chọn khoảng thời gian (giờ)</h5></div>*@
+            <div style="margin-left: 5px; margin-top: 40px">
+                <input type="text" id="example_id" name="example_name" value="" />
+            </div>
+
+
+
+
+            @*<div class='col-sm-6 nomarginbottom'>
+                    <div class="form-group">
+                        <div class='input-group date' id='history_time_from'>
+                            <input type='text' class="form-control" placeholder="Từ" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-sm-6 nomarginbottom'>
+                    <div class="form-group">
+                        <div class='input-group date' id='history_time_to'>
+                            <input type='text' class="form-control" placeholder="Từ" />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>*@
+
+            <div class='col-sm-12'>
+                @*<button type="submit" onclick='SearchHistoryByMonthDay($("#history_date_from").find("input").val(), $("#history_date_to").find("input").val());' class="btn btn-default">Tìm kiếm</button>*@
+                <button type="submit" style="margin-bottom:10px; background-color:red" onclick='SearchHistoryByMonthDay($("#history_date_from").find("input").val())' class="btn btn-red">Tìm kiếm</button>
+            </div>
+        </div>
+
+    }
+}
+
+
+
+@*<script src="~/Scripts/JavaScript1.js"></script>*@
+
+@*<script src="../bower_components/jquery/dist/jquery.js" type="text/javascript"></script>*@
+
+@*<script src="~/Content/Admin/script/range_picker.js" type="text/javascript"></script>*@
+@*<script src="./sample.js" type="text/javascript"> </script>*@
+
+@*<script src="~/Content/Admin/script/jquery-1.12.3.min.js"></script>*@
+@*<script src="js/jquery-1.11.3.min.js"></script>*@
+
+<script>
+
+
+
+    $(function () {
+
+        var $range = $("#example_id");
+
+        $range.ionRangeSlider({
+            type: "double",
+            min: 0,
+            max: 24,
+            from: 0,
+            to: 24
+        });
+
+        $range.on("change", function () {
+            var $this = $(this),
+                value = $this.prop("value").split(";");
+
+            console.log(value[0] + " - " + value[1]);
+        });
+
+
+
+
+
+        //$("#double_number_range").rangepicker({
+        //    type: "double",
+        //    startValue: 0,
+        //    endValue: 23,
+        //    translateSelectLabel: function (currentPosition, totalPosition) {
+        //        return parseInt(23 * (currentPosition / totalPosition));
+        //    }
+        //});
+
+
+
+
+        //$('.nstSlider').nstSlider({
+        //    "left_grip_selector": ".leftGrip",
+        //    "right_grip_selector": ".rightGrip",
+        //    "value_bar_selector": ".bar",
+        //    "value_changed_callback": function (cause, leftValue, rightValue) {
+        //        $(this).parent().find('#leftLabel').text(leftValue);
+        //        $(this).parent().find('#rightLabel').text(rightValue);
+        //    }
+        //});
+
+
+    });
+
+
+    //$(function () {
+    //    $("#slider-range").slider({
+    //        range: true,
+    //        min: 0,
+    //        max: 24,
+    //        values: [8, 17],
+    //        //change:function()
+    //        slide: function (event, ui) {
+    //            $('#slider-range, #slider-range .ui-slider-range').toggleClass('ui-widget-header ui-widget-content');
+    //            //$("#slider-value").html(ui.value);
+    //            $(this).parent().find('.leftLabel').text(leftValue);
+    //            $(this).parent().find('.rightLabel').text(rightValue);
+    //        }
+    //    });
+
+    //});
+
+
+    function SearchHistoryByMonthDay(fromdate) {
+        var id = $('#hidCameraId').val();
+        var pageIndex = 1;
+        var functionid = $('#selectFunction').val();
+        //var fromtime = $('#leftLabel').text();
+        //var st = new Array[$('.select-label')]
+
+
+        //var fromtime = st[0].text();
+        //var totime = st[1].text();
+
+        var fromtime = $('.irs-from').text();
+        var totime = $('.irs-to').text();
+
+
+
+
+
+        //var totime = $('#rightLabel').text();
+
+        //if (pageIndex == '' || pageIndex == null) {
+        //    pageIndex = 1;
+        //}
+        $('#hidDay').val(fromdate);
+        //$('#hidMonth').val(fromdate);
+        @*var itemperpage = @MyWeb.Business.ProviderControllerBase.RowPerPage*@
+        //console.log('');
+
+        $.ajax({
+            url: '@Url.Action("SearchFromTo", "Home")',
+            type: 'GET',
+            cache: false,
+            data: { id: id, fromDate: fromdate, fromTime: fromtime, toTime: totime, functionid: functionid, page: pageIndex },//, rowperpage: itemperpage
+            success: function (data) {
+                $('#TemplateContent').html(data);
+            },
+            error: function (jqXhr, exception) {
+                if (jqXhr.status === 0) {
+                    alert('Not connect.\n Verify Network.');
+                } else if (jqXhr.status == 404) {
+                    alert('Requested page not found. [404]');
+                } else if (jqXhr.status == 500) {
+                    alert('Internal Server Error [500].');
+                } else if (exception === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (exception === 'timeout') {
+                    alert('Time out error.');
+                } else if (exception === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error.\n' + jqXhr.responseText);
+                }
+            }
+        });
+        return false;
+    }
+
+
+    jQuery(function () {
+        $('#history_date_from').datetimepicker({
+            format: 'DD/MM/YYYY ',
+            locale: 'vi',
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        });
+    });
+
+</script>
+@*function SearchHistoryByMonthDay(fromdate, todate) {
+        var id = $('#hidCameraId').val();
+        var pageIndex = 1;
+        var functionid = $('#selectFunction').val();
+        //if (pageIndex == '' || pageIndex == null) {
+        //    pageIndex = 1;
+        //}
+        $('#hidDay').val(fromdate);
+        $('#hidMonth').val(todate);
+        var itemperpage = @MyWeb.Business.ProviderControllerBase.RowPerPage
+            console.log('');
+
+        $.ajax({
+            url: '@Url.Action("SearchFromTo", "Home")',
+            type: 'GET',
+            cache: false,
+            data: { id: id, fromDate: fromdate, toDate: todate, functionid: functionid, page: pageIndex, rowperpage: itemperpage },
+            success: function (data) {
+                $('#TemplateContent').html(data);
+            },
+            error: function (jqXhr, exception) {
+                if (jqXhr.status === 0) {
+                    alert('Not connect.\n Verify Network.');
+                } else if (jqXhr.status == 404) {
+                    alert('Requested page not found. [404]');
+                } else if (jqXhr.status == 500) {
+                    alert('Internal Server Error [500].');
+                } else if (exception === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (exception === 'timeout') {
+                    alert('Time out error.');
+                } else if (exception === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error.\n' + jqXhr.responseText);
+                }
+            }
+        });
+        return false;
+    }
+    jQuery(function () {
+        $('#history_date_from').datetimepicker({
+            format: 'DD/MM/YYYY HH:mm',
+            locale: 'vi',
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        });
+        $('#history_date_to').datetimepicker({
+            format: 'DD/MM/YYYY HH:mm',
+            locale: 'vi',
+            useCurrent: false,
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        });
+
+        $("#history_date_from").on("dp.change", function (e) {
+            $('#history_date_to').data("DateTimePicker").minDate(e.date);
+        });
+        $("#history_date_to").on("dp.change", function (e) {
+            $('#history_date_from').data("DateTimePicker").maxDate(e.date);
+        });
+       });*@
+

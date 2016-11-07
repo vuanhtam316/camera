@@ -1,0 +1,147 @@
+﻿@using MyWeb.HtmlHelpers
+@using MyWeb.Models
+@model MyWeb.Areas.Agency.Models.UserOfAgency
+
+@{
+    ViewBag.Title = "Thêm mới khách hàng";
+    Layout = "~/Areas/Agency/Views/Shared/_MasterAgencyLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<style>
+    /* Form CSS*/
+    .ccform {
+        margin: 0 auto;
+        width: 60%;
+    }
+
+    .ccfield-prepend {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .ccform-addon {
+        color: white;
+        float: left;
+        padding: 12px;
+        width: 8%;
+        background: #73879C;
+        text-align: center;
+    }
+
+    .ccformfield {
+        color: white;
+        background: #73879C;
+        border: none;
+        padding: 15.5px;
+        width: 92%;
+        display: block;
+        font-family: 'Lato',Arial,sans-serif;
+        font-size: 14px;
+    }
+
+    .ccformfield {
+        font-family: 'Lato',Arial,sans-serif;
+    }
+
+    .ccbtn {
+        display: block;
+        border: none;
+        background: #73879C;
+        float: right;
+        color: #FFFFFF;
+        padding: 10px;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .ccbtn:hover {
+            background: #2990af;
+        }
+
+    .credit {
+        float: left;
+        margin: 25px;
+        text-align: center;
+    }
+
+        .credit em {
+            margin-right: 5px;
+        }
+
+        .credit a {
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+</style>
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<div class="panel-heading" style="background:white; margin-top:6%">
+    <h1 style="text-align:center">THÊM MỚI KHÁCH HÀNG</h1>
+</div>
+<div style="background:white; height:450px">
+    <form method="post" action="CreateUser" class="ccform" id="myform">
+        <div class="ccfield-prepend">
+            @Html.ValidationHtmlMessageFor(model => model.FullName, "", new { @class = "field-validation-valid" })
+            <span class="ccform-addon"><i class="fa fa-user fa-2x"></i></span>
+            <input class="ccformfield" type="text" placeholder="Họ và tên khách hàng" id="FullName" name="FullName" onclick="Clear1(this.id);" onblur="Clear2(this.id);">
+        </div>
+        <div class="ccfield-prepend">
+            @Html.ValidationHtmlMessageFor(model => model.Email, "", new { @class = "field-validation-valid" })
+            <span class="ccform-addon"><i class="fa fa-envelope fa-2x"></i></span>
+            <input class="ccformfield" type="text" placeholder="Email" id="Email" name="Email" onclick="Clear1(this.id);" onblur="Clear2(this.id);">
+        </div>
+        <div class="ccfield-prepend">
+            @Html.ValidationHtmlMessageFor(model => model.Phone, "", new { @class = "field-validation-valid" })
+            <span class="ccform-addon"><i class="fa fa-phone fa-2x"></i></span>
+            <input class="ccformfield" type="text" placeholder="Số điện thoại" id="Phone" name="Phone" onclick="Clear1(this.id);" onblur="Clear2(this.id);">
+        </div>
+        @*<div class="ccfield-prepend">
+                <span class="ccform-addon"><i class="fa fa-user fa-2x"></i></span>
+                <input class="ccformfield" type="text" placeholder="Tài khoản" name="UserName" required>
+            </div>
+            <div class="ccfield-prepend">
+                <span class="ccform-addon"><i class="fa fa-key fa-2x"></i></span>
+                <input class="ccformfield" type="text" placeholder="Mật khẩu" name="Password" required>
+            </div>*@
+
+        <div class="ccfield-prepend">
+            <input class="ccbtn" type="submit" value="Thêm mới" />
+        </div>
+        <div class="form-group" id="messageCreate" style="text-align:center; margin-top:9%">
+            @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+        </div>
+    </form>
+</div>
+<script>
+    function Clear1(str) {
+        document.getElementById(str).value = "";
+    }
+
+    function Clear2(str2) {
+        var aa1 = document.getElementById(str2);
+        if (aa1.value == "") {
+            //document.getElementById(str2).style.backgroundColor = "#ffcccc";
+        } else {
+            //document.getElementById(str2).style.backgroundColor = "#ffffff";
+        }
+    }
+    //$(window).load(function () {
+    //    $("#myform").submit(function (e) {
+    //        e.preventDefault();
+    //        $.ajax({
+    //            type: 'POST',
+    //            success: function (data) {
+    //                setTimeout(function () { $('#messageCreate').fadeOut('slow'); }, 2000);
+    //            },
+    //            error: function () {
+    //                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+    //            },
+    //        })
+    //    });
+    //});
+
+    //function myFunction() {
+    //    setTimeout(function () { $('#flashes').fadeOut('slow'); }, 3000);
+    //}
+</script>

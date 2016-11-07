@@ -1,0 +1,47 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Areas.Agency.Models.ListFunctionModel
+@{
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<style>
+    #btnOkFunction:hover {
+        background: #2990af;
+    }
+</style>
+<div class="modal fade" id="ptvRegisterAllFunction" tabindex='-1' style="z-index: 9999999999" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border-radius: 6px !important; width: 500px; margin: auto; width: 500px; margin: auto">
+            <div class="modal-header" style="background-color: #2A3F54; border-radius: 5px 5px 0 0;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" style="color:white">CHỨC NĂNG</h4>
+            </div>
+            @using (Ajax.BeginForm("ActiveAllFunction", "CameraOfUser", new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST",
+                OnFailure = "failure",
+                UpdateTargetId = "messageInfoModalDelete",
+                OnSuccess = "",
+            }, new { id = "frmActiveModel", @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="" id="messageInfo" style="text-align:center">
+                    @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                </div>
+                <div>
+                    <h5 style="color:black" id="h2">Bạn có muốn kích hoạt tất cả chức năng này không?</h5>
+                    <input type="text" value="@ViewBag.Cam" name="CameraID" style="display:none">
+                    @Html.Partial("~/Areas/Agency/Views/CameraOfUser/_ptvShowListFunction.cshtml", Model.ListFunction)
+                </div>
+                <div class="modal-footer" style="margin-top: 0; border-top: none">
+                    <button onclick="ActiveAllFunction()" id="btnOkFunction" class="btn btn-red" style="width: 78px; background: #73879C; color: white; ">Kích hoạt</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal" style="background: #2990af; border:none">
+                        Quay lại
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

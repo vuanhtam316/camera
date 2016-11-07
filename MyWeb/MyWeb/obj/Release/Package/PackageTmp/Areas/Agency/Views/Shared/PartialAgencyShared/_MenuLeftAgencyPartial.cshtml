@@ -1,0 +1,206 @@
+﻿
+<div class="menu_section">
+    <h3>CHỨC NĂNG</h3>
+    <ul class="nav side-menu">
+        <li>
+            <a><i class="fa fa-male"></i> Quản lý khách hàng <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                <li><a href="@Url.Action("Index", "User")">Danh sách khách hàng</a></li>
+                <li><a href="@Url.Action("CreateUser", "User")">Thêm mới khách hàng</a></li>
+                
+                @{Html.RenderAction("AgencyLi", "HomeAgency");}
+
+                @*<li><a href="@Url.Action("CreateAgency", "User")">Thêm mới đại lý</a></li>*@
+            </ul>
+        </li>
+        <li>
+            <a><i class="fa fa-camera"></i> Quản lý camera <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                <li><a href="@Url.Action("Index","CameraOfUser")">Danh sách camera</a></li>
+                @*<li><a href="@Url.Action("CreateCamera","CameraOfUser")">Thêm mới camera</a></li>*@
+                @*<li><a href="@Url.Action("FunctionManage","CameraOfUser")">Cài đặt chức năng</a></li>*@
+            </ul>
+        </li>
+        <li>
+            <a><i class="fa fa-video-camera"></i> Live stream <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                <li id="li4">
+                    @*<a href="@Url.Action("LiveStreamOfFourCamera", "LiveStream")">*@
+                    <a onclick="clickMode4()">Chế độ 4</a>
+                    <div class="li4">
+                        <ul id="Mode4" class="nav child_menu" style="color: white; left: 100%; position: absolute; top: 0; width: 85%; z-index: 4000; background: #2A3F54; padding: 10px; list-style: none;"></ul>
+                    </div>
+                </li>
+                <li id="li9">
+                    @*<a href="@Url.Action("LiveStreamOfNineCamera", "LiveStream")">Chế độ 9</a>*@
+                    <a onclick="clickMode9()">Chế độ 9</a>
+                    <div class="li9">
+                        <ul id="Mode9" class="nav child_menu" style="color: white; left: 100%; position: absolute; top: 0; width: 85%; z-index: 4000; background: #2A3F54; padding: 10px; list-style: none;"></ul>
+                    </div>
+                </li>
+                <li id="li16">
+                    @*<a href="@Url.Action("LiveStreamOfLimitCamera", "LiveStream")">Chế độ 16</a>*@
+                    <a onclick="clickMode16()">Chế độ 16</a>
+                    <div class="li16">
+                        <ul id="Mode16" class="nav child_menu" style="color: white; left: 100%; position: absolute; top: 0; width: 85%; z-index: 4000; background: #2A3F54; padding: 10px; list-style: none; "></ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a><i class="fa fa-comment"></i> Ý kiến khách hàng <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+                <li><a href="@Url.Action("Index", "FeedBack")">Danh sách ý kiến</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+@*<script src="~/Content/Agency/vendors/jquery/dist/jquery.min.js"></script>*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    /////////////////mode 4 camera
+    function clickMode4() {
+        $('#Mode4').append($('<li>Loading...</li>'));
+        var url = "@Url.Action("GetFour", "LiveStream")";
+        $('#li4').css('background', '#2A3F54');
+        $('#li9').removeClass('active').css('background', '#2990af');
+        $('#li16').removeClass('active').css('background', '#2990af');
+        $("#Mode9").hide();
+        $("#Mode16").hide();
+        $.ajax({
+            type: 'GET',
+            success: function (response) {
+                $('#Mode4').empty();
+                if (response.length == 0) {
+                    $('#Mode4').append('<li>Không có khách hàng</li>');
+                }
+                $.getJSON(url, displayDataMode4);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+        //$('html').click(function () {
+        //    $('.li4').hide();
+        //});
+    };
+    function displayDataMode4(response) {
+        if (response != null) {
+            for (var i = 0; i < response.length; i++) {
+                $("#Mode4").append("<li onclick='showCamera4(\"" + response[i].UserID + "\")'><a>" + response[i].FullName + "</a></li>");
+            }
+        }
+    };
+    function showCamera4(userid) {
+        var i = userid;
+        var url = '@Url.Action("LiveStreamOfFourCamera", "LiveStream", new { userid = "_i_" })';
+        window.location.href = url.replace('_i_', encodeURIComponent(i));
+        $.ajax({
+            url: window.location.href,
+            type: 'GET',
+            data: { userid: userid },
+            success: function (data) {
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    };
+    /////////////////mode 9 camera
+    function clickMode9() {
+        $('#Mode9').append($('<li>Loading...</li>'));
+        var url = "@Url.Action("GetNine", "LiveStream")";
+        $('#li9').css('background', '#2A3F54');
+        $('#li4').removeClass('active').css('background', '#2990af');
+        $('#li16').removeClass('active').css('background', '#2990af');
+        $("#Mode4").hide();
+        $("#Mode16").hide();
+        $.ajax({
+            type: 'GET',
+            success: function (response) {
+                $('#Mode9').empty();
+                if (response.length == 0) {
+                    $('#Mode9').append('<li>Không có khách hàng</li>');
+                }
+                $.getJSON(url, displayDataMode9);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+        //$('html').click(function () {
+        //    $('li9').hide();
+        //});
+    };
+    function displayDataMode9(response) {
+        if (response != null) {
+            for (var i = 0; i < response.length; i++) {
+                $("#Mode9").append("<li onclick='showCamera9(\"" + response[i].UserID + "\")'><a>" + response[i].FullName + "</a></li>");
+            }
+        }
+    };
+    function showCamera9(userid) {
+        var i = userid;
+        var url = '@Url.Action("LiveStreamOfNineCamera", "LiveStream", new { userid = "_i_" })';
+        window.location.href = url.replace('_i_', encodeURIComponent(i));
+        $.ajax({
+            url: window.location.href,
+            type: 'GET',
+            data: { userid: userid },
+            success: function (data) {
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    };
+    /////////////////mode 16 camera
+    function clickMode16() {
+        $('#Mode16').append($('<li>Loading...</li>'));
+        var url = "@Url.Action("GetLimit", "LiveStream")";
+        $('#li16').css('background', '#2A3F54');
+        $('#li4').removeClass('active').css('background', '#2990af');
+        $('#li9').removeClass('active').css('background', '#2990af');
+        $("#Mode4").hide();
+        $("#Mode9").hide();
+        $.ajax({
+            type: 'GET',
+            success: function (response) {
+                $('#Mode16').empty();
+                //if (response.length == 0) {
+                $('#Mode16').append('<li>Không có khách hàng</li>');
+                //}
+                $.getJSON(url, displayDataMode16);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
+        //$('html').click(function () {
+        //    $('.li16').hide();
+        //});
+    };
+    function displayDataMode16(response) {
+        if (response != null) {
+            for (var i = 0; i < response.length; i++) {
+                $("#Mode16").append("<li onclick='showCamera16(\"" + response[i].UserID + "\")'><a>" + response[i].FullName + "</a></li>");
+            }
+        }
+    };
+    function showCamera16(userid) {
+        var i = userid;
+        var url = '@Url.Action("LiveStreamOfLimitCamera", "LiveStream", new { userid = "_i_" })';
+        window.location.href = url.replace('_i_', encodeURIComponent(i));
+        $.ajax({
+            url: window.location.href,
+            type: 'GET',
+            data: { userid: userid },
+            success: function (data) {
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+    };
+
+</script>

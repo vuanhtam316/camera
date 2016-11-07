@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities1">
+    <EntitySetMapping Name="TBL_CAMERA">
+      <EntityTypeMapping TypeName="Model.TBL_CAMERA">
+        <MappingFragment StoreEntitySet="TBL_CAMERA">
+          <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
+          <ScalarProperty Name="SNAPSHOT_STATUS" ColumnName="SNAPSHOT_STATUS" />
+          <ScalarProperty Name="CAMERA_ID" ColumnName="CAMERA_ID" />
+          <ScalarProperty Name="CAMERA_NAME" ColumnName="CAMERA_NAME" />
+          <ScalarProperty Name="CAMERA_NUMBER" ColumnName="CAMERA_NUMBER" />
+          <ScalarProperty Name="CAMERA_URL" ColumnName="CAMERA_URL" />
+          <ScalarProperty Name="CAMERA_IP" ColumnName="CAMERA_IP" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="CAMERA_URL_STREAM" ColumnName="CAMERA_URL_STREAM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_CAMERA_FUNCTION">
+      <EntityTypeMapping TypeName="Model.TBL_CAMERA_FUNCTION">
+        <MappingFragment StoreEntitySet="TBL_CAMERA_FUNCTION">
+          <ScalarProperty Name="IMAGE_STATUS" ColumnName="IMAGE_STATUS" />
+          <ScalarProperty Name="URL_IMAGE" ColumnName="URL_IMAGE" />
+          <ScalarProperty Name="FUNCTION_ID" ColumnName="FUNCTION_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="CAMERA_ID" ColumnName="CAMERA_ID" />
+          <ScalarProperty Name="POLYGON" ColumnName="POLYGON" />
+          <ScalarProperty Name="X_ROTATION" ColumnName="X_ROTATION" />
+          <ScalarProperty Name="Y_ROTATION" ColumnName="Y_ROTATION" />
+          <ScalarProperty Name="Z_ROTATION" ColumnName="Z_ROTATION" />
+          <ScalarProperty Name="STRETCH" ColumnName="STRETCH" />
+          <ScalarProperty Name="DISTANCE" ColumnName="DISTANCE" />
+          <ScalarProperty Name="CAMERA_FUNTION_ID" ColumnName="CAMERA_FUNTION_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_CAMERA_STATUS">
+      <EntityTypeMapping TypeName="Model.TBL_CAMERA_STATUS">
+        <MappingFragment StoreEntitySet="TBL_CAMERA_STATUS">
+          <ScalarProperty Name="FUNCTION_REGIGES" ColumnName="FUNCTION_REGIGES" />
+          <ScalarProperty Name="CAMERA_STATUS" ColumnName="CAMERA_STATUS" />
+          <ScalarProperty Name="CAMERA_STATUS_DESCRIPTION" ColumnName="CAMERA_STATUS_DESCRIPTION" />
+          <ScalarProperty Name="CAMERA_ID" ColumnName="CAMERA_ID" />
+          <ScalarProperty Name="FUNCTION_ID" ColumnName="FUNCTION_ID" />
+          <ScalarProperty Name="CAMERA_STATUS_ID" ColumnName="CAMERA_STATUS_ID" />
+          <ScalarProperty Name="CAMERA_STATUS_TIME_START" ColumnName="CAMERA_STATUS_TIME_START" />
+          <ScalarProperty Name="CAMERA_STATUS_TIME_END" ColumnName="CAMERA_STATUS_TIME_END" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_FUNCTION">
+      <EntityTypeMapping TypeName="Model.TBL_FUNCTION">
+        <MappingFragment StoreEntitySet="TBL_FUNCTION">
+          <ScalarProperty Name="PROCESS" ColumnName="PROCESS" />
+          <ScalarProperty Name="FUNCTION_ID" ColumnName="FUNCTION_ID" />
+          <ScalarProperty Name="FUNCTION_NAME" ColumnName="FUNCTION_NAME" />
+          <ScalarProperty Name="FUNCTION_DESCRIPTION" ColumnName="FUNCTION_DESCRIPTION" />
+          <ScalarProperty Name="FUNCTION_IMAGE" ColumnName="FUNCTION_IMAGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_HISTORY_IMAGES">
+      <EntityTypeMapping TypeName="Model.TBL_HISTORY_IMAGES">
+        <MappingFragment StoreEntitySet="TBL_HISTORY_IMAGES">
+          <ScalarProperty Name="HISTORYIMAGES_ID" ColumnName="HISTORYIMAGES_ID" />
+          <ScalarProperty Name="HISTORYIMAGES_TIMESTART" ColumnName="HISTORYIMAGES_TIMESTART" />
+          <ScalarProperty Name="HISTORYIMAGES_TIMEEND" ColumnName="HISTORYIMAGES_TIMEEND" />
+          <ScalarProperty Name="HISTORYIMAGES_URL" ColumnName="HISTORYIMAGES_URL" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="CAMERA_ID" ColumnName="CAMERA_ID" />
+          <ScalarProperty Name="FUNCTION_ID" ColumnName="FUNCTION_ID" />
+          <ScalarProperty Name="HISTORYIMAGES_INFO" ColumnName="HISTORYIMAGES_INFO" />
+          <ScalarProperty Name="HISTORY_VIDEO_ID" ColumnName="HISTORY_VIDEO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_HISTORY_VIDEO">
+      <EntityTypeMapping TypeName="Model.TBL_HISTORY_VIDEO">
+        <MappingFragment StoreEntitySet="TBL_HISTORY_VIDEO">
+          <ScalarProperty Name="HISTORYVIDEO_ID" ColumnName="HISTORYVIDEO_ID" />
+          <ScalarProperty Name="HISTORYVIDEO_TIMESTART" ColumnName="HISTORYVIDEO_TIMESTART" />
+          <ScalarProperty Name="HISTORYVIDEO_TIMEEND" ColumnName="HISTORYVIDEO_TIMEEND" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="CAMERA_ID" ColumnName="CAMERA_ID" />
+          <ScalarProperty Name="HISTORYVIDEO_URL" ColumnName="HISTORYVIDEO_URL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_PERMISSTION">
+      <EntityTypeMapping TypeName="Model.TBL_PERMISSTION">
+        <MappingFragment StoreEntitySet="TBL_PERMISSTION">
+          <ScalarProperty Name="PERMISSTION_ID" ColumnName="PERMISSTION_ID" />
+          <ScalarProperty Name="PERMISSTION_NAME" ColumnName="PERMISSTION_NAME" />
+          <ScalarProperty Name="PERMISSTIONS" ColumnName="PERMISSTIONS" />
+          <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+          <ScalarProperty Name="PERMISSTION_DESCRIPTION" ColumnName="PERMISSTION_DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_PROFILE_USER">
+      <EntityTypeMapping TypeName="Model.TBL_PROFILE_USER">
+        <MappingFragment StoreEntitySet="TBL_PROFILE_USER">
+          <ScalarProperty Name="PROFILE_USER_ID" ColumnName="PROFILE_USER_ID" />
+          <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="DISTRICT" ColumnName="DISTRICT" />
+          <ScalarProperty Name="BIRTHDAY" ColumnName="BIRTHDAY" />
+          <ScalarProperty Name="SEX" ColumnName="SEX" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="MOBILE" ColumnName="MOBILE" />
+          <ScalarProperty Name="ID_NUMBER" ColumnName="ID_NUMBER" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_ROLE">
+      <EntityTypeMapping TypeName="Model.TBL_ROLE">
+        <MappingFragment StoreEntitySet="TBL_ROLE">
+          <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+          <ScalarProperty Name="ROLE_NAME" ColumnName="ROLE_NAME" />
+          <ScalarProperty Name="ROLE_ORD" ColumnName="ROLE_ORD" />
+          <ScalarProperty Name="ROLE_DESCRIPTION" ColumnName="ROLE_DESCRIPTION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_TOKEN">
+      <EntityTypeMapping TypeName="Model.TBL_TOKEN">
+        <MappingFragment StoreEntitySet="TBL_TOKEN">
+          <ScalarProperty Name="TOKEN_ID" ColumnName="TOKEN_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="AUTH_TOKEN" ColumnName="AUTH_TOKEN" />
+          <ScalarProperty Name="ISSUED_ON" ColumnName="ISSUED_ON" />
+          <ScalarProperty Name="EXPIRES_ON" ColumnName="EXPIRES_ON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER">
+      <EntityTypeMapping TypeName="Model.TBL_USER">
+        <MappingFragment StoreEntitySet="TBL_USER">
+          <ScalarProperty Name="REVIEW" ColumnName="REVIEW" />
+          <ScalarProperty Name="CONFIGPASSWORDS" ColumnName="CONFIGPASSWORDS" />
+          <ScalarProperty Name="IMAGE_URL" ColumnName="IMAGE_URL" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="REPRESENTATIVE" ColumnName="REPRESENTATIVE" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="TAX_CODE" ColumnName="TAX_CODE" />
+          <ScalarProperty Name="AGENCY_ID" ColumnName="AGENCY_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="DISPLAY_NAME" ColumnName="DISPLAY_NAME" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+          <ScalarProperty Name="PASSWORDS" ColumnName="PASSWORDS" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="CREATE_BY" ColumnName="CREATE_BY" />
+          <ScalarProperty Name="USER_STATUS" ColumnName="USER_STATUS" />
+          <ScalarProperty Name="USER_ACTIVE" ColumnName="USER_ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_USER_ROLE">
+      <EntityTypeMapping TypeName="Model.TBL_USER_ROLE">
+        <MappingFragment StoreEntitySet="TBL_USER_ROLE">
+          <ScalarProperty Name="AGENCY_ID" ColumnName="AGENCY_ID" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+          <ScalarProperty Name="USER_ROLE_DESCRIPTION" ColumnName="USER_ROLE_DESCRIPTION" />
+          <ScalarProperty Name="ROLE_NAME" ColumnName="ROLE_NAME" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TLB_USER_HISTORY">
+      <EntityTypeMapping TypeName="Model.TLB_USER_HISTORY">
+        <MappingFragment StoreEntitySet="TLB_USER_HISTORY">
+          <ScalarProperty Name="USER_HISTORY_ID" ColumnName="USER_HISTORY_ID" />
+          <ScalarProperty Name="USER_HISTORY_TIMESTART" ColumnName="USER_HISTORY_TIMESTART" />
+          <ScalarProperty Name="USER_HISTORY_TIMEEND" ColumnName="USER_HISTORY_TIMEEND" />
+          <ScalarProperty Name="USER_HISTORY_COMMAND" ColumnName="USER_HISTORY_COMMAND" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_FEEDBACK">
+      <EntityTypeMapping TypeName="Model.TBL_FEEDBACK">
+        <MappingFragment StoreEntitySet="TBL_FEEDBACK">
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="FEEDBACK_TIME" ColumnName="FEEDBACK_TIME" />
+          <ScalarProperty Name="FEEDBACK_CONTENT" ColumnName="FEEDBACK_CONTENT" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="FEEDBACK_ID" ColumnName="FEEDBACK_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBL_UPDATE_STATUS">
+      <EntityTypeMapping TypeName="Model.TBL_UPDATE_STATUS">
+        <MappingFragment StoreEntitySet="TBL_UPDATE_STATUS">
+          <ScalarProperty Name="STATUS_UPDATE" ColumnName="STATUS_UPDATE" />
+          <ScalarProperty Name="UPDATE_STATUS_ID" ColumnName="UPDATE_STATUS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

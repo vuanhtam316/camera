@@ -1,0 +1,58 @@
+﻿@using MyWeb.HtmlHelpers
+@model IEnumerable<MyWeb.Areas.Agency.Models.FunctionOfCamera>
+@{
+    var grid = new WebGrid(Model,
+           rowsPerPage: 10,
+           canPage: true,
+           canSort: true,
+           ajaxUpdateContainerId: "gridListFunction"
+           );
+}
+<style>
+    th {
+        color: white;
+        text-align: center;
+    }
+
+    thead, tfoot {
+        background: #73879C;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    a:hover {
+        color: #BFCAE6;
+    }
+
+    tbody {
+        color: black;
+        background: white;
+    }
+</style>
+@if (Model.Any())
+{
+    <input type="text" id="cameraid" value="@ViewBag.cameraid" style="display:none">
+    
+    <div id="gridListFunction" class="table-responsive" style="width:100%; float:left">
+        @grid.GetHtml(
+        htmlAttributes: new { id = "tbFunc" },
+        tableStyle: "table webGrid table-hover table-bordered table-striped table-hover-color",
+        headerStyle: "text-left hidden-sm hidden-xs",
+        alternatingRowStyle: "alt",
+        mode: WebGridPagerModes.All | WebGridPagerModes.FirstLast | WebGridPagerModes.NextPrevious | WebGridPagerModes.Numeric,
+         columns: grid.Columns(
+         grid.Column("STT", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, style: "text-center vertical-center"),
+         grid.Column("FunctionName", "Tên chức năng", style: "text-center  vertical-center"),
+          grid.Column(format: (item) => new MvcHtmlString(item.Status == 1 ? "<span class='label label-success'>Bật</span>" : "<span class='label label-danger'>Tắt</span>"), header: "Trạng thái", style: "text-center  vertical-center"),
+              grid.Column(format: (item) => new MvcHtmlString(item.Register == 1 ? "<span class='label label-success'>Đã kích hoạt</span>" : "<a title='Kích hoạt' href='javascript:void(0)' onclick='AddFunction(" + item.FunctionID + ")' class='label label-danger' style='cursor:pointer'>Chưa kích hoạt</a>"), header: "Kích hoạt", style: "text-center  vertical-center")
+        //grid.Column(format: item => new MvcHtmlString(string.Format("<a title='Xem camera' href='javascript:void(0)' onclick='ViewInfoCamera(" + item.UserId + ")' style='color:black'><i class='fa fa-camera' style='font-size: 20px; color:#2A3F54'></i>  " + @item.TotalCamera + "</a>")), header: "Số camera", style: "text-center vertical-center")
+                            ))
+    </div>
+}
+else
+{
+    <div class="form-group">
+        <div class="alert alert-warning">Chưa có dữ liệu hiển thị.</div>
+    </div>
+}
+

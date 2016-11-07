@@ -1,0 +1,78 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Areas.Front.Models.UpdateInfoModel
+
+@{
+    Layout = null;
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/jquery-ui-1.10.4.custom.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/font-awesome.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/bootstrap.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/AdminLTE.min.css")">
+</head>
+<body class="hold-transition login-page body-login">
+    <div class="login-box">
+        <div class="login-box-body panl-login text-center">
+            <div class="form-group" id="messageInfo">
+                <img src="/Images/logo-login.png" />
+            </div>
+            @using (Html.BeginForm("Login", "Account", new { @id = "frmLogin" }))
+            {
+
+                <div class="form-group">
+                    <div class="form-group" id="messageInfoModalUpdate">
+                        @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                    </div>
+                    <div class="row" >
+                        <div class="form-group has-feedback">
+                            <div class="col-md-12">
+                                <input type="text" style="width: 100%;" name="username" placeholder="Tài khoản">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            <div class="col-md-12">
+                                <input type="password" style="width: 100%;" name="password" placeholder="Mật khẩu">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            <div class="col-md-12">
+                                <button type="submit" class="loginBtn">Đăng nhập</button>
+
+                            </div>
+                            <div class="col-md-12" style="margin-top:5px">
+                                <a href="/Account/RegisterRole">
+                                    <button type="button" class="registerBtn">Đăng ký</button>
+                                </a>
+                                @*<a href="#">
+                Lấy lại mật khẩu??
+            </a>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="loginform_text">Hệ thống giám sát và cảnh báo thông minh iNSC</div>
+        </div><!-- /.login-box-body -->
+    </div>
+    <div class="row backgroundLogo text-center">Hệ thống giám sát và cảnh báo thông minh iNSC</div>
+    <!-- jQuery 2.1.4 -->
+
+    <script src="@Url.Content("~/Scripts/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery-ui.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/bootstrap.min.js")"></script>
+</body>
+</html>
+@if (Session["erro"] != null)
+{
+    @Html.Raw(ViewBag.thongbao)
+}

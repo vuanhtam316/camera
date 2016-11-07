@@ -1,0 +1,124 @@
+﻿@using MyWeb.Models
+@model MyWeb.Areas.Admin.Models.CameraAdminModel
+@{
+    ViewBag.Title = "Danh sách camera";
+    Layout = "~/Areas/Admin/Views/Shared/_MasterAdminLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<div class="row mbl">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        Thông tin chi tiết
+                    </div>
+                    <div class="panel-body">
+                        <a class="btn-primary  padding510" href="javascrip:void(0)" onclick="showCreateCamera();"><i class="fa fa-plus"></i>&nbsp; Tạo mới camera</a>
+                        <hr />
+                        <div class="form-group" id="messageInfo">
+                            @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                        </div>
+                        <div id="infocustomer" style="margin-left: 10px;">
+                            @Html.Partial("ptvCustomerInfo", Model.CustomerModel)
+                        </div>
+                        <hr/>
+                        <h3>Danh sách camera hiện có</h3>
+                        @*@Html.Partial("_ptvSearch", Model)*@
+                        @Html.Partial("_ptvShow", Model.CameraModels)
+                        <div class="form-group pull-right">
+                            <a class="btn" href="@Url.Action("Index","Customer")"><i class="fa fa-mail-reply"></i>&nbsp; Quay về danh sách</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@using (Ajax.BeginForm("Delelte", "Order", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "messageInfo", OnFailure = "failure", OnSuccess = "success" }, new { id = "frmDeleteOrder" }))
+{
+    @Html.AntiForgeryToken()
+    <input id="identifierDelete" name="id" type="hidden" value="" />
+}
+@Html.Partial("~/Views/Shared/_ModalPatial.cshtml")
+<div id="frmCreateModal"></div>
+<div id="frmUpdateModal"></div>
+<div id="frmCreateFunction"></div>
+@section jsmore
+{
+    <script type="text/javascript">
+        $('#myModal').on('show.bs.modal', function (event) {
+            var linkAction = $(event.relatedTarget);
+            var id = linkAction.attr("identifier");
+            $("#identifierDelete").val(id);
+            //TO DO: init content for popup
+            $(this).find('.modal-title').html("Are you sure ?");
+            $(this).find('.modal-body').html("Bạn có chắc chắn muốn xóa camera này?");
+            $(this).find('#_btnCancelConfirm').text('Cancel');
+            $(this).find('#_btnOkConfirm').text('OK');
+        });
+        $('#myModal').on('click', '#_btnOkConfirm', function () {
+            $('#myModal').modal('hide');
+            $("#frmDeleteOrder").submit();
+        });
+
+        //--------
+        function failure() {
+            MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+        }
+
+        function success() {
+            reloadGrid('/Admin/Camera/SearchResult/'+'@Model.UserId');
+        }
+
+        //------------Load modal Create
+        function showCreateCamera() {
+            $("#messageInfo").html('');
+            var idUser = '@Model.UserId';
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Action("Create", "Camera")",
+                data: { idUser: idUser },
+                success: function (data) {
+                    $('#frmCreateModal').html(data);
+                    $('#myModalCreateCamera').modal('show');
+                },
+                error: function () {
+                    MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+                },
+            });
+        }
+
+        function showUpdateCamera(idCamera) {
+            $("#messageInfo").html('');
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Action("Edit", "Camera")",
+                data: { idCamera: idCamera },
+                success: function (data) {
+                    $('#frmUpdateModal').html(data);
+                    $('#myModalCreateCamera').modal('show');
+                },
+                error: function () {
+                    MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+                },
+            });
+        }
+
+        function showAddFunction(idCamera) {
+            $("#messageInfo").html('');
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Action("AddFunction", "Camera")",
+                data: { idCamera: idCamera },
+            success: function (data) {
+                $('#frmCreateFunction').html(data);
+                $('#myModalAddfunction').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+            });
+        }
+    </script>
+}

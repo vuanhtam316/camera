@@ -1,0 +1,85 @@
+﻿<div class="sidebar-collapse menu-scroll">
+    <ul id="side-menu" class="nav">
+        <div class="clearfix"></div>
+        <li class="active">
+            <a href="@Url.Action("Index","Home")">
+                <i class="fa fa-home fa-fw">
+                    <div class="icon-bg bg-orange"></div>
+                </i><span class="menu-title">Trang chủ</span>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <i class="fa fa-database fa-fw">
+                    <div class="icon-bg bg-red"></div>
+                </i><span class="menu-title">Quản lý<span class="fa arrow"></span></span>
+            </a>
+            <ul class="nav nav-second-level collapse">
+                <li><a href="@Url.Action("Index", "Customer")">Quản lý khách hàng</a></li>
+                @*<li><a href="@Url.Action("Index","Product")">Thư mục</a></li>
+                    <li><a href="@Url.Action("Index","Menu")">Engine</a></li>
+                    <li><a href="@Url.Action("Index","Config")">Media</a></li>
+                    <li><a href="@Url.Action("Index","Product")">Gửi yêu cầu</a></li>
+                    <li><a href="@Url.Action("Index","Menu")">Thiết bị</a></li>
+                    <li><a href="@Url.Action("Index","Menu")">Cập nhật</a></li>
+                    <li><a href="@Url.Action("Index","Menu")">Trợ giúp</a></li>*@
+            </ul>
+        </li>
+        @*<li>
+                <a href="@Url.Action("Index","FileBase")">
+                    <i class="fa  fa-users fa-fw">
+                        <div class="icon-bg bg-red"></div>
+                    </i><span class="menu-title">Lịch sử</span>
+                </a>
+            </li>*@
+        <li>
+            <a href="@Url.Action("Index","Process")">
+                <i class="fa  fa-users fa-fw">
+                    <div class="icon-bg bg-red"></div>
+                </i><span class="menu-title">Tiến trình xử lý</span>
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Index","Function")">
+                <i class="fa fa-slack fa-fw">
+                    <div class="icon-bg bg-green"></div>
+                </i><span class="menu-title">Quản lý chức năng camera</span>
+            </a>
+        </li>
+        @if (HttpContext.Current.User.IsInRole("Administrator"))
+        {
+            <li>
+                <a href="#">
+                    <i class="fa fa-suitcase fa-fw">
+                        <div class="icon-bg bg-red"></div>
+                    </i><span class="menu-title">Quản lý quyền<span class="fa arrow"></span></span>
+                </a>
+                <ul class="nav nav-second-level collapse">
+                    <li>
+                        <a href="/Admin/RoleManager/ListAllRole">Danh sách quyền</a>
+                    </li>
+                    <li>
+                        <a href="/Admin/RoleManager/Index">User quyền</a>
+                    </li>
+                    <li>
+                    </li>
+                </ul>
+            </li>
+        }
+        
+        @*<li>
+                <a href="@Url.Action("Index","FileBase")">
+                    <i class="fa  fa-users fa-fw">
+                        <div class="icon-bg bg-red"></div>
+                    </i><span class="menu-title">Giám sát đăng nhập</span>
+                </a>
+            </li>*@
+            @*<li>
+                    <a href="@Url.Action("Index","FileBase")">
+                        <i class="fa  fa-users fa-fw">
+                            <div class="icon-bg bg-red"></div>
+                        </i><span class="menu-title">Hiển thị thời gian thực</span>
+                    </a>
+                </li>*@
+        </ul>
+    </div>

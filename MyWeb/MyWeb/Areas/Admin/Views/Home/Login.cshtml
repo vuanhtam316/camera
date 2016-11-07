@@ -1,0 +1,47 @@
+﻿@using MyWeb.Models
+@{
+    Layout = null;
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/jquery-ui-1.10.4.custom.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/font-awesome.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/bootstrap.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/AdminLTE.min.css")">
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>Đăng nhập hệ thống</b></a>
+        </div><!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Thông tin đăng nhập</p>
+            <div class="form-group" id="messageInfo">
+                @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+            </div>
+            @using (Html.BeginForm("Login", "Home", new { @id = "frmLogin" }))
+            {
+                <div class="form-group has-feedback">
+                    <input type="text" class="form-control" name="username" placeholder="Username">
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+                <div class="row">
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    </div>
+                </div>
+            }
+        </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
+    <!-- jQuery 2.1.4 -->
+    <script src="@Url.Content("~/Scripts/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery-ui.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/bootstrap.min.js")"></script>
+</body>
+</html>

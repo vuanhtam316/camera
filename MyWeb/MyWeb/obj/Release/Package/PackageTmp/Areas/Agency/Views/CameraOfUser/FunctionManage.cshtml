@@ -1,0 +1,21 @@
+﻿@using MyWeb.Models
+@*@model MyWeb.Areas.Agency.Models.CameraOfUserModel*@
+@model MyWeb.Areas.Agency.Models.ListFunctionModel
+@{
+    ViewBag.Title = "Cài đặt chức năng";
+    Layout = "~/Areas/Agency/Views/Shared/_MasterAgencyLayout.cshtml";
+}
+<div class="panel-heading" style="background:white; margin-top:6%">
+    <h1 style="text-align:center">CHỨC NĂNG</h1>
+</div>
+<div style="background:white; height:450px">
+    @Html.Partial("~/Areas/Agency/Views/CameraOfUser/_ptvShowListFunction.cshtml", Model.ListFunction)
+</div>
+
+<script src="~/Content/Agency/vendors/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    //var url = "/CameraOfUser/GetListUserOfAgency";
+    //$.post(url, null, function (data) {
+    //    $("#selectUsers").html(data.listUser);
+    //});
+</script>

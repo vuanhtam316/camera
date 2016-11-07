@@ -1,0 +1,77 @@
+﻿@{
+    ViewBag.Title = "ManageCamera";
+    //Layout = "~/Areas/Front/Views/Shared/_Layout.cshtml";
+    Layout="~/Views/Account/ManageCamera.cshtml";
+    //Layout = null;
+}
+
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý camera</title>
+    @*<meta name="description" content="Sticky Table Headers Revisited: Creating functional and flexible sticky table headers" />
+    <meta name="keywords" content="Sticky Table Headers Revisited" />
+    <meta name="author" content="Codrops" />
+    <link rel="shortcut icon" href="../favicon.ico">*@
+    <link rel="stylesheet" type="text/css" href="Scripts/demo.css" />
+    <link rel="stylesheet" type="text/css" href="Scripts/component.css" />
+</head>
+<body>
+    @*<div id="tab-general">
+        <div class="">
+            @RenderBody()
+            @Html.AntiForgeryToken()
+        </div>
+    </div>*@
+    <div class="container">
+        <!-- Top Navigation -->
+        <table class="">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên camera</th>
+                    <th>DEL</th>
+                    <th>EDIT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="IdCamera" ></td>
+                    <td class="NameCamera"></td>
+                    <td>
+                        <img src="/Images/add.png" onclick="Insert" style="width:20px; height:20px"/>
+                    </td>
+                    <td>
+                        <img src="~/Images/Delete.png" onclick="Delete" style="width:20px; height:20px" />
+                    </td>
+                </tr>
+                @*<tr>
+                    <td> #2</td>
+                    <td>14</td>
+                    <td>EDIT</td>
+                    <td>DEL</td>
+                </tr>
+                <tr>
+                    <td> #3</td>
+                    <td>4</td>
+                    <td>EDIT</td>
+                    <td>DEL</td>
+                </tr>
+                <tr>
+                    <td>#4</td>
+                    <td>4</td>
+                    <td>EDIT</td>
+                    <td>DEL</td>
+                </tr>*@
+            </tbody>
+        </table>
+
+    </div><!-- /container -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+    <script src="js/jquery.stickyheader.js"></script>
+</body>
+</html>
+

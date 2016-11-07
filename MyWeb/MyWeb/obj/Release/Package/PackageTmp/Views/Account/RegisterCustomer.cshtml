@@ -1,0 +1,174 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Models.NewAgencyModel
+
+@{
+    Layout = null;
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/jquery-ui-1.10.4.custom.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/font-awesome.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/bootstrap.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/AdminLTE.min.css")">
+
+
+
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+
+</head>
+<body class="hold-transition login-page body-login">
+    <div class="register-box">
+        <div class="login-box-body panl-register text-center">
+            <div class="form-group" id="messageInfo">
+                <img src="/Images/logo-login.png" />
+                <img id="blah" src="#" alt="Logo" style="float:right; height:68px; width:220px" />
+            </div>
+            @using (Html.BeginForm("RegisterCustomerForm", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <div class="form-group">
+                    <div class="form-group" id="message">
+                        @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                    </div>
+                    <div class="row">
+                        <div class="form-group has-feedback">
+                            @Html.ValidationHtmlMessageFor(model => model.Name_Agency, "", new { @class = "field-validation-valid" })
+                            <div class="col-md-12">
+
+                                <input type="text" style="width: 100%;" name="Name_Agency" placeholder="Tên đại lý">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            @Html.ValidationHtmlMessageFor(model => model.Tax_Code, "", new { @class = "field-validation-valid" })
+                            <div class="col-md-12">
+                                <input type="text" style="width: 100%;" name="Tax_Code" placeholder="Mã số thuế">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            @Html.ValidationHtmlMessageFor(model => model.Phone, "", new { @class = "field-validation-valid" })
+                            <div class="col-md-12">
+                                <input type="text" style="width: 100%;" name="Phone" placeholder="Số điện thoại">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            @Html.ValidationHtmlMessageFor(model => model.Representation, "", new { @class = "field-validation-valid" })
+                            <div class="col-md-12">
+                                <input type="text" style="width: 100%;" name="Representation" placeholder="Người đại diện">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            @Html.ValidationHtmlMessageFor(model => model.Address, "", new { @class = "field-validation-valid" })
+                            <div class="col-md-12">
+                                <input type="text" style="width: 100%;" name="Address" placeholder="Địa chỉ">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            @*@Html.ValidationHtmlMessageFor(model => model.Image_Url, "", new { @class = "field-validation-valid" })*@
+                            <div class="col-md-12">
+                                @*<input type="text" style="width: 100%;" name="Image_Url" placeholder="Ảnh đại diện">*@
+                                <input title="Upload a product image" type="file" id="file" name="file" onchange="readURL(this);" style="width:100%" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            @Html.ValidationHtmlMessageFor(model => model.Email, "", new { @class = "field-validation-valid" })
+                            <div class="col-md-12">
+                                <input type="text" style="width: 100%;" name="Email" placeholder="Email">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            @Html.ValidationHtmlMessageFor(model => model.Username, "", new { @class = "field-validation-valid" })
+
+
+                            <div class="col-md-12" style="margin-top:5px">
+                                <input type="text" style="width: 100%;" name="Username" placeholder="Tên tài khoản">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            @Html.ValidationHtmlMessageFor(model => model.Password, "", new { @class = "field-validation-valid" })
+
+
+                            <div class="col-md-12">
+                                <input type="password" style="width: 100%;" name="Password" placeholder="Mật khẩu">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            @Html.ValidationHtmlMessageFor(model => model.ConfigPassword, "", new { @class = "field-validation-valid" })
+                            <div class="col-md-12">
+                                <input type="password" style="width: 100%;" name="ConfigPassword" placeholder="Nhập lại mật khẩu">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            <div class="col-md-12">
+                                <button type="submit" class="loginBtn">Đăng ký</button>
+                            </div>
+                            <div class="col-md-12" style="margin-top:5px">
+                                <a href="/Account/Login">
+                                    <button type="button" class="registerBtn">Đăng nhập</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+    <div class="row backgroundLogo text-center">Hệ thống giám sát và cảnh báo thông minh iNSC</div>
+    <script src="@Url.Content("~/Scripts/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery-ui.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/bootstrap.min.js")"></script>
+</body>
+</html>
+
+@if (Session["erro"] != null)
+{
+    @Html.Raw(ViewBag.thongbao)
+}
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(220)
+                    .height(68);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

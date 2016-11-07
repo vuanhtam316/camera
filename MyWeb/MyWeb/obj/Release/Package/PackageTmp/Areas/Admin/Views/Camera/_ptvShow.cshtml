@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MyWeb.Models.CameraModel>
+@{
+    var grid = new WebGrid(Model,
+           rowsPerPage: 10,
+           canPage: true,
+           canSort: true,
+           ajaxUpdateContainerId: "gridShow"
+           );
+}
+@if (Model.Any())
+{
+    <div id="gridShow" class="table-responsive" style="width:600px; margin:auto">
+        @grid.GetHtml(
+        tableStyle: "table webGrid table-hover table-bordered table-striped table-hover-color table-center",
+        headerStyle: "text-center hidden-sm hidden-xs",
+        alternatingRowStyle: "alt",
+        mode: WebGridPagerModes.All | WebGridPagerModes.FirstLast | WebGridPagerModes.NextPrevious | WebGridPagerModes.Numeric,
+         columns: grid.Columns(
+         grid.Column("STT", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, style: "text-center vertical-center"),
+         grid.Column("CAMERA_NAME", "Tên camera", style: "vertical-center"),
+         //grid.Column("CAMERA_IP", "IP", style: "text-center  vertical-center"),
+         grid.Column("CAMERA_URL", "Url camera", style: "text-center  vertical-center hidden-sm hidden-xs"),
+        //grid.Column(format: (item) => new MvcHtmlString(item.Active == true ? "<span class='label label-success'>Enable</span>" : "<span class='label label-danger'>Disible</span>"), header: "Trạng thái", style: "text-center  vertical-center hidden-sm hidden-xs"),
+           grid.Column(format: item => new MvcHtmlString(string.Format("<a title='Thêm chức năng' href='javascrip:void(0)' onclick='showAddFunction(" + item.CAMERA_ID + ")'><i class='fa fa-search-plus'></i></a> " +
+                   "&nbsp;|&nbsp;<a title='Sửa khách hàng' href='javascrip:void(0)' onclick='showUpdateCamera(" + item.CAMERA_ID + ")'><i class='fa fa-pencil-square-o'></i></a>&nbsp;|&nbsp;<a title='Xóa camera' href='' data-toggle='modal' identifier='" + item.CAMERA_ID + "' data-target='#myModal'  ><i class='fa fa-trash-o'></i></a>")), header: "Chức năng", style: "text-center vertical-center")
+
+                            ))
+    </div>
+}
+else
+{
+    <div class="form-group">
+        <div class="alert alert-warning">Chưa có dữ liệu hiển thị.</div>
+    </div>
+}

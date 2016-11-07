@@ -1,0 +1,31 @@
+﻿@model IEnumerable<MyWeb.Areas.Admin.Models.UserForRolesModel>
+@{
+    var grid = new WebGrid(Model,
+           rowsPerPage: 10,
+           canPage: true,
+           canSort: true,
+           ajaxUpdateContainerId: "gridShow"
+           );
+}
+@if (Model.Any())
+{
+    <div id="gridShow" class="table-responsive">
+        @grid.GetHtml(
+        tableStyle: "table webGrid table-hover table-bordered table-striped table-hover-color",
+        headerStyle: "text-center hidden-sm hidden-xs",
+        alternatingRowStyle: "alt",
+        mode: WebGridPagerModes.All | WebGridPagerModes.FirstLast | WebGridPagerModes.NextPrevious | WebGridPagerModes.Numeric,
+         columns: grid.Columns(
+         grid.Column("STT", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, style: "text-center vertical-center"),
+          grid.Column("UserName", "Tên người dùng", style: "text-center  vertical-center"),
+          grid.Column("RoleName", "Quyền", style: "text-center  vertical-center"),
+            grid.Column(format: item => new MvcHtmlString(string.Format("<a title='Xóa' href='' data-toggle='modal' identifier='" + item.RoleId + "_" + item.UserId + "' data-target='#myModal'  ><i class='fa fa-trash-o'></i></a>")), header: "Chức năng", style: "text-center vertical-center")
+                            ))
+    </div>
+}
+else
+{
+    <div class="form-group">
+        <div class="alert alert-warning">Chưa có dữ liệu hiển thị.</div>
+    </div>
+}

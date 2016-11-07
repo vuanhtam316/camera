@@ -1,0 +1,62 @@
+﻿@model MyWeb.Models.MesageModel.MessagesModel
+
+@if (Model != null && !string.IsNullOrEmpty(Model.MessageContent))
+{
+    <div class="col-xs-12 col-sm-12" style="padding: 0">
+        <section id="flashes">
+            @if (Model.MessageType == MyWeb.Models.MesageModel.MessageType.Success)
+            {
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button>
+                    <span>
+                        @Html.Raw(@Model.MessageContent)
+                        @if (!string.IsNullOrEmpty(Model.LinkText))
+                        {
+                            <a href="@Model.LinkUrl">@Model.LinkText</a>
+                        }
+                    </span>
+                </div>
+            }
+            @if (Model.MessageType == MyWeb.Models.MesageModel.MessageType.Error)
+            {
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button>
+                    <span>
+                        @Html.Raw(@Model.MessageContent)
+                        @if (!string.IsNullOrEmpty(Model.LinkText))
+                        {
+                            <a href="@Model.LinkUrl">@Model.LinkText</a>
+                        }
+                    </span>
+                </div>
+            }
+            @if (Model.MessageType == MyWeb.Models.MesageModel.MessageType.Info)
+            {
+                <div class="alert alert-info">
+                    <button type="button" data-dismiss="alert" aria-hidden="true" class="close"></button>
+                    <span>
+                        
+                        @Html.Raw(@Model.MessageContent)
+                        @if (!string.IsNullOrEmpty(Model.LinkText))
+                        {
+                            <a href="@Model.LinkUrl">@Model.LinkText</a>
+                        }
+                    </span>
+                </div>
+            }
+            @if (Model.MessageType == MyWeb.Models.MesageModel.MessageType.Warning)
+            {
+                <div class="alert alert-warning alert-dismissable">
+                    <button type="button" data-dismiss="alert" aria-hidden="true" class="close">x</button>
+                    <span>
+                        @Html.Raw(@Model.MessageContent)
+                        @if (!string.IsNullOrEmpty(Model.LinkText))
+                        {
+                            <a href="@Model.LinkUrl">@Model.LinkText</a>
+                        }
+                    </span>
+                </div>
+            }
+        </section>
+    </div>
+}

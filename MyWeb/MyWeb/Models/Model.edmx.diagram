@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c96c8325973c4a0c92fb7d3f85ba5776" Name="Diagram1" ZoomLevel="71">
+        <EntityTypeShape EntityType="Model.TBL_CAMERA" Width="1.5" PointX="4.375" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TBL_CAMERA_FUNCTION" Width="1.5" PointX="7.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TBL_CAMERA_STATUS" Width="1.5" PointX="2.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TBL_FUNCTION" Width="1.5" PointX="6.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TBL_HISTORY_IMAGES" Width="1.5" PointX="9.875" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TBL_HISTORY_VIDEO" Width="1.5" PointX="6.875" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TBL_PERMISSTION" Width="1.5" PointX="9.625" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TBL_PROFILE_USER" Width="1.5" PointX="5.125" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TBL_ROLE" Width="1.5" PointX="7.375" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TBL_TOKEN" Width="1.5" PointX="0.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TBL_USER" Width="1.5" PointX="2.125" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TBL_USER_ROLE" Width="1.5" PointX="9.625" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TLB_USER_HISTORY" Width="1.5" PointX="3.5" PointY="18.625" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_CAMERA_ID_CAMERA_CAMERASTT" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CAMERA_ID_IMAGE_CAMERA" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_CAMERA_ID_VIDEO_CAMERA" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_USER_ID_CAMERA_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TBL_CAMERA_FUNTION_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TBL_CAMERA_FUNTION_FK2" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TBL_CAMERA_FUNTION_FK3" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_FUNCTION_ID_FUNCTION_CAMERA" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_FUNCTION_ID_IMAGE_FUNCTION" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_USER_ID_IMAGE_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TBL_HISTORY_IMAGES_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_USER_ID_VIDEO_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ROLE_ID_ROLE_PERMISTION" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_USER_ID_PROFILE_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_ROLE_ID_USERROLE_ROLE" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.TBL_TOKEN_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_USER_ID_USER_USERHISTORY" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_USER_ID_USERROLE_USER" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.TBL_FEEDBACK" Width="1.75" PointX="4" PointY="17.25" IsExpanded="false" />
+        <AssociationConnector Association="Model.USER_FK" />
+        <EntityTypeShape EntityType="Model.TBL_UPDATE_STATUS" Width="1.5" PointX="0.875" PointY="6" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

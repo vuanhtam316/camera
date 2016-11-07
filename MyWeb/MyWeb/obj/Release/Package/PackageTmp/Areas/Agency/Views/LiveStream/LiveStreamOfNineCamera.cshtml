@@ -1,0 +1,35 @@
+﻿@using MyWeb.Models
+@model MyWeb.Areas.Agency.Models.CameraOfUserModel
+@{
+    ViewBag.Title = "Live Stream";
+    Layout = "~/Areas/Agency/Views/Shared/_MasterAgencyLayout.cshtml";
+}
+<div class="row mbl">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-red" style="height: 550px;">
+                    <div class="panel-body" style="margin:auto">
+                        @Html.Partial("~/Areas/Agency/Views/LiveStream/_ptvNineCamera.cshtml", Model.CameraInUser)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*@{
+    ViewBag.Title = "Live Stream";
+    Layout = "~/Areas/Agency/Views/Shared/_MasterAgencyLayout.cshtml";
+}
+<div id="listUserByNineCamera" style="width: 17%; float: left;"></div>
+<div id="StreamByNineCamera"></div>
+<script src="~/Content/Agency/vendors/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    var url = "/LiveStream/GetListUserOfAgencyNineCamera";
+    $.post(url, null, function (data) {
+        $("#listUserByNineCamera").html(data.listUser);
+    });
+</script>*@

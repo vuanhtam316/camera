@@ -1,0 +1,101 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Areas.Front.Models.FunctionModel
+@*@model MyWeb.Areas.Front.Models.ViewModel*@
+
+@*<h2>_ptvFunctionDescription</h2>*@
+
+
+@*<link href="~/Content/Front/Styles/timepicki.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/timepicki.js"></script>*@
+
+
+<div class="modal fade" id="showFunctionDescription" tabindex='-1' style="z-index: 9999999999" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border-radius: 6px !important; width: 1000px; height: 550px; margin: auto">
+            <div class="modal-header" style="background-color: #bf4346; border-radius: 5px 5px 0 0;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title text-center" style="color: white;">@Model.Function.FunctionName</h3>
+            </div>
+            @using (Ajax.BeginForm("ShowFuncDescription", "Function", new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST",
+                OnFailure = "failure",
+                UpdateTargetId = "messageInfoModalUpdate",
+                //OnSuccess = "success2"
+            }, new { id = "frmDescription", @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.Function.FunctionId)
+                @Html.HiddenFor(model => model.Function.FunctionName)
+                @Html.HiddenFor(model => model.Function.FunctionImage)
+                <div class="modal-body" style="padding-top: 0; height:420px">
+                    <div class="row mbl" style="margin-bottom: 0 !important;padding-bottom: 0 !important;">
+                        <div class="col-md-12">
+                            <div class="pal">
+                                
+                                @*<div>
+                                    <a href="javascript:void(0)" onclick="registerFunction();" style="margin-left:515px"><img src="~/Images/register.png" style="height:50px; width:150px" /></a>
+                                </div>*@
+                                <div>
+                                    <h5>@Model.Function.Description</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top: 0">
+                    <button type="submit" id="btnOkFunction" onclick="showFuncRegister(@Model.Function.FunctionId);" class="btn btn-red">Đăng ký</button>
+                    @*<button type="submit" id="btnCapnhatFunction" class="btn btn-red">Cập nhật</button>*@
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Quay lại</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="modal-dialog modal-lg">
+    <div class="modal-content" style="border-radius: 6px !important;">
+        <div class="modal-header" style="background-color: #bf4346; border-radius: 5px 5px 0 0;">
+            @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title text-center" style="color: white; text-align:center">@Model.Function.FunctionName</h3>
+        </div>
+        @using (Ajax.BeginForm("ShowFuncDescription", "Function", new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST",
+                OnFailure = "failure",
+                UpdateTargetId = "messageInfoModalUpdate",
+                //OnSuccess = "success2"
+            }, new { id = "frmFunctionDescription", @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.Function.FunctionId)
+            @Html.HiddenFor(model => model.Function.FunctionName)
+            @Html.HiddenFor(model => model.Function.FunctionImage)
+            <div>
+                <a href="javascript:void(0)" onclick="registerFunction();" style="margin-left:515px"><img src="~/Images/register.png" style="height:50px; width:150px" /></a>
+            </div>
+            <div>
+                <h5>@Model.Function.Description</h5>
+            </div>
+        }
+    </div>
+</div>*@
+@*<script src="@Url.Content("~/Content/Admin/script/jquery.flot.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/bootstrap.min.js")"></script>*@

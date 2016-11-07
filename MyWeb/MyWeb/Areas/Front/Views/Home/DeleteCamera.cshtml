@@ -1,0 +1,68 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Areas.Front.Models.DeleteCameraModel
+@{
+    //Layout = "~/Areas/Admin/Views/Shared/_MasterAdminLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+@*<link href="~/Content/Front/Styles/timepicki.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
+
+<script src="~/Scripts/timepicki.js"></script>
+
+<div class="modal fade" id="myModalDeleteCamera" tabindex='-1' style="z-index: 9999999999" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border-radius: 6px !important; width: 500px; margin: auto; width: 500px; margin: auto">
+            <div class="modal-header" style="background-color: #bf4346; border-radius: 5px 5px 0 0;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" style="color: white">Xóa camera</h4>
+            </div>
+            @using (Ajax.BeginForm("DeleteCamera", "Camera", new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST",
+                OnFailure = "failure",
+                UpdateTargetId = "messageInfoModalDelete",
+                OnSuccess = "success2"
+            }, new { id = "frmDeleteModal", @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.CameraModel.CAMERA_ID)
+                @Html.HiddenFor(model => model.CameraModel.USER_ID)
+                @*@Html.HiddenFor(model => model.CameraModel.CAMERA_IP)*@
+                @Html.HiddenFor(model => model.CameraModel.CAMERA_NAME)
+                @Html.HiddenFor(model => model.CameraModel.CAMERA_URL)
+                @Html.HiddenFor(model => model.CameraModel.CAMERA_URL_STREAM)
+                @Html.HiddenFor(model => model.CameraModel.USERNAME_CAMERA)
+                @Html.HiddenFor(model => model.CameraModel.PASSWORD_CAMERA)
+                @Html.HiddenFor(model => model.CameraModel.PORT_RTSP)
+                @Html.HiddenFor(model => model.CameraModel.IP_CAMERA)
+                @*@Html.HiddenFor(model => model.CameraModel.CAMERA_NUMBER)*@
+                <div>
+                    <h5>Bạn có muốn xóa camera này không?</h5>
+                </div>
+                <div class="modal-footer" style="margin-top: 0; border-top: none">
+                    <button type="submit" id="btnOkFunction" onclick="CloseModal();" class="btn btn-red">Xóa</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Quay lại</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@*<div id="showImgFunction">
+        @Html.Partial("_ptvShowImgFunction")
+    </div>*@
+<script>
+    $('.timepicker').timepicki();
+    //$("#btnCapnhatFunction").click(function () {
+    //    document.getElementById("frmUpdateModal").submit();
+    //    $(this).prop('disabled', true);
+    //});
+    
+    function CloseModal() {
+        $('#myModalDeleteCamera').modal('hide');
+    }
+    
+</script>

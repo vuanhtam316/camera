@@ -1,0 +1,193 @@
+﻿@using MyWeb.Models
+@model MyWeb.Areas.Front.Models.AddCameraModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Front/Views/Shared/_Layout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<div id="tab-general">
+    <div class="row mbl">
+        <div class="form-group" id="messageInfo">
+            @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+        </div>
+        @*<div class="col-md-12">
+                <div id="area-chart-spline" style="width: 100%; height: 300px; display: none; padding: 0px; position: relative;">
+                    <canvas class="flot-base" width="1059" height="300" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 1059px; height: 300px;"></canvas><div class="flot-text" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 299px; left: 10px;">Jan</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 299px; left: 183px;">Feb</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 299px; left: 356px;">Mar</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 299px; left: 530px;">Apr</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 299px; left: 703px;">May</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 299px; left: 876px;">Jun</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 299px; left: 1049px;">Jul</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; display: block;"><div class="flot-tick-label tickLabel" style="position: absolute; top: 290px; left: 1px;">0</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 250px; left: 1px;">25</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 210px; left: 1px;">50</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 170px; left: 1px;">75</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 130px; left: 1px;">100</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 90px; left: 1px;">125</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 50px; left: 1px;">150</div><div class="flot-tick-label tickLabel" style="position: absolute; top: 10px; left: 1px;">175</div></div></div><canvas class="flot-overlay" width="1059" height="300" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 1059px; height: 300px;"></canvas><div class="legend"><div style="position: absolute; width: 0px; height: 0px; top: 15px; right: 15px; opacity: 0.85; background-color: rgb(255, 255, 255);"> </div><table style="position:absolute;top:15px;right:15px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid #ffce54;overflow:hidden"></div></div></td><td class="legendLabel">Upload</td></tr><tr><td class="legendColorBox"><div style="border:1px solid #ccc;padding:1px"><div style="width:4px;height:0;border:5px solid #01b6ad;overflow:hidden"></div></div></td><td class="legendLabel">Download</td></tr></tbody></table></div>
+                </div>
+            </div>*@
+        <div class="col-lg-12">
+            <div class="col-lg-12">
+                <div id="generalTabContent" class="tab-content responsive hidden-xs hidden-sm">
+                    <div id="video-tab" class="tab-pane fade active in">
+                        @{Html.RenderAction("TabListVideo", "PartialView");}
+                    </div>
+                    <!--
+                    <div id="livestream-tab" class="tab-pane fade">
+                        @{Html.RenderAction("TabLiveStream", "PartialView");}
+                    </div>
+                        -->
+                    <div id="report-tab" class="tab-pane fade">
+                        @{Html.RenderAction("TabReport", "PartialView");}
+                    </div>
+
+                    <div id="history-tab" class="tab-pane fade">
+                        @{Html.RenderAction("TabHistoryCamera", "PartialView");}
+                    </div>
+                    <div id="config-tab" class="tab-pane fade">
+                        @{Html.RenderAction("TabConfig", "PartialView");}
+                    </div>
+
+                    <div id="appstore-tab" class="tab-pane fade">
+                        @{Html.RenderAction("TabAppStore", "PartialView");}
+                    </div>
+                    <div id="manageCamera-tab" class="tab-pane fade">
+                        @{Html.RenderAction("TabManageCamera", "PartialView");}
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="frmUpdateCameraModal"></div>
+<div id="addNewCamera"></div>
+@*<div id="frmUpdateCameraModal2"></div>*@
+<div id="frmDeleteCamera"></div>
+
+
+
+<script>
+    @*function AddCamera() {
+        $("#messageInfo").html('');
+        var idUser = @Model.UserId;
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("AddCamera", "Home")",
+            data: { idUser: idUser },
+        success: function (data) {
+            $('#addNewCamera').html(data);
+            $('#myModalAddCamera').modal('show');
+        },
+        error: function () {
+            MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+        },
+        });
+    }*@
+    @*function UpdateCamera(idCamera) {
+        $("#messageInfo").html('');
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("Edit2", "Home")",
+            data: { idCamera: idCamera },
+        success: function (data) {
+            $('#frmUpdateCameraModal2').html(data);
+            $('#myModalUpdateCamera2').modal('show');
+        },
+        error: function () {
+            MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+        },
+        });
+    }*@
+
+    function AddCamera() {
+        $("#messageInfo").html('');
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("AddCamera", "Home")",
+            success: function (data) {
+                $('#addNewCamera').html(data);
+                $('#myModalAddCamera').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+        });
+    }
+    function DeleteCamera(idCamera) {
+        $("#messageInfo").html('');
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("DeleteCamera", "Home")",
+            data: { idCamera: idCamera },
+            success: function (data) {
+                $('#frmDeleteCamera').html(data);
+                $('#myModalDeleteCamera').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+        });
+    }
+
+    function showUpdateCamera(idCamera) {
+        $("#messageInfo").html('');
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("Edit", "Home")",
+            data: { idCamera: idCamera },
+            success: function (data) {
+                $('#frmUpdateCameraModal').html(data);
+                $('#myModalUpdateCamera').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+        });
+    }
+    @*function showUpdateCamera2(idcamera) {
+        $("#messageInfo").html('');
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("Edit", "Home")",
+            data: { idCamera: idCamera },
+        success: function (data) {
+            $('#frmUpdateCameraModal2').html(data);
+            $('#myModalUpdateCamera2').modal('show');
+        },
+        error: function () {
+            MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+        },
+        });
+    }*@
+
+
+
+
+
+
+    function failure() {
+        MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+    }
+
+
+
+
+
+    function success() {
+        //reloadGrid('/Front/Home/SearchResult/');
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("SearchResult","PartialView")",
+            data: "{}",
+            cache: false,
+            dataType: "html",
+            success: function (data) {
+                $("#gridShow").html(data);
+            }
+        });
+    }
+    function success2() {
+        //reloadGrid('/Front/Home/ListCamera/');
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("ListCamera", "PartialView")",
+            data: "{}",
+            cache: false,
+            dataType: "html",
+            success: function (data) {
+                $("#gridShow2").html(data);
+            }
+        });
+    }
+</script>

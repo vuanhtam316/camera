@@ -1,0 +1,550 @@
+﻿@model List<MyWeb.Models.CameraModel>
+@{
+    int reqvalues = 4;
+    if (Request.Form["values"] != null)
+    {
+        reqvalues = int.Parse(Request.Form["values"]);
+    }
+    reqvalues = reqvalues - Model.Count();
+
+}
+<style>
+    
+</style>
+@*<script src="//content.jwplatform.com/libraries/aCAUY7mn.js"></script>
+    <script src="~/jwplayer-7.5.2/jwplayer.js"></script>
+    <script>jwplayer.key = "vdH5POCkA8YmHm5+0Ing4O32hNsg/MWnbBKZBQ==";</script>*@
+<div id="ptvShowLiveCam" style="width:900px; margin:auto; height:550px">
+    @{
+        //if (Model.Any() && Model != null)
+        //{
+        var count = Model.Count();
+        if (count == 1 || count == 9 || count == 16)
+        {
+            count = count + 1;
+        }
+        if (Request.Form["values"] != null)
+        {
+            count = int.Parse(Request.Form["values"]);
+        }
+        switch (count)
+        {
+            case 1:
+                foreach (var item in Model)
+                {
+                    <div class="col-md-1">
+                        <div class="video-div2">
+                            <div class="thumbnail thumbnail-video2" style="width:900px; height:550px; background-color:black">
+                                @{
+
+                    if (item.CAMERA_URL_STREAM == null)
+                    {
+                        string title = "Camera " + item.CAMERA_NAME;
+                        <img class="img" id="urlImg@(+item.CAMERA_ID)" data-url="@item.CAMERA_URL" src="@item.CAMERA_URL" style="width: 100%;height:100%;" onload="@("preload('" + item.CAMERA_URL + "','" + item.CAMERA_ID + "')")" alt="" title="@title"
+                             ondblclick="@("ShowModalLiveVideo('" + item.CAMERA_URL + "','" + item.CAMERA_ID + "')")" />
+                    }
+                    else
+                    {
+                        string s = "id" + Convert.ToString(item.CAMERA_ID);
+                        <div id="@s"></div>
+                                    <script type="text/javascript" src="~/Scripts/jwplayer.js"></script>
+                                    <script type="text/javascript">
+                                        jwplayer("@s").setup({
+                                            title: '@item.CAMERA_NAME',
+                                            flashplayer: "/Scripts/Player2.swf",
+                                            streamer: "rtmp://101.99.21.215:1935/live",
+                                            file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                            width: "100%",
+                                            height: "540",
+                                            aspectratio: "16:9",
+                                            autostart: true
+                                            @*title: '@item.CAMERA_NAME',
+                                            sources: [{
+                                                file: 'rtmp://101.99.21.217:1935/live/' + '@item.CAMERA_URL_STREAM' + '.stream',
+                                            }],
+                                            width: "100%",
+                                            aspectratio: "16:10",
+                                            autostart: true,
+                                            rtmp: {
+                                                securetoken: "Zxlli2h1aK"
+                                            },
+                                            controls: true*@
+                                        });
+
+                                    </script>
+                                    @*<script type="text/javascript" src="~/Scripts/jwplayer.js"></script>
+                                        <script type="text/javascript">
+                                            jwplayer("@s").setup({
+                                                title: '@item.CAMERA_NAME',
+                                                flashplayer: "/Scripts/Player_lock.swf",
+                                                streamer: "rtmp://101.99.21.221:1935/live",
+                                                file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                                width: "100%",
+                                                height: "490px",
+                                                aspectratio: "16:9",
+                                                autostart: true,
+                                                controlbar: 'hidden'
+                                            });
+                                            jwplayer("@s").onResize({
+
+                                            });
+                                            </script>*@
+
+
+                                    @*jwplayer("@s").onError(function () {
+                                            jwplayer().load({
+                                                streamer: "rtmp://101.99.21.221:1935/live",
+                                                file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                            });
+                                            jwplayer().play();
+                                        });
+                                        jwplayer("@s").onComplete(function () {
+                                            window.location = window.location.href;
+                                        });
+                                        jwplayer("@s").onBuffer(function () {
+                                            theTimeout = setTimeout(function () {
+                                                jwplayer().load({
+                                                    streamer: "rtmp://101.99.21.221:1935/live",
+                                                    file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                                });
+                                                jwplayer().play();
+                                            }, 5000);
+                                        });
+                                        jwplayer("@s").onPlay(function () {
+                                            clearTimeout(theTimeout);
+                                        });*@
+
+                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+                if (reqvalues > 0)
+                    {
+                        for (int i = 0; i < reqvalues; i++)
+                        {
+                            <div class="col-md-6">
+                                <div class="video-div2">
+                                    <div class="thumbnail thumbnail-video2" style="width:900px; height:550px; background-color:black">
+                                        <h6 class="text-center" style="color:white">No Camera</h6>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    }
+                break;
+
+            case 4:
+                //if (count <= 4)
+                //{
+                foreach (var item in Model)
+                {
+                    <div class="col-md-6">
+                        <div class="video-div2">
+                            <div class="thumbnail thumbnail-video2" style="width:450px; height:275px; background-color:black">
+                                @{
+
+                    if (item.CAMERA_URL_STREAM == null)
+                    {
+                        string title = "Camera " + item.CAMERA_NAME;
+                        <img class="img" id="urlImg@(+item.CAMERA_ID)" data-url="@item.CAMERA_URL" src="@item.CAMERA_URL" style="width: 100%;height:100%;" onload="@("preload('" + item.CAMERA_URL + "','" + item.CAMERA_ID + "')")" alt="" title="@title"
+                             ondblclick="@("ShowModalLiveVideo('" + item.CAMERA_URL + "','" + item.CAMERA_ID + "')")" />
+                    }
+                    else
+                    {
+                        string s = "id" + Convert.ToString(item.CAMERA_ID);
+                        <div id="@s"></div>
+                                    <script type="text/javascript" src="~/Scripts/jwplayer.js"></script>
+                                    <script type="text/javascript">
+                                        jwplayer("@s").setup({
+                                            @*title: '@item.CAMERA_NAME',
+                                sources: [{
+                                    file: 'rtmp://101.99.21.217:1935/live/' + '@item.CAMERA_URL_STREAM' + '.stream',
+                                }],
+                                width: "100%",
+                                aspectratio: "16:10",
+                                autostart: true,
+                                rtmp: {
+                                    securetoken: "Zxlli2h1aK"
+                                },
+                                controls: true*@
+                                            title: '@item.CAMERA_NAME',
+                                            flashplayer: "/Scripts/Player2.swf",
+                                            streamer: "rtmp://101.99.21.215:1935/live",
+                                            file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                            width: "100%",
+                                            height: "270px",
+                                            aspectratio: "16:9",
+                                            autostart: true
+                                            
+                                        });
+
+                                    </script>
+
+                                    @*jwplayer("@s").onError(function () {
+                                            jwplayer().load({
+                                                streamer: "rtmp://101.99.21.221:1935/live",
+                                                file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                            });
+                                            jwplayer().play();
+                                        });
+                                        jwplayer("@s").onComplete(function () {
+                                            window.location = window.location.href;
+                                        });
+                                        jwplayer("@s").onBuffer(function () {
+                                            theTimeout = setTimeout(function () {
+                                                jwplayer().load({
+                                                    streamer: "rtmp://101.99.21.221:1935/live",
+                                                    file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                                });
+                                                jwplayer().play();
+                                            }, 5000);
+                                        });
+                                        jwplayer("@s").onPlay(function () {
+                                            clearTimeout(theTimeout);
+                                        });*@
+                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                 }
+
+                    if (reqvalues > 0)
+                    {
+                        for (int i = 0; i < reqvalues; i++)
+                        {
+                            <div class="col-md-6">
+                                <div class="video-div2">
+                                    <div class="thumbnail thumbnail-video2" style="width:450px; height:275px; background-color:black">
+                                        <h6 class="text-center" style="color:white">No Camera</h6>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    }
+                    break;
+
+            case 9:
+                    foreach (var item in Model)
+                    {
+                        <div class="col-md-4">
+                            <div class="video-div2">
+                                <div class="thumbnail thumbnail-video2" style="width: 300px; height: 180px; background-color: black">
+                                    @{
+
+                        if (item.CAMERA_URL_STREAM == null)
+                        {
+                            string title = "Camera " + item.CAMERA_NAME;
+                            <img class="img" id="urlImg@(+item.CAMERA_ID)" data-url="@item.CAMERA_URL" src="@item.CAMERA_URL" style="width: 100%;height:100%;" onload="@("preload('" + item.CAMERA_URL + "','" + item.CAMERA_ID + "')")" alt="" title="@title"
+                                 ondblclick="@("ShowModalLiveVideo('" + item.CAMERA_URL + "','" + item.CAMERA_ID + "')")" />
+                        }
+                        else
+                        {
+                            string s = "id" + Convert.ToString(item.CAMERA_ID);
+                            <div id="@s"></div>
+                                        <script type="text/javascript" src="~/Scripts/jwplayer.js"></script>
+                                        <script type="text/javascript">
+                                            jwplayer("@s").setup({
+                                                @*title: '@item.CAMERA_NAME',
+                                    sources: [{
+                                        file: 'rtmp://101.99.21.217:1935/live/' + '@item.CAMERA_URL_STREAM' + '.stream',
+                                    }],
+                                    width: "100%",
+                                    aspectratio: "16:10",
+                                    autostart: true,
+                                    rtmp: {
+                                        securetoken: "Zxlli2h1aK"
+                                    },
+                                    controls: true*@
+                                                flashplayer: "/Scripts/Player2.swf",
+                                                streamer: "rtmp://101.99.21.215:1935/live",
+                                                file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                                width: "100%",
+                                                height: "175px",
+                                                aspectratio: "16:9",
+                                                skin: "bekle",
+                                                autostart: true
+
+                                            });
+                                        </script>
+
+                                        @*jwplayer("@s").onError(function () {
+                                                jwplayer().load({
+                                                    streamer: "rtmp://101.99.21.221:1935/live",
+                                                    file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                                });
+                                                jwplayer().play();
+                                            });
+                                            jwplayer("@s").onComplete(function () {
+                                                window.location = window.location.href;
+                                            });
+                                            jwplayer("@s").onBuffer(function () {
+                                                theTimeout = setTimeout(function () {
+                                                    jwplayer().load({
+                                                        streamer: "rtmp://101.99.21.221:1935/live",
+                                                        file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                                    });
+                                                    jwplayer().play();
+                                                }, 5000);
+                                            });
+                                            jwplayer("@s").onPlay(function () {
+                                                clearTimeout(theTimeout);
+                                            });*@
+                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    if (reqvalues > 0)
+                    {
+                        for (int i = 0; i < reqvalues; i++)
+                        {
+                            <div class="col-md-4">
+                                <div class="video-div2">
+                                    <div class="thumbnail thumbnail-video2" style="width: 300px; height: 180px; background-color: black">
+                                        <h6 class="text-center" style="color:white">No Camera</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    }
+                    break;
+
+            case 16:
+                    foreach (var item in Model)
+                    {
+                        <div class="col-md-8" style="height:135px; width:225px">
+                            <div class="video-div2">
+                                <div class="thumbnail thumbnail-video2" style="width: 225px; height: 135px; background-color: black">
+                                    @{
+                        if (item.CAMERA_URL_STREAM == null)
+                        {
+                            string title = "Camera " + item.CAMERA_NAME;
+                            <img class="img" id="urlImg@(+item.CAMERA_ID)" data-url="@item.CAMERA_URL" src="@item.CAMERA_URL" style="width: 100%;height:100%;" onload="@("preload('" + item.CAMERA_URL + "','" + item.CAMERA_ID + "')")" alt="" title="@title"
+                                 ondblclick="@("ShowModalLiveVideo('" + item.CAMERA_URL + "','" + item.CAMERA_ID + "')")" />
+                        }
+                        else
+                        {
+                            string s = "id" + Convert.ToString(item.CAMERA_ID);
+                            <div id="@s"></div>
+                                        <script type="text/javascript" src="~/Scripts/jwplayer.js"></script>
+                                        @*<script src="//content.jwplatform.com/libraries/aCAUY7mn.js"></script>
+                                            <script src="~/jwplayer-7.5.2/jwplayer.js"></script>
+                                            <script>jwplayer.key = "vdH5POCkA8YmHm5+0Ing4O32hNsg/MWnbBKZBQ==";</script>*@
+                                        <script type="text/javascript">
+                                            jwplayer("@s").setup({
+                                                flashplayer: "/Scripts/Player2.swf",
+                                                streamer: "rtmp://101.99.21.215:1935/live",
+                                                file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                                width: "100%",
+                                                height: "135px",
+                                                aspectratio: "16:9",
+                                                autostart: true
+                                                
+                                                //flashplayer: "/Scripts/Player_lock.swf",
+                                                //streamer: "rtmp://101.99.21.221:1935/live",
+                                                //file: 'https://www.youtube.com/watch?v=DQhHcZY9Uhc',
+                                                //streamer: "rtmp://101.99.21.221:1935/live",
+                                                @*title: '@item.CAMERA_NAME',
+                                                sources: [{
+                                                    file: 'rtmp://101.99.21.217:1935/live/' + '@item.CAMERA_URL_STREAM' + '.stream',
+                                                }],
+                                                width: "100%",
+                                                aspectratio: "16:10",
+                                                autostart: true,
+                                                rtmp: {
+                                                    securetoken: "Zxlli2h1aK"
+                                                },
+                                                controls: true*@
+                                            });
+                                            //AJS.toInit(function () {
+                                            //    if (AJS.$("div.ia-fixed-sidebar").width() > 55) {
+                                            //        AJS.Confluence.Sidebar.toggle();
+                                            //    }
+                                            //});
+                                            @*jwplayer("@s").onError(function () {
+                                                jwplayer().load({
+                                                    streamer: "rtmp://101.99.21.221:1935/live",
+                                                    file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                                });
+                                                jwplayer().play();
+                                            });
+                                            jwplayer("@s").onComplete(function () {
+                                                window.location = window.location.href;
+                                            });
+                                            jwplayer("@s").onBuffer(function () {
+                                                theTimeout = setTimeout(function () {
+                                                    jwplayer().load({
+                                                        streamer: "rtmp://101.99.21.221:1935/live",
+                                                        file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                                    });
+                                                    jwplayer().play();
+                                                }, 5000);
+                                            });
+                                            jwplayer("@s").onPlay(function () {
+                                                clearTimeout(theTimeout);
+                                            });*@
+
+                                        </script>
+                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    if (reqvalues > 0)
+                    {
+                        for (int i = 0; i < reqvalues; i++)
+                        {
+                            <div class="col-md-8" style="height:135px; width:225px">
+                                <div class="video-div2">
+                                    <div class="thumbnail thumbnail-video2" style="width: 225px; height: 135px; background-color: black">
+                                        <h6 class="text-center" style="color:white">No Camera</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    }
+                    break;
+            default:
+                    foreach (var item in Model)
+                    {
+                        <div class="col-md-6">
+                            <div class="video-div2">
+                                <div class="thumbnail thumbnail-video2" style="width:450px; height:275px; background-color:black">
+                                    @{
+
+                        if (item.CAMERA_URL_STREAM == null)
+                        {
+                            string title = "Camera " + item.CAMERA_NAME;
+                            <img class="img" id="urlImg@(+item.CAMERA_ID)" data-url="@item.CAMERA_URL" src="@item.CAMERA_URL" style="width: 100%;height:100%;" onload="@("preload('" + item.CAMERA_URL + "','" + item.CAMERA_ID + "')")" alt="" title="@title"
+                                 ondblclick="@("ShowModalLiveVideo('" + item.CAMERA_URL + "','" + item.CAMERA_ID + "')")" />
+                        }
+                        else
+                        {
+                            string s = "id" + Convert.ToString(item.CAMERA_ID);
+                            <div id="@s"></div>
+                                        <script type="text/javascript" src="~/Scripts/jwplayer.js"></script>
+                                        <script type="text/javascript">
+                                            jwplayer("@s").setup({
+                                                @*title: '@item.CAMERA_NAME',
+                                                sources: [{
+                                                    file: 'rtmp://101.99.21.217:1935/live/' + '@item.CAMERA_URL_STREAM' + '.stream',
+                                                }],
+                                                width: "100%",
+                                                aspectratio: "16:10",
+                                                autostart: true,
+                                                rtmp: {
+                                                    securetoken: "Zxlli2h1aK"
+                                                },
+                                                controls: true*@
+                                                flashplayer: "/Scripts/Player2.swf",
+                                                streamer: "rtmp://101.99.21.215:1935/live",
+                                                file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                                width: "100%",
+                                                height: "270px",
+                                                aspectratio: "16:9",
+                                                autostart: true
+                                            });
+                                            @*jwplayer("@s").onError(function () {
+                                                jwplayer().load({
+                                                    streamer: "rtmp://101.99.21.221:1935/live",
+                                                    file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                                });
+                                                jwplayer().play();
+                                            });
+                                            jwplayer("@s").onComplete(function () {
+                                                window.location = window.location.href;
+                                            });
+                                            jwplayer("@s").onBuffer(function () {
+                                                theTimeout = setTimeout(function () {
+                                                    jwplayer().load({
+                                                        streamer: "rtmp://101.99.21.221:1935/live",
+                                                        file: '@item.CAMERA_URL_STREAM' + '.stream',
+                                                    });
+                                                    jwplayer().play();
+                                                }, 5000);
+                                            });
+                                            jwplayer("@s").onPlay(function () {
+                                                clearTimeout(theTimeout);
+                                            });*@
+                                        </script>
+                        }
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                     }
+                        if (reqvalues > 0)
+                        {
+                            for (int i = 0; i < reqvalues; i++)
+                            {
+                                <div class="col-md-6">
+                                    <div class="video-div2">
+                                        <div class="thumbnail thumbnail-video2" style="width:450px; height:275px; background-color:black">
+                                            <h6 class="text-center" style="color:white">No Camera</h6>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        }
+                        break;
+        }
+    }
+</div>
+@*<div id="ptvShowModelLiveView">
+</div>*@
+<script src="@Url.Content("~/Content/Admin/script/bootstrap.min.js")"></script>
+<script>
+    function ShowModalLiveVideo(url, camid) {
+        //var values = $(this).attr("title");
+        $('.vlc_1').hide();
+        $.ajax({
+
+            type: 'POST',
+            url: '@Url.Action("GetModalLiveView", "PartialView")',
+            data: { url: url, camid: camid },
+            success: function (data) {
+                $('#ptvShowModelLiveView').html(data);
+                $('#myModalViewVideo').modal('show');
+
+            },
+
+            error: function () {
+                MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+            },
+        });
+
+        @*var count = @Model.Count();
+        for (var i = 1; i <= count; i++)
+        {
+        }*@
+    }
+
+    function ShowModalLiveStream(url_stream, camid) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetModalLiveStream","PartialView")',
+            data: { data: url_stream, camid: camid },
+            success: function (data) {
+                $('#ptvShowModelLiveView').html(data);
+                $('#myModalViewVideo').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+            },
+        });
+    }
+</script>
