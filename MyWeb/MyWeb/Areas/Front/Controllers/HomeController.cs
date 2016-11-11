@@ -74,23 +74,53 @@ namespace MyWeb.Areas.Front.Controllers
         {
             string srcImg = "";
             string srcVideo = "";
+            double paraS = 0;
+            double paraE = 0;
             var tblHistoryImages = GetContext().TBL_HISTORY_IMAGES.FirstOrDefault(x => x.HISTORYIMAGES_ID == idHistoryImg && x.USER_ID == GetUserLogin.CurentCustomerId);
             if (tblHistoryImages != null)
             {
                 srcImg = "http://nsc3.negatech.vn/" + tblHistoryImages.HISTORYIMAGES_URL;
                 //var data = GetContext().TBL_HISTORY_VIDEO.FirstOrDefault(x => x.HISTORYVIDEO_TIMESTART <= tblHistoryImages.HISTORYIMAGES_TIMESTART && x.HISTORYVIDEO_TIMEEND >= tblHistoryImages.HISTORYIMAGES_TIMESTART);
-                string videoUrl = @"select video.Historyvideo_url from TBL_HISTORY_VIDEO video, TBL_HISTORY_IMAGES img
+                string videoUrl = @"select * from TBL_HISTORY_VIDEO video, TBL_HISTORY_IMAGES img
                                 where img.HISTORYIMAGES_TIMESTART>=video.HISTORYVIDEO_TIMESTART
                                 and img.HISTORYIMAGES_TIMESTART<=video.HISTORYVIDEO_TIMEEND
                                 and img.USER_ID=video.USER_ID
                                 and img.CAMERA_ID=video.CAMERA_ID and img.HISTORYIMAGES_ID=:1";
-                var video = GetContext().Database.SqlQuery<string>(videoUrl, idHistoryImg).FirstOrDefault();
+                var ivideo =
+                    GetContext()
+                        .TBL_HISTORY_VIDEO.Where(
+                            x => x.CAMERA_ID == tblHistoryImages.CAMERA_ID && x.USER_ID == tblHistoryImages.USER_ID &&
+                                 x.HISTORYVIDEO_TIMESTART <= tblHistoryImages.HISTORYIMAGES_TIMESTART &&
+                                 tblHistoryImages.HISTORYIMAGES_TIMESTART < x.HISTORYVIDEO_TIMEEND).SingleOrDefault();
+                if (ivideo != null)
+                {
+                    srcVideo = "http://nsc3.negatech.vn/" + ivideo.HISTORYVIDEO_URL;
+                    DateTime infoVideo_S;
+                    DateTime infoVideo_E;
+                    DateTime infoVideo_detect_S;
+                    DateTime infoVideo_detect_E;
+
+                    if (ivideo.HISTORYVIDEO_TIMESTART != null && ivideo.HISTORYVIDEO_TIMEEND != null)
+                    {
+                        infoVideo_S = (DateTime)ivideo.HISTORYVIDEO_TIMESTART;
+                        infoVideo_E = (DateTime)ivideo.HISTORYVIDEO_TIMEEND;
+                        infoVideo_detect_S = (DateTime)tblHistoryImages.HISTORYIMAGES_TIMESTART;
+                        infoVideo_detect_E = (DateTime)tblHistoryImages.HISTORYIMAGES_TIMESTART;
+                        paraS = (infoVideo_detect_S - infoVideo_S).TotalSeconds /
+                                    (infoVideo_E - infoVideo_S).TotalSeconds;
+                        paraE = (infoVideo_detect_E - infoVideo_S).TotalSeconds /
+                                     (infoVideo_E - infoVideo_S).TotalSeconds;
+                    }
+
+                }
+                //var video = GetContext().Database.SqlQuery<string>(videoUrl, idHistoryImg).FirstOrDefault();
                 //srcVideo = "../Uploads/Video/2016/03/03/quatnv/QuocTuGiam01/2016030314000173.mp4";
-                if (video != null)
-                    srcVideo = "http://nsc3.negatech.vn/" + video;
+                //if (video != null)
+                //    srcVideo = "http://nsc3.negatech.vn/" + video;
+
 
             }
-            var result = new { ImageSrc = srcImg, VideoSrc = srcVideo };
+            var result = new { ImageSrc = srcImg, VideoSrc = srcVideo, paras = paraS, parae = paraE };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 

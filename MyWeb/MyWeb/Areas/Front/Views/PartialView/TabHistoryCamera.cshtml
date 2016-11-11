@@ -1,8 +1,10 @@
 ﻿@using System.Globalization
 @model MyWeb.Areas.Front.Models.HistoryModel
 @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>*@
+
 <script src="~/Scripts/jquery-1.9.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<link href="~/Content/Front/Styles/loadingStyle.css" rel="stylesheet" />
 <div class="row">
     <input type="hidden" id="hidCameraId" />
     <input type="hidden" id="hidDay" />
@@ -69,11 +71,14 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12" id="DetailImageByCamera" @*style="height: 300px;overflow: auto" *@>
-    </div>
+    <div class="col-md-12" id="DetailImageByCamera" @*style="height: 300px;overflow: auto" *@></div>
+    <div id="loader" ></div>
+    
 </div>
 <div id="ptvShowModelLiveView">
+    
 </div>
+
 
 <script type="text/javascript">
 
@@ -130,6 +135,8 @@
         $('#hidCameraId').val(id);
         $('#panelSearch').addClass("visible");
         //$("#clik-cam-" + id).addClass('active-cam');
+        $('#DetailImageByCamera').hide();
+        $('#loader').css("display", "block");
         $.ajax({
             url: '@Url.Action("GetDetailCameraImage","Home")',
             type: 'post',
@@ -138,6 +145,10 @@
                 id: id
             },
             success: function (data) {
+                $('#loader').css("display", "none");
+
+                $('#DetailImageByCamera').show();
+
                 $('#DetailImageByCamera').html(data.listImage);
                 $("#listFunction").html(data.listFunction);
                 $('#panelDateTime').html(data.listDatetime);
@@ -146,6 +157,7 @@
                 alert(xhr.responseText);
             }
         });
+        
     }
 
 
@@ -227,8 +239,13 @@
                 //-----
                 $('#control_video').get(0).pause();
                 $('#srcVideo').attr('src', data.VideoSrc);
+                var totalVid = $('#control_video').get(0).duration;
+
+
                 $('#control_video').get(0).load();
-                $('#control_video').get(0).play();
+                $('#control_video').get(0).currentTime = totalVid * data.paras;
+
+                //$('#control_video').get(0).play();
             },
             error: function (xhr) {
                 alert(xhr.responseText);

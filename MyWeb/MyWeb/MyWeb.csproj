@@ -3927,6 +3927,7 @@
     <Content Include="Content\Front\Scripts\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="Content\Front\Styles\bootstrap-datetimepicker-standalone.css" />
     <Content Include="Content\Front\Styles\jquery.mCustomScrollbar.css" />
+    <Content Include="Content\Front\Styles\loadingStyle.css" />
     <Content Include="Content\Front\Styles\style2.css" />
     <Content Include="Content\Front\Styles\StyleSheet1.css" />
     <Content Include="Images\a2.jpg" />
