@@ -1,0 +1,99 @@
+﻿@using MyWeb.Models
+@model IEnumerable<MyWeb.Areas.Admin.Models.CreateFunctionModel>
+@{
+    ViewBag.Title = "Danh sách chức năng camera";
+    Layout = "~/Areas/Admin/Views/Shared/_MasterAdminLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<div class="row mbl">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        Thông tin chi tiết
+                    </div>
+                    <div class="panel-body">
+                        <a class="btn-primary  padding510" href="javascrip:void(0)" onclick="showCreateFunction();"><i class="fa fa-plus"></i>&nbsp; Tạo mới chức năng</a>
+                        <hr />
+                        <div class="form-group" id="messageInfo">
+                            @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                        </div>
+                        @Html.Partial("_ptvShow", Model)
+                        @*<div class="form-group pull-right">
+                            <a class="btn" href="@Url.Action("Index","Function")"><i class="fa fa-mail-reply"></i>&nbsp; Quay về danh sách</a>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@using (Ajax.BeginForm("Delete", "Function", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "messageInfo", OnFailure = "failure", OnSuccess = "success" }, new { id = "frmDeleteFunction" }))
+{
+    @Html.AntiForgeryToken()
+    <input id="identifierDelete" name="id" type="hidden" value="" />
+}
+@Html.Partial("~/Views/Shared/_ModalPatial.cshtml")
+<div id="frmCreateFunction"></div>
+<div id="frmUpdateFunction"></div>
+@section jsmore
+{
+    <script type="text/javascript">
+        $('#myModal').on('show.bs.modal', function (event) {
+            var linkAction = $(event.relatedTarget);
+            var id = linkAction.attr("identifier");
+            $("#identifierDelete").val(id);
+            //TO DO: init content for popup
+            $(this).find('.modal-title').html("Are you sure ?");
+            $(this).find('.modal-body').html("Bạn có chắc chắn muốn xóa chức năng này?");
+            $(this).find('#_btnCancelConfirm').text('Cancel');
+            $(this).find('#_btnOkConfirm').text('OK');
+        });
+        $('#myModal').on('click', '#_btnOkConfirm', function () {
+            $('#myModal').modal('hide');
+            $("#frmDeleteFunction").submit();
+        });
+
+        //--------
+        function failure() {
+            MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+        }
+
+        function success() {
+            reloadGrid('/Admin/Function/SearchResult/');
+        }
+
+        //------------
+        function showCreateFunction() {
+            $("#messageInfo").html('');
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Action("Create", "Function")",
+                success: function (data) {
+                    $('#frmCreateFunction').html(data);
+                    $('#myModalCreateFunction').modal('show');
+                },
+                error: function () {
+                    MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+                },
+            });
+        }
+
+        function showUpdateFunction(idFunction) {
+            $("#messageInfo").html('');
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Action("Edit", "Function")",
+                data: { idFunction: idFunction },
+                success: function (data) {
+                    $('#frmUpdateFunction').html(data);
+                    $('#myModalUpdateFunction').modal('show');
+                },
+                error: function () {
+                    MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+                },
+            });
+        }
+    </script>
+}

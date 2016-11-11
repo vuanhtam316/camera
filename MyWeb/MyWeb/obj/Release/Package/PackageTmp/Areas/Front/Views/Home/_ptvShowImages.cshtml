@@ -1,0 +1,143 @@
+﻿@model IEnumerable<MyWeb.Areas.Front.Models.HistoryImageModel>
+@*<link rel="stylesheet" type="text/css" href="/Content/Front/Styles/style2.css" />*@
+@*<link rel="stylesheet" href="/Content/Front/Styles/jquery.mCustomScrollbar.css" />*@
+<style>
+    .pagination {
+        float: left;
+        width: 100%;
+        margin: 2px 0;
+    }
+
+        .pagination ul li {
+            /*width: 25px;*/
+            list-style-type: none;
+            float: left;
+        }
+
+    .disabled {
+        pointer-events: none;
+        cursor: default;
+    }
+</style>
+
+
+
+@{
+    var total = ViewBag.total;
+    //int currentPage = 1;
+    //if ((string)ViewData["page"] != "" && ViewData["page"] != null)
+    //{
+    //    currentPage = int.Parse(ViewData["page"].ToString());
+    //}
+    //if (total > 0)
+    //{
+    WebGrid grid = new WebGrid(rowsPerPage: MyWeb.Business.ProviderControllerBase.RowPerPage);
+    grid.Bind(Model,
+    autoSortAndPage: false,
+    rowCount: total);
+    //}
+}
+@{
+    if (Model.Any())
+    {
+        @*<div id="demo">
+
+                <div id="content-1" class="content horizontal-images">
+                    <ul>
+
+                        @foreach (var item in Model)
+                        {
+                            <li style="width:206px;height:190px">
+                                <div class="col-md-2">
+                                <a href="#" onclick="ShowDetail('@item.HISTORYIMAGES_ID');" class="thumbnail thumbnail-img text-center" style="border:none;margin-bottom:0">
+                                    <img src="@item.HISTORYIMAGES_URL" alt="@item.HISTORYIMAGES_INFO" title="@item.HISTORYIMAGES_INFO" />
+                                    @if (item.HISTORYIMAGES_TIMESTART.HasValue)
+                                    {
+                                        <span>@item.HISTORYIMAGES_TIMESTART.Value.ToString("dd/MM/yyyy HH:mm:ss")</span>
+                                    }
+                                </a>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+
+            </div>*@
+        <div class="row" id="TemplateContent">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-2">
+                    <a href="#" ondblclick="roomImage('@item.HISTORYIMAGES_URL')" onclick="ShowDetail('@item.HISTORYIMAGES_ID');" class="thumbnail thumbnail-img text-center" style="border:none;margin-bottom:0">
+                        <img src="@item.HISTORYIMAGES_URL" alt="@item.HISTORYIMAGES_INFO" title="@item.HISTORYIMAGES_INFO" />
+                        <span>@item.HISTORYIMAGES_TIMESTART</span>
+                    </a>
+                </div>
+            }
+        </div>
+
+
+
+        <div class="pagination pagination-small pagination-right">
+            @grid.PagerList(mode: WebGridPagerModes.All)
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <div class="alert alert-warning">Chưa có dữ liệu hiển thị.</div>
+        </div>
+    }
+}
+
+
+
+@*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/Content/Front/Scripts/jquery-1.11.0.min.js"><\/script>')</script>
+    <script src="@Url.Content("~/Content/Front/Scripts/jquery.mCustomScrollbar.concat.min.js")"></script>
+    <script src="/Content/Front/Scripts/jquery.mCustomScrollbar.concat.min.js"></script>*@
+<script>
+
+    //(function ($) {
+    //    $(window).on("load", function () {
+
+    //        /*
+    //        get snap amount programmatically or just set it directly (e.g. "273")
+    //        in this example, the snap amount is list item's (li) outer-width (width+margins)
+    //        */
+    //        var amount = Math.max.apply(Math, $("#content-1 li").map(function () { return $(this).outerWidth(true); }).get());
+
+    //        $("#content-1").mCustomScrollbar({
+    //            axis: "x",
+    //            theme: "inset",
+    //            advanced: {
+    //                autoExpandHorizontalScroll: true
+    //            },
+    //            scrollButtons: {
+    //                enable: true,
+    //                scrollType: "stepped"
+    //            },
+    //            keyboard: { scrollType: "stepped" },
+    //            snapAmount: amount,
+    //            mouseWheel: { scrollAmount: amount }
+    //        });
+
+    //    });
+    //})(jQuery);
+
+
+    $(document).ready(function () {
+        $(".pagination li a").off("click");
+        $(".pagination li a").click(function (e) {
+            if (!$(this).parent().hasClass("disabled")) {
+                console.log(this.href.match(/[\?&]page=\d+/i)[0]);
+                var str = this.href.match(/[\?&]page=\d+/i)[0];
+                //alert(str);
+                $("#page").val(str.split('=')[1]);
+                ClickPage();
+                e.preventDefault();
+            } else {
+            }
+        });
+    })
+</script>

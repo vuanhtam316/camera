@@ -1,0 +1,65 @@
+﻿@using MyWeb.HtmlHelpers
+@*@model IEnumerable<MyWeb.Models.CustomerModel>*@
+@model IEnumerable<MyWeb.Areas.Agency.Models.UserOfAgency>
+@{
+    var grid = new WebGrid(Model,
+           rowsPerPage: 10,
+           canPage: true,
+           canSort: true,
+           ajaxUpdateContainerId: "gridShowUser"
+           );
+}
+<style>
+    th {
+        color: white;
+        text-align: center;
+    }
+
+    thead, tfoot {
+        background: #2A3F54;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    a:hover {
+        color: #BFCAE6;
+    }
+
+    tbody {
+        color: black;
+        background: white;
+    }
+</style>
+@if (Model.Any())
+{
+    <div id="gridShowUser" class="table-responsive" style="width:90%; margin:auto">
+        @grid.GetHtml(
+        tableStyle: "table webGrid table-hover table-bordered table-striped table-hover-color",
+        headerStyle: "text-left hidden-sm hidden-xs",
+        alternatingRowStyle: "alt",
+        mode: WebGridPagerModes.All | WebGridPagerModes.FirstLast | WebGridPagerModes.NextPrevious | WebGridPagerModes.Numeric,
+         columns: grid.Columns(
+         grid.Column("STT", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, style: "text-center vertical-center"),
+        //grid.Column("CustomerNumber", "Mã khách hàng", style: "vertical-center"),
+
+          grid.Column("FullName", "Tên khách hàng", style: "text-center  vertical-center"),
+
+          grid.Column("UserName", "Tên tài khoản", style: "text-center  vertical-center hidden-sm hidden-xs"),
+
+            grid.Column("Email", "Email", style: "text-center  vertical-center hidden-sm hidden-xs"),
+             grid.Column("Phone", "Số điện thoại", style: "text-center  vertical-center hidden-sm hidden-xs"),
+        //grid.Column("Address", "Địa chỉ", style: "text-center  vertical-center hidden-sm hidden-xs"),
+        //grid.Column("Phone", "Điện thoại", style: "text-center  vertical-center hidden-sm hidden-xs"),
+        //grid.Column("Email", "Email", style: "text-center  vertical-center hidden-sm hidden-xs"),
+         grid.Column("TotalCamera", "Số camera", style: "text-center  vertical-center hidden-sm hidden-xs"),
+        //grid.Column(format: (item) => new MvcHtmlString(item.Active == true ? "<span class='label label-success'>Enable</span>" : "<span class='label label-danger'>Disible</span>"), header: "Trạng thái", style: "text-center  vertical-center hidden-sm hidden-xs"),
+             grid.Column(format: item => new MvcHtmlString(string.Format("<a title='Xóa khách hàng' href='javascript:void(0)' onclick='DeleteUserOfAgency(" + item.UserId + ")' data-toggle='modal' data-target='#myModal' ><i class='fa fa-trash-o' style='font-size: 20px; color:#2A3F54'></i></a>")), header: "Xóa", style: "text-center vertical-center")
+                            ))
+    </div>
+}
+else
+{
+    <div class="form-group">
+        <div class="alert alert-warning">Chưa có dữ liệu hiển thị.</div>
+    </div>
+}

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MyWeb.Models.CameraModel>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <h1 style="text-align:center">
+                    Danh sách camera của bạn
+                </h1>
+            </div>
+            @Html.Partial("_ptvShowCamera", Model)
+            <div>
+                <a href="javascript:void(0)" onclick="AddCamera();" style="margin-left: 345px; font-size: larger"><i class="fa fa-pencil-square-o"></i>Thêm mới camera</a>
+            </div>
+        </div>
+    </div>
+</div>
+@*<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Table Headers Revisited | Demo 3</title>
+    <meta name="description" content="Sticky Table Headers Revisited: Creating functional and flexible sticky table headers" />
+    <meta name="keywords" content="Sticky Table Headers Revisited" />
+    <meta name="author" content="Codrops" />
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="Scripts/demo.css" />
+    <link rel="stylesheet" type="text/css" href="Scripts/component.css" />
+</head>
+<body>
+    <div class="container">
+        <!-- Top Navigation -->
+        <table class="">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên camera</th>
+                    <th>DELETE</th>
+                    <th>EDIT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="IdCamera">
+                        camera1
+                    </td>
+                    <td class="NameCamera">
+                        camera1
+                    </td>
+                    <td>
+                        @*<button style="background: url(/Images/add.png) no-repeat; height: 20px; width: 20px; "></button>*@
+                        @*<a href="#" target="_blank">
+                            <img src="/Images/add.png" onclick="Insert" style="width:25px; height:25px" />
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" target="_blank">
+                            <img src="~/Images/Delete.png" onclick="Delete" style="width:20px; height:20px" />
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>*@
+    
+    <!-- /container -->
+    @*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-throttle-debounce/1.1/jquery.ba-throttle-debounce.min.js"></script>
+    <script src="js/jquery.stickyheader.js"></script>
+</body>
+</html>*@

@@ -1,0 +1,577 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TBL_CAMERA">
+    <Key>
+      <PropertyRef Name="CAMERA_ID" />
+    </Key>
+    <Property Name="CAMERA_ID" Type="Int64" Nullable="false" />
+    <Property Name="CAMERA_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CAMERA_NUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CAMERA_URL" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="CAMERA_IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="USER_ID" Type="Int64" Nullable="false" />
+    <Property Name="CAMERA_URL_STREAM" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_CAMERA_STATUS" Relationship="Self.FK_CAMERA_ID_CAMERA_CAMERASTT" FromRole="TBL_CAMERA" ToRole="TBL_CAMERA_STATUS" />
+    <NavigationProperty Name="TBL_HISTORY_IMAGES" Relationship="Self.FK_CAMERA_ID_IMAGE_CAMERA" FromRole="TBL_CAMERA" ToRole="TBL_HISTORY_IMAGES" />
+    <NavigationProperty Name="TBL_HISTORY_VIDEO" Relationship="Self.FK_CAMERA_ID_VIDEO_CAMERA" FromRole="TBL_CAMERA" ToRole="TBL_HISTORY_VIDEO" />
+    <NavigationProperty Name="TBL_USER" Relationship="Self.FK_USER_ID_CAMERA_USER" FromRole="TBL_CAMERA" ToRole="TBL_USER" />
+    <NavigationProperty Name="TBL_CAMERA_FUNCTION" Relationship="Self.TBL_CAMERA_FUNTION_FK1" FromRole="TBL_CAMERA" ToRole="TBL_CAMERA_FUNCTION" />
+    <Property Name="SNAPSHOT_STATUS" Type="Int16" />
+    <Property Name="IMAGE_URL" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_CAMERA_FUNCTION">
+    <Key>
+      <PropertyRef Name="CAMERA_FUNTION_ID" />
+    </Key>
+    <Property Name="FUNCTION_ID" Type="Int16" />
+    <Property Name="USER_ID" Type="Int64" />
+    <Property Name="CAMERA_ID" Type="Int64" />
+    <Property Name="POLYGON" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="X_ROTATION" Type="Int16" />
+    <Property Name="Y_ROTATION" Type="Int16" />
+    <Property Name="Z_ROTATION" Type="Int16" />
+    <Property Name="STRETCH" Type="Int16" />
+    <Property Name="DISTANCE" Type="Int16" />
+    <Property Name="CAMERA_FUNTION_ID" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="TBL_CAMERA" Relationship="Self.TBL_CAMERA_FUNTION_FK1" FromRole="TBL_CAMERA_FUNCTION" ToRole="TBL_CAMERA" />
+    <NavigationProperty Name="TBL_FUNCTION" Relationship="Self.TBL_CAMERA_FUNTION_FK2" FromRole="TBL_CAMERA_FUNCTION" ToRole="TBL_FUNCTION" />
+    <NavigationProperty Name="TBL_USER" Relationship="Self.TBL_CAMERA_FUNTION_FK3" FromRole="TBL_CAMERA_FUNCTION" ToRole="TBL_USER" />
+    <Property Name="URL_IMAGE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IMAGE_STATUS" Type="Int16" />
+  </EntityType>
+  <EntityType Name="TBL_CAMERA_STATUS">
+    <Key>
+      <PropertyRef Name="CAMERA_STATUS_ID" />
+    </Key>
+    <Property Name="CAMERA_STATUS" Type="Int16" />
+    <Property Name="CAMERA_STATUS_DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CAMERA_ID" Type="Int64" Nullable="false" />
+    <Property Name="FUNCTION_ID" Type="Int16" Nullable="false" />
+    <Property Name="CAMERA_STATUS_ID" Type="Int64" Nullable="false" />
+    <Property Name="CAMERA_STATUS_TIME_START" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CAMERA_STATUS_TIME_END" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_CAMERA" Relationship="Self.FK_CAMERA_ID_CAMERA_CAMERASTT" FromRole="TBL_CAMERA_STATUS" ToRole="TBL_CAMERA" />
+    <NavigationProperty Name="TBL_FUNCTION" Relationship="Self.FK_FUNCTION_ID_FUNCTION_CAMERA" FromRole="TBL_CAMERA_STATUS" ToRole="TBL_FUNCTION" />
+    <Property Name="FUNCTION_REGIGES" Type="Int16" />
+  </EntityType>
+  <EntityType Name="TBL_FUNCTION">
+    <Key>
+      <PropertyRef Name="FUNCTION_ID" />
+    </Key>
+    <Property Name="FUNCTION_ID" Type="Int16" Nullable="false" />
+    <Property Name="FUNCTION_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="FUNCTION_DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FUNCTION_IMAGE" Type="String" MaxLength="2500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_CAMERA_FUNCTION" Relationship="Self.TBL_CAMERA_FUNTION_FK2" FromRole="TBL_FUNCTION" ToRole="TBL_CAMERA_FUNCTION" />
+    <NavigationProperty Name="TBL_CAMERA_STATUS" Relationship="Self.FK_FUNCTION_ID_FUNCTION_CAMERA" FromRole="TBL_FUNCTION" ToRole="TBL_CAMERA_STATUS" />
+    <NavigationProperty Name="TBL_HISTORY_IMAGES" Relationship="Self.FK_FUNCTION_ID_IMAGE_FUNCTION" FromRole="TBL_FUNCTION" ToRole="TBL_HISTORY_IMAGES" />
+    <Property Name="PROCESS" Type="Int16" />
+  </EntityType>
+  <EntityType Name="TBL_HISTORY_IMAGES">
+    <Key>
+      <PropertyRef Name="HISTORYIMAGES_ID" />
+    </Key>
+    <Property Name="HISTORYIMAGES_ID" Type="Int64" Nullable="false" />
+    <Property Name="HISTORYIMAGES_TIMESTART" Type="DateTime" Precision="6" />
+    <Property Name="HISTORYIMAGES_TIMEEND" Type="DateTime" Precision="6" />
+    <Property Name="HISTORYIMAGES_URL" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="USER_ID" Type="Int64" Nullable="false" />
+    <Property Name="CAMERA_ID" Type="Int64" Nullable="false" />
+    <Property Name="FUNCTION_ID" Type="Int16" />
+    <Property Name="HISTORYIMAGES_INFO" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="HISTORY_VIDEO_ID" Type="Int64" />
+    <NavigationProperty Name="TBL_CAMERA" Relationship="Self.FK_CAMERA_ID_IMAGE_CAMERA" FromRole="TBL_HISTORY_IMAGES" ToRole="TBL_CAMERA" />
+    <NavigationProperty Name="TBL_FUNCTION" Relationship="Self.FK_FUNCTION_ID_IMAGE_FUNCTION" FromRole="TBL_HISTORY_IMAGES" ToRole="TBL_FUNCTION" />
+    <NavigationProperty Name="TBL_USER" Relationship="Self.FK_USER_ID_IMAGE_USER" FromRole="TBL_HISTORY_IMAGES" ToRole="TBL_USER" />
+    <NavigationProperty Name="TBL_HISTORY_VIDEO" Relationship="Self.TBL_HISTORY_IMAGES_FK1" FromRole="TBL_HISTORY_IMAGES" ToRole="TBL_HISTORY_VIDEO" />
+  </EntityType>
+  <EntityType Name="TBL_HISTORY_VIDEO">
+    <Key>
+      <PropertyRef Name="HISTORYVIDEO_ID" />
+    </Key>
+    <Property Name="HISTORYVIDEO_ID" Type="Int64" Nullable="false" />
+    <Property Name="HISTORYVIDEO_TIMESTART" Type="DateTime" Precision="6" />
+    <Property Name="HISTORYVIDEO_TIMEEND" Type="DateTime" Precision="6" />
+    <Property Name="USER_ID" Type="Int64" Nullable="false" />
+    <Property Name="CAMERA_ID" Type="Int64" Nullable="false" />
+    <Property Name="HISTORYVIDEO_URL" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_CAMERA" Relationship="Self.FK_CAMERA_ID_VIDEO_CAMERA" FromRole="TBL_HISTORY_VIDEO" ToRole="TBL_CAMERA" />
+    <NavigationProperty Name="TBL_HISTORY_IMAGES" Relationship="Self.TBL_HISTORY_IMAGES_FK1" FromRole="TBL_HISTORY_VIDEO" ToRole="TBL_HISTORY_IMAGES" />
+    <NavigationProperty Name="TBL_USER" Relationship="Self.FK_USER_ID_VIDEO_USER" FromRole="TBL_HISTORY_VIDEO" ToRole="TBL_USER" />
+  </EntityType>
+  <EntityType Name="TBL_PERMISSTION">
+    <Key>
+      <PropertyRef Name="PERMISSTION_ID" />
+    </Key>
+    <Property Name="PERMISSTION_ID" Type="Int16" Nullable="false" />
+    <Property Name="PERMISSTION_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PERMISSTIONS" Type="Int16" />
+    <Property Name="ROLE_ID" Type="Int16" Nullable="false" />
+    <Property Name="PERMISSTION_DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_ROLE" Relationship="Self.FK_ROLE_ID_ROLE_PERMISTION" FromRole="TBL_PERMISSTION" ToRole="TBL_ROLE" />
+  </EntityType>
+  <EntityType Name="TBL_PROFILE_USER">
+    <Key>
+      <PropertyRef Name="PROFILE_USER_ID" />
+    </Key>
+    <Property Name="PROFILE_USER_ID" Type="Int64" Nullable="false" />
+    <Property Name="FULL_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DISTRICT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BIRTHDAY" Type="DateTime" />
+    <Property Name="SEX" Type="Int16" />
+    <Property Name="PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MOBILE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ID_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="USER_ID" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="TBL_USER" Relationship="Self.FK_USER_ID_PROFILE_USER" FromRole="TBL_PROFILE_USER" ToRole="TBL_USER" />
+  </EntityType>
+  <EntityType Name="TBL_ROLE">
+    <Key>
+      <PropertyRef Name="ROLE_ID" />
+    </Key>
+    <Property Name="ROLE_ID" Type="Int16" Nullable="false" />
+    <Property Name="ROLE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ROLE_ORD" Type="Int16" />
+    <Property Name="ROLE_DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_PERMISSTION" Relationship="Self.FK_ROLE_ID_ROLE_PERMISTION" FromRole="TBL_ROLE" ToRole="TBL_PERMISSTION" />
+    <NavigationProperty Name="TBL_USER_ROLE" Relationship="Self.FK_ROLE_ID_USERROLE_ROLE" FromRole="TBL_ROLE" ToRole="TBL_USER_ROLE" />
+  </EntityType>
+  <EntityType Name="TBL_TOKEN">
+    <Key>
+      <PropertyRef Name="TOKEN_ID" />
+    </Key>
+    <Property Name="TOKEN_ID" Type="Int64" Nullable="false" />
+    <Property Name="USER_ID" Type="Int64" Nullable="false" />
+    <Property Name="AUTH_TOKEN" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="ISSUED_ON" Type="DateTime" />
+    <Property Name="EXPIRES_ON" Type="DateTime" />
+    <NavigationProperty Name="TBL_USER" Relationship="Self.TBL_TOKEN_FK1" FromRole="TBL_TOKEN" ToRole="TBL_USER" />
+  </EntityType>
+  <EntityType Name="TBL_USER">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+    </Key>
+    <Property Name="USER_ID" Type="Int64" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DISPLAY_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="USER_NAME" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PASSWORDS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="CREATE_BY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="USER_STATUS" Type="Int16" />
+    <Property Name="USER_ACTIVE" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="TBL_CAMERA" Relationship="Self.FK_USER_ID_CAMERA_USER" FromRole="TBL_USER" ToRole="TBL_CAMERA" />
+    <NavigationProperty Name="TBL_CAMERA_FUNCTION" Relationship="Self.TBL_CAMERA_FUNTION_FK3" FromRole="TBL_USER" ToRole="TBL_CAMERA_FUNCTION" />
+    <NavigationProperty Name="TBL_HISTORY_IMAGES" Relationship="Self.FK_USER_ID_IMAGE_USER" FromRole="TBL_USER" ToRole="TBL_HISTORY_IMAGES" />
+    <NavigationProperty Name="TBL_HISTORY_VIDEO" Relationship="Self.FK_USER_ID_VIDEO_USER" FromRole="TBL_USER" ToRole="TBL_HISTORY_VIDEO" />
+    <NavigationProperty Name="TBL_PROFILE_USER" Relationship="Self.FK_USER_ID_PROFILE_USER" FromRole="TBL_USER" ToRole="TBL_PROFILE_USER" />
+    <NavigationProperty Name="TBL_TOKEN" Relationship="Self.TBL_TOKEN_FK1" FromRole="TBL_USER" ToRole="TBL_TOKEN" />
+    <NavigationProperty Name="TLB_USER_HISTORY" Relationship="Self.FK_USER_ID_USER_USERHISTORY" FromRole="TBL_USER" ToRole="TLB_USER_HISTORY" />
+    <NavigationProperty Name="TBL_USER_ROLE" Relationship="Self.FK_USER_ID_USERROLE_USER" FromRole="TBL_USER" ToRole="TBL_USER_ROLE" />
+    <Property Name="AGENCY_ID" Type="Int64" />
+    <NavigationProperty Name="TBL_FEEDBACK" Relationship="Model.USER_FK" FromRole="TBL_USER" ToRole="TBL_FEEDBACK" />
+    <Property Name="TAX_CODE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="PHONE" Type="Int64" />
+    <Property Name="REPRESENTATIVE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="IMAGE_URL" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="CONFIGPASSWORDS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="REVIEW" Type="Int16" />
+    <Property Name="TOKEN_KEY" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TBL_USER_ROLE">
+    <Key>
+      <PropertyRef Name="USER_ID" />
+      <PropertyRef Name="ROLE_ID" />
+    </Key>
+    <Property Name="USER_ID" Type="Int64" Nullable="false" />
+    <Property Name="ROLE_ID" Type="Int16" Nullable="false" />
+    <Property Name="USER_ROLE_DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ROLE_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="USER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBL_ROLE" Relationship="Self.FK_ROLE_ID_USERROLE_ROLE" FromRole="TBL_USER_ROLE" ToRole="TBL_ROLE" />
+    <NavigationProperty Name="TBL_USER" Relationship="Self.FK_USER_ID_USERROLE_USER" FromRole="TBL_USER_ROLE" ToRole="TBL_USER" />
+    <Property Name="AGENCY_ID" Type="Int64" />
+  </EntityType>
+  <EntityType Name="TLB_USER_HISTORY">
+    <Key>
+      <PropertyRef Name="USER_HISTORY_ID" />
+    </Key>
+    <Property Name="USER_HISTORY_ID" Type="Int64" Nullable="false" />
+    <Property Name="USER_HISTORY_TIMESTART" Type="DateTime" />
+    <Property Name="USER_HISTORY_TIMEEND" Type="DateTime" />
+    <Property Name="USER_HISTORY_COMMAND" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="USER_ID" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="TBL_USER" Relationship="Self.FK_USER_ID_USER_USERHISTORY" FromRole="TLB_USER_HISTORY" ToRole="TBL_USER" />
+  </EntityType>
+  <Association Name="FK_CAMERA_ID_CAMERA_CAMERASTT">
+    <End Role="TBL_CAMERA" Type="Self.TBL_CAMERA" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TBL_CAMERA_STATUS" Type="Self.TBL_CAMERA_STATUS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_CAMERA">
+        <PropertyRef Name="CAMERA_ID" />
+      </Principal>
+      <Dependent Role="TBL_CAMERA_STATUS">
+        <PropertyRef Name="CAMERA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CAMERA_ID_IMAGE_CAMERA">
+    <End Role="TBL_CAMERA" Type="Self.TBL_CAMERA" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TBL_HISTORY_IMAGES" Type="Self.TBL_HISTORY_IMAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_CAMERA">
+        <PropertyRef Name="CAMERA_ID" />
+      </Principal>
+      <Dependent Role="TBL_HISTORY_IMAGES">
+        <PropertyRef Name="CAMERA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CAMERA_ID_VIDEO_CAMERA">
+    <End Role="TBL_CAMERA" Type="Self.TBL_CAMERA" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TBL_HISTORY_VIDEO" Type="Self.TBL_HISTORY_VIDEO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_CAMERA">
+        <PropertyRef Name="CAMERA_ID" />
+      </Principal>
+      <Dependent Role="TBL_HISTORY_VIDEO">
+        <PropertyRef Name="CAMERA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_ID_CAMERA_USER">
+    <End Role="TBL_USER" Type="Self.TBL_USER" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TBL_CAMERA" Type="Self.TBL_CAMERA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="TBL_CAMERA">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TBL_CAMERA_FUNTION_FK1">
+    <End Role="TBL_CAMERA" Type="Self.TBL_CAMERA" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TBL_CAMERA_FUNCTION" Type="Self.TBL_CAMERA_FUNCTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_CAMERA">
+        <PropertyRef Name="CAMERA_ID" />
+      </Principal>
+      <Dependent Role="TBL_CAMERA_FUNCTION">
+        <PropertyRef Name="CAMERA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TBL_CAMERA_FUNTION_FK2">
+    <End Role="TBL_FUNCTION" Type="Self.TBL_FUNCTION" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TBL_CAMERA_FUNCTION" Type="Self.TBL_CAMERA_FUNCTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_FUNCTION">
+        <PropertyRef Name="FUNCTION_ID" />
+      </Principal>
+      <Dependent Role="TBL_CAMERA_FUNCTION">
+        <PropertyRef Name="FUNCTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TBL_CAMERA_FUNTION_FK3">
+    <End Role="TBL_USER" Type="Self.TBL_USER" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TBL_CAMERA_FUNCTION" Type="Self.TBL_CAMERA_FUNCTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="TBL_CAMERA_FUNCTION">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FUNCTION_ID_FUNCTION_CAMERA">
+    <End Role="TBL_FUNCTION" Type="Self.TBL_FUNCTION" Multiplicity="1" />
+    <End Role="TBL_CAMERA_STATUS" Type="Self.TBL_CAMERA_STATUS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_FUNCTION">
+        <PropertyRef Name="FUNCTION_ID" />
+      </Principal>
+      <Dependent Role="TBL_CAMERA_STATUS">
+        <PropertyRef Name="FUNCTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FUNCTION_ID_IMAGE_FUNCTION">
+    <End Role="TBL_FUNCTION" Type="Self.TBL_FUNCTION" Multiplicity="0..1" />
+    <End Role="TBL_HISTORY_IMAGES" Type="Self.TBL_HISTORY_IMAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_FUNCTION">
+        <PropertyRef Name="FUNCTION_ID" />
+      </Principal>
+      <Dependent Role="TBL_HISTORY_IMAGES">
+        <PropertyRef Name="FUNCTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_ID_IMAGE_USER">
+    <End Role="TBL_USER" Type="Self.TBL_USER" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TBL_HISTORY_IMAGES" Type="Self.TBL_HISTORY_IMAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="TBL_HISTORY_IMAGES">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TBL_HISTORY_IMAGES_FK1">
+    <End Role="TBL_HISTORY_VIDEO" Type="Self.TBL_HISTORY_VIDEO" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TBL_HISTORY_IMAGES" Type="Self.TBL_HISTORY_IMAGES" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_HISTORY_VIDEO">
+        <PropertyRef Name="HISTORYVIDEO_ID" />
+      </Principal>
+      <Dependent Role="TBL_HISTORY_IMAGES">
+        <PropertyRef Name="HISTORY_VIDEO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_ID_VIDEO_USER">
+    <End Role="TBL_USER" Type="Self.TBL_USER" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TBL_HISTORY_VIDEO" Type="Self.TBL_HISTORY_VIDEO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="TBL_HISTORY_VIDEO">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROLE_ID_ROLE_PERMISTION">
+    <End Role="TBL_ROLE" Type="Self.TBL_ROLE" Multiplicity="1" />
+    <End Role="TBL_PERMISSTION" Type="Self.TBL_PERMISSTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_ROLE">
+        <PropertyRef Name="ROLE_ID" />
+      </Principal>
+      <Dependent Role="TBL_PERMISSTION">
+        <PropertyRef Name="ROLE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_ID_PROFILE_USER">
+    <End Role="TBL_USER" Type="Self.TBL_USER" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TBL_PROFILE_USER" Type="Self.TBL_PROFILE_USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="TBL_PROFILE_USER">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROLE_ID_USERROLE_ROLE">
+    <End Role="TBL_ROLE" Type="Self.TBL_ROLE" Multiplicity="1" />
+    <End Role="TBL_USER_ROLE" Type="Self.TBL_USER_ROLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_ROLE">
+        <PropertyRef Name="ROLE_ID" />
+      </Principal>
+      <Dependent Role="TBL_USER_ROLE">
+        <PropertyRef Name="ROLE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TBL_TOKEN_FK1">
+    <End Role="TBL_USER" Type="Self.TBL_USER" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TBL_TOKEN" Type="Self.TBL_TOKEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="TBL_TOKEN">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_ID_USER_USERHISTORY">
+    <End Role="TBL_USER" Type="Self.TBL_USER" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TLB_USER_HISTORY" Type="Self.TLB_USER_HISTORY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="TLB_USER_HISTORY">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_ID_USERROLE_USER">
+    <End Role="TBL_USER" Type="Self.TBL_USER" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TBL_USER_ROLE" Type="Self.TBL_USER_ROLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="TBL_USER_ROLE">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TBL_CAMERA" EntityType="Self.TBL_CAMERA" />
+    <EntitySet Name="TBL_CAMERA_FUNCTION" EntityType="Self.TBL_CAMERA_FUNCTION" />
+    <EntitySet Name="TBL_CAMERA_STATUS" EntityType="Self.TBL_CAMERA_STATUS" />
+    <EntitySet Name="TBL_FUNCTION" EntityType="Self.TBL_FUNCTION" />
+    <EntitySet Name="TBL_HISTORY_IMAGES" EntityType="Self.TBL_HISTORY_IMAGES" />
+    <EntitySet Name="TBL_HISTORY_VIDEO" EntityType="Self.TBL_HISTORY_VIDEO" />
+    <EntitySet Name="TBL_PERMISSTION" EntityType="Self.TBL_PERMISSTION" />
+    <EntitySet Name="TBL_PROFILE_USER" EntityType="Self.TBL_PROFILE_USER" />
+    <EntitySet Name="TBL_ROLE" EntityType="Self.TBL_ROLE" />
+    <EntitySet Name="TBL_TOKEN" EntityType="Self.TBL_TOKEN" />
+    <EntitySet Name="TBL_USER" EntityType="Self.TBL_USER" />
+    <EntitySet Name="TBL_USER_ROLE" EntityType="Self.TBL_USER_ROLE" />
+    <EntitySet Name="TLB_USER_HISTORY" EntityType="Self.TLB_USER_HISTORY" />
+    <AssociationSet Name="FK_CAMERA_ID_CAMERA_CAMERASTT" Association="Self.FK_CAMERA_ID_CAMERA_CAMERASTT">
+      <End Role="TBL_CAMERA" EntitySet="TBL_CAMERA" />
+      <End Role="TBL_CAMERA_STATUS" EntitySet="TBL_CAMERA_STATUS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CAMERA_ID_IMAGE_CAMERA" Association="Self.FK_CAMERA_ID_IMAGE_CAMERA">
+      <End Role="TBL_CAMERA" EntitySet="TBL_CAMERA" />
+      <End Role="TBL_HISTORY_IMAGES" EntitySet="TBL_HISTORY_IMAGES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CAMERA_ID_VIDEO_CAMERA" Association="Self.FK_CAMERA_ID_VIDEO_CAMERA">
+      <End Role="TBL_CAMERA" EntitySet="TBL_CAMERA" />
+      <End Role="TBL_HISTORY_VIDEO" EntitySet="TBL_HISTORY_VIDEO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_ID_CAMERA_USER" Association="Self.FK_USER_ID_CAMERA_USER">
+      <End Role="TBL_USER" EntitySet="TBL_USER" />
+      <End Role="TBL_CAMERA" EntitySet="TBL_CAMERA" />
+    </AssociationSet>
+    <AssociationSet Name="TBL_CAMERA_FUNTION_FK1" Association="Self.TBL_CAMERA_FUNTION_FK1">
+      <End Role="TBL_CAMERA" EntitySet="TBL_CAMERA" />
+      <End Role="TBL_CAMERA_FUNCTION" EntitySet="TBL_CAMERA_FUNCTION" />
+    </AssociationSet>
+    <AssociationSet Name="TBL_CAMERA_FUNTION_FK2" Association="Self.TBL_CAMERA_FUNTION_FK2">
+      <End Role="TBL_FUNCTION" EntitySet="TBL_FUNCTION" />
+      <End Role="TBL_CAMERA_FUNCTION" EntitySet="TBL_CAMERA_FUNCTION" />
+    </AssociationSet>
+    <AssociationSet Name="TBL_CAMERA_FUNTION_FK3" Association="Self.TBL_CAMERA_FUNTION_FK3">
+      <End Role="TBL_USER" EntitySet="TBL_USER" />
+      <End Role="TBL_CAMERA_FUNCTION" EntitySet="TBL_CAMERA_FUNCTION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FUNCTION_ID_FUNCTION_CAMERA" Association="Self.FK_FUNCTION_ID_FUNCTION_CAMERA">
+      <End Role="TBL_FUNCTION" EntitySet="TBL_FUNCTION" />
+      <End Role="TBL_CAMERA_STATUS" EntitySet="TBL_CAMERA_STATUS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FUNCTION_ID_IMAGE_FUNCTION" Association="Self.FK_FUNCTION_ID_IMAGE_FUNCTION">
+      <End Role="TBL_FUNCTION" EntitySet="TBL_FUNCTION" />
+      <End Role="TBL_HISTORY_IMAGES" EntitySet="TBL_HISTORY_IMAGES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_ID_IMAGE_USER" Association="Self.FK_USER_ID_IMAGE_USER">
+      <End Role="TBL_USER" EntitySet="TBL_USER" />
+      <End Role="TBL_HISTORY_IMAGES" EntitySet="TBL_HISTORY_IMAGES" />
+    </AssociationSet>
+    <AssociationSet Name="TBL_HISTORY_IMAGES_FK1" Association="Self.TBL_HISTORY_IMAGES_FK1">
+      <End Role="TBL_HISTORY_VIDEO" EntitySet="TBL_HISTORY_VIDEO" />
+      <End Role="TBL_HISTORY_IMAGES" EntitySet="TBL_HISTORY_IMAGES" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_ID_VIDEO_USER" Association="Self.FK_USER_ID_VIDEO_USER">
+      <End Role="TBL_USER" EntitySet="TBL_USER" />
+      <End Role="TBL_HISTORY_VIDEO" EntitySet="TBL_HISTORY_VIDEO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROLE_ID_ROLE_PERMISTION" Association="Self.FK_ROLE_ID_ROLE_PERMISTION">
+      <End Role="TBL_ROLE" EntitySet="TBL_ROLE" />
+      <End Role="TBL_PERMISSTION" EntitySet="TBL_PERMISSTION" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_ID_PROFILE_USER" Association="Self.FK_USER_ID_PROFILE_USER">
+      <End Role="TBL_USER" EntitySet="TBL_USER" />
+      <End Role="TBL_PROFILE_USER" EntitySet="TBL_PROFILE_USER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROLE_ID_USERROLE_ROLE" Association="Self.FK_ROLE_ID_USERROLE_ROLE">
+      <End Role="TBL_ROLE" EntitySet="TBL_ROLE" />
+      <End Role="TBL_USER_ROLE" EntitySet="TBL_USER_ROLE" />
+    </AssociationSet>
+    <AssociationSet Name="TBL_TOKEN_FK1" Association="Self.TBL_TOKEN_FK1">
+      <End Role="TBL_USER" EntitySet="TBL_USER" />
+      <End Role="TBL_TOKEN" EntitySet="TBL_TOKEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_ID_USER_USERHISTORY" Association="Self.FK_USER_ID_USER_USERHISTORY">
+      <End Role="TBL_USER" EntitySet="TBL_USER" />
+      <End Role="TLB_USER_HISTORY" EntitySet="TLB_USER_HISTORY" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_ID_USERROLE_USER" Association="Self.FK_USER_ID_USERROLE_USER">
+      <End Role="TBL_USER" EntitySet="TBL_USER" />
+      <End Role="TBL_USER_ROLE" EntitySet="TBL_USER_ROLE" />
+    </AssociationSet>
+    <EntitySet Name="TBL_FEEDBACK" EntityType="Model.TBL_FEEDBACK" />
+    <AssociationSet Name="USER_FK" Association="Model.USER_FK">
+      <End Role="TBL_USER" EntitySet="TBL_USER" />
+      <End Role="TBL_FEEDBACK" EntitySet="TBL_FEEDBACK" />
+    </AssociationSet>
+    <EntitySet Name="TBL_UPDATE_STATUS" EntityType="Model.TBL_UPDATE_STATUS" />
+  </EntityContainer>
+  <EntityType Name="TBL_FEEDBACK">
+    <Key>
+      <PropertyRef Name="FEEDBACK_ID" />
+    </Key>
+    <Property Name="FEEDBACK_ID" Type="Int64" Nullable="false" />
+    <Property Name="USER_ID" Type="Int64" Nullable="false" />
+    <Property Name="FEEDBACK_CONTENT" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="FEEDBACK_TIME" Type="DateTime" Nullable="false" Precision="6" />
+    <NavigationProperty Name="TBL_USER" Relationship="Model.USER_FK" FromRole="TBL_FEEDBACK" ToRole="TBL_USER" />
+    <Property Name="TITLE" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="AGENCY_ID" Type="Int64" />
+  </EntityType>
+  <Association Name="USER_FK">
+    <End Type="Model.TBL_USER" Role="TBL_USER" Multiplicity="1" />
+    <End Type="Model.TBL_FEEDBACK" Role="TBL_FEEDBACK" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBL_USER">
+        <PropertyRef Name="USER_ID" />
+      </Principal>
+      <Dependent Role="TBL_FEEDBACK">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TBL_UPDATE_STATUS">
+    <Key>
+      <PropertyRef Name="UPDATE_STATUS_ID" />
+    </Key>
+    <Property Name="UPDATE_STATUS_ID" Type="Int64" Nullable="false" />
+    <Property Name="STATUS_UPDATE" Type="Int16" />
+  </EntityType>
+</Schema>

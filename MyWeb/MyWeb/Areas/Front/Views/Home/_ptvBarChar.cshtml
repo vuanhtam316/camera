@@ -1,0 +1,96 @@
+﻿@*@using MyWeb.Areas.Front.ModelChart;*@
+@model IEnumerable<MyWeb.Areas.Front.Models.ViewModel>
+
+<canvas id="MyChartCamera"></canvas>
+
+<script>
+        @{
+            int k = Model.Count();
+            string[] name = new string[k];
+            int[] soAnh=new int[k];
+            int i = 0;
+            foreach (var item in Model)
+            {
+                name[i] = item.CAMERA_NAME;
+                soAnh[i] = item.totaFile;
+                i++;
+            }
+        }
+    var strMon = '@string.Join(",",@name)';
+    var strSoAnh = '@string.Join(",",@soAnh)';
+    var ctx = document.getElementById("MyChartCamera");
+    var soAnh1 = [];
+    soAnh1 = strSoAnh.split(',');
+    var lblMon = [];
+    lblMon = strMon.split(',');
+    var myChar = new Chart(ctx, {
+        type: 'bar',
+
+        data: {
+
+
+
+            labels: lblMon,
+            datasets: [{
+                label: "Tổng số ảnh",
+                click: function (e) {
+                    alert("dataSeries Event => Name:");
+                },
+                data: soAnh1,
+                backgroundColor: [
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                ],
+                borderColor: [
+     'rgba(255,99,132,1)',
+     'rgba(255,99,132,1)',
+     'rgba(255,99,132,1)',
+     'rgba(255,99,132,1)',
+     'rgba(255,99,132,1)',
+      'rgba(255,99,132,1)',
+      'rgba(255,99,132,1)',
+      'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }],
+                xAxes: [{
+                    display: false
+                }]
+            }
+        }
+    });
+</script>

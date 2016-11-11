@@ -1,0 +1,80 @@
+﻿@model IEnumerable<MyWeb.Models.UserModel>
+
+@{
+    if (Model.Any() && Model != null)
+    {
+        foreach (var item in Model)
+        {
+            if (item.REVIEW == 2 || item.REVIEW == 1 || item.REVIEW == 3)
+            {
+                if (item.REVIEW == 1 || item.REVIEW == 3)
+                {
+                    <h2 style="margin-left:200px">Tiện ích</h2>
+                    <div class="row" style="width:900px; margin:auto">
+                        <div class="col-md-2" style="padding:5px; margin-bottom:60px">
+                            <div class="thumbnail" style="border:none; height:220px; margin-bottom:10px">
+                                <div class="picCard">
+                                    <a><img class="lazy" alt="" style="width:130px; height:130px; background :url('http://static.appvn.com/i/uploads/thumbnails/102014/2c787138d9a933ff7cb490492ca57151-4-icon.png') no-repeat center;" src=""><span class="mask"></span></a>
+                                </div>
+                                <div class="caption" style="text-align: center">
+                                    <h5 class="titleCard" style="height: 25px; font-size: 12px;">
+                                        <a>Đại lý giám sát</a>
+                                    </h5>
+                                    <button id="on" onclick="OnSetUp();" style="width: 100px; height: 35px; border: none; background: #33FF33; border-radius: 25px; color:white">Đang bật</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <h2 style="margin-left:200px">Tiện ích</h2>
+                    <div class="row" style="width:900px; margin:auto">
+                        <div class="col-md-2" style="padding:5px; margin-bottom:60px">
+                            <div class="thumbnail" style="border:none; height:220px; margin-bottom:10px">
+                                <div class="picCard">
+                                    <a><img class="lazy" alt="" style="width:130px; height:130px; background :url('http://static.appvn.com/i/uploads/thumbnails/102014/2c787138d9a933ff7cb490492ca57151-4-icon.png') no-repeat center;" src=""><span class="mask"></span></a>
+                                </div>
+                                <div class="caption" style="text-align: center">
+                                    <h5 class="titleCard" style="height: 25px; font-size: 12px;">
+                                        <a>Đại lý giám sát</a>
+                                    </h5>
+                                    <button id="off" onclick="OffSetUp();" style=" width: 100px; height: 35px; border: none; background: red; border-radius: 25px; color: white">Đã tắt</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+    }
+}
+<script>
+    function OnSetUp() {
+
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("OnSetUp", "PartialView")",
+            success: function (data) {
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+        }).done(function (partialViewResult) {
+            $("#Setup").html(partialViewResult);
+        });
+    }
+    function OffSetUp() {
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("OffSetUp", "PartialView")",
+            success: function (data) {
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+        }).done(function (partialViewResult) {
+            $("#Setup").html(partialViewResult);
+        });
+    }
+</script>

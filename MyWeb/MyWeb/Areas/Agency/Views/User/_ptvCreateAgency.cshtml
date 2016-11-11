@@ -1,0 +1,13 @@
+﻿@model IEnumerable<MyWeb.Models.UserModel>
+@{
+    if (Model.Any() && Model != null)
+    {
+        foreach (var item in Model)
+        {
+            if (item.AGENCY_ID == 0)
+            {
+                <li><a href="@Url.Action("CreateAgency", "User")">Thêm mới đại lý</a></li>
+            }
+        }
+    }
+}

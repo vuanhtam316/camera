@@ -1,0 +1,185 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Areas.Agency.Models.CameraOfUser
+@{
+    //Layout = "~/Areas/Admin/Views/Shared/_MasterAdminLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<style>
+    /*span{
+        color:red;
+    }*/
+    select {
+        cursor: pointer;
+        height: 51px;
+    }
+
+    .form-control {
+        width: 90%;
+        height: 51px;
+        border: none;
+        background: #73879C;
+        color: white;
+    }
+
+    .ccform {
+        margin: 0 auto;
+        width: 60%;
+    }
+
+    .ccfield-prepend {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .ccform-addon {
+        color: white;
+        float: left;
+        padding: 12px;
+        width: 10%;
+        background: #73879C;
+        text-align: center;
+    }
+
+    .ccformfield {
+        color: white;
+        background: #73879C;
+        border: none;
+        padding: 15.5px;
+        width: 90%;
+        display: block;
+        font-family: 'Lato',Arial,sans-serif;
+        font-size: 14px;
+    }
+
+    .ccformfield {
+        font-family: 'Lato',Arial,sans-serif;
+    }
+
+    .ccbtnCancel, .ccbtn {
+        display: block;
+        border: none;
+        background: #73879C;
+        float: right;
+        color: #FFFFFF;
+        padding: 10px;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .ccbtnCancel, .ccbtn:hover {
+            background: #2990af;
+        }
+
+    .credit {
+        float: left;
+        margin: 25px;
+        text-align: center;
+    }
+
+        .credit em {
+            margin-right: 5px;
+        }
+
+        .credit a {
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+</style>
+<div class="modal fade" id="ptvCreateCamera" tabindex='-1' style="z-index: 9999999999" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border-radius: 6px !important; width: 65%; margin: auto">
+            <div class="modal-header" style="background-color: #2A3F54; border-radius: 5px 5px 0 0;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" style="color:white">Thêm camera</h4>
+            </div>
+            @using (Ajax.BeginForm("CreateCamera", "CameraOfUser", new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST",
+                OnFailure = "failure",
+                UpdateTargetId = "messageInfoModalAddNewCamera"
+                //OnSuccess = "OnloadCamera"
+            }, new { id = "addNewCamera", @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="modal-body" style="padding-top: 30px">
+                    <div class="row mbl" style="margin-bottom: 0 !important;padding-bottom: 0 !important;">
+                        <div class="col-md-12">
+                            <div class="pal">
+                                <div class="" id="messageInfoModalAddNewCamera">
+                                    @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                                </div>
+                                <input class="ccformfield" id="txtUser" type="text" value="@ViewBag.userid" name="UserId" style="display:none">
+                                <div class="form-group">
+                                    <div class="ccfield-prepend">
+                                        @Html.ValidationHtmlMessageFor(model => model.CameraName, "", new { @class = "field-validation-valid" })
+                                        <span class="ccform-addon"><i class="fa fa-camera fa-2x"></i></span>
+                                        @Html.TextBoxFor(model => model.CameraName, new { @class = "ccformfield", @placeholder = "Tên camera" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="ccfield-prepend">
+                                        @{
+                var listItems = new List<System.Web.UI.WebControls.ListItem>
+                                            { new System.Web.UI.WebControls.ListItem { Text = "Vantech", Value = "id1" },
+                                              new System.Web.UI.WebControls.ListItem { Text = "Foscam", Value = "id2" },
+                                              new System.Web.UI.WebControls.ListItem { Text = "Tiandy", Value = "id3" },
+                                                new System.Web.UI.WebControls.ListItem { Text = "DaHua", Value = "id4" },
+                                                new System.Web.UI.WebControls.ListItem{ Text="Hikvision", Value= "id5"}
+                                            };
+                                        }
+                                        @Html.ValidationHtmlMessageFor(model => model.Model_camera, "", new { @class = "field-validation-valid" })
+                                        <span class="ccform-addon"><i class="fa fa-cog fa-2x"></i></span>
+                                        @Html.DropDownListFor(model => model.Model_camera, new SelectList(listItems), "Chọn hãng camera", new { @class = "ccformfield" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="ccfield-prepend">
+                                        @Html.ValidationHtmlMessageFor(model => model.Username, "", new { @class = "field-validation-valid" })
+                                        <span class="ccform-addon"><i class="fa fa-users fa-2x"></i></span>
+                                        @Html.TextBoxFor(model => model.Username, new { @class = "ccformfield", @placeholder = "Username của camera" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="ccfield-prepend">
+                                        @Html.ValidationHtmlMessageFor(model => model.Password, "", new { @class = "field-validation-valid" })
+                                        <span class="ccform-addon"><i class="fa fa-key fa-2x"></i></span>
+                                        @Html.PasswordFor(model => model.Password, new { @class = "ccformfield", @placeholder = "Password của camera" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="ccfield-prepend">
+                                        @Html.ValidationHtmlMessageFor(model => model.Domain, "", new { @class = "field-validation-valid" })
+                                        <span class="ccform-addon"><i class="fa fa-krw fa-2x"></i></span>
+                                        @Html.TextBoxFor(model => model.Domain, new { @class = "ccformfield", @placeholder = "Domain" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="ccfield-prepend">
+                                        @Html.ValidationHtmlMessageFor(model => model.Port, "", new { @class = "field-validation-valid" })
+                                        <span class="ccform-addon"><i class="fa fa-bookmark fa-2x"></i></span>
+                                        @Html.TextBoxFor(model => model.Port, new { @class = "ccformfield", @placeholder = "Cổng RTSP" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top: 0">
+                    <button type="button" class="ccbtnCancel" data-dismiss="modal">Quay lại</button>
+                    <button type="submit" class="ccbtn">Tạo mới</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    function CloseModal() {
+        $('#myModalAddCamera').modal('hide');
+    }
+</script>

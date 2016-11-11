@@ -1,0 +1,48 @@
+﻿
+<ul class="nav navbar-nav navbar-right">
+    <li class="" style="width: 28%; ">
+        <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="text-align: right;">
+            @*<img src="http://nsc3.negatech.vn/Avatar/img-1547-1464248493369.JPG" alt="" style="width:120px">*@
+            @{Html.RenderAction("_ptvShowAvatar", "HomeAgency");}
+            <div style="color: white;float: right;">
+                @HttpContext.Current.User.Identity.Name
+                <span class=" fa fa-angle-down"></span>
+            </div>
+        </a>
+        <ul class="dropdown-menu dropdown-usermenu pull-right">
+            <li><a href="#" onclick="ShowUpdateInfoAgency('@HttpContext.Current.User.Identity.Name');"><i class="fa fa-info pull-left"></i>Thông tin đại lý</a></li>
+            <li><a href="#" onclick="ShowUpdatePassAgency('@HttpContext.Current.User.Identity.Name');"><i class="fa fa-edit pull-left"></i>Đổi mật khẩu</a></li>
+            <li><a href="/Account/Logout"><i class="fa fa-sign-out pull-left"></i>Thoát</a></li>
+        </ul>
+    </li>
+</ul>
+<script>
+    function ShowUpdatePassAgency(username) {
+        $.ajax({
+            type: 'GET',
+            url: '/Account/ChangePassword/',
+            data: { username: username },
+            success: function (data) {
+                $('#showModelUpdatePassAgency').html(data);
+                $('#myModalUpdatePass').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+            },
+        });
+    }
+    function ShowUpdateInfoAgency(username) {
+        $.ajax({
+            type: 'GET',
+            url: '/Account/AddFormUpdateInfo/',
+            data: { username: username },
+            success: function (data) {
+                $('#myUpdateInfoAgency').html(data);
+                $('#myModalUpdateInfo').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+            },
+        });
+    }
+</script>

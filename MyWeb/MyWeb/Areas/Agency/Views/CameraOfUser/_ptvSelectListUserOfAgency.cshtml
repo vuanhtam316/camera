@@ -1,0 +1,23 @@
+﻿@using MyWeb.HtmlHelpers
+@using MyWeb.Models
+@model MyWeb.Areas.Agency.Models.SelectListUserInAgency
+
+@Html.ValidationHtmlMessageFor(model => model.UserId, "", new { @class = "field-validation-valid" })
+@Html.DropDownListFor(m => m.UserId, new SelectList(Model.GetListUser_Agency, "Value", "Text"), "Chọn khách hàng", new { @class = "form-control pull-right", @id = "selectUser" })
+@*<script>
+        $('select#selectCamera').change(function () {
+            var cameraid = $(this).val();
+            $.ajax({
+                url: '@Url.Action("_ptvChartMonth", "Home")',
+                type: 'post',
+                cache: false,
+                data: { cameraid: cameraid },
+                success: function (data) {
+                    $('#chartMonth').html(data.listMonth);
+                },
+                error: function (xhr) {
+                    alert(xhr.responseText);
+                }
+            });
+        });
+    </script>*@

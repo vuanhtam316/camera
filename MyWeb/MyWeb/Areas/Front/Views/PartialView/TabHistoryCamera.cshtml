@@ -1,0 +1,314 @@
+﻿@using System.Globalization
+@model MyWeb.Areas.Front.Models.HistoryModel
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>*@
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<div class="row">
+    <input type="hidden" id="hidCameraId" />
+    <input type="hidden" id="hidDay" />
+    <input type="hidden" id="hidMonth" />
+
+    <div class="col-md-6 history-detail">
+
+
+
+        <div class="col-md-12" id="show_detail_Image">
+            <div class="thumbnail thumbnail-video-main">
+                <img id="refreshimage1" style="width: 100%;height: 100%" src=""/>
+            </div>
+        </div>
+
+
+
+
+        <div class="col-md-12 hidden" id="show_detail_video">
+            <a href="" id="link_video"></a>
+            <a href="#" class="thumbnail thumbnail-video-main">
+                @*<iframe id="srcVideo" width="100%" height="100%" src="" frameborder="0" allowfullscreen></iframe>*@
+                <video controls="controls" id="control_video" width="100%" height="100%" autoplay="autoplay" preload="auto">
+                    <source id="srcVideo" src="" type="video/mp4">
+                </video>
+            </a>
+        </div>
+        <div class="col-md-4 no-padding" id="modeView">
+            <select id="selectModeView" class="form-control" style="width:200px">
+                <option value="1">Hình ảnh</option>
+                <option value="2">Video</option>
+                @*    <input id="hinhanh" name="file" type="radio" data-value="1" />Hình ảnh
+                    <input id="video" name="file" type="radio" data-value="2" />Video*@
+                @*<input type="radio" name="file" value="1" id="hinhanh" />
+                    <label for="Hình ảnh">Hình ảnh</label>
+                    <input type="radio" name="file" value="2" id="video" />
+                    <label for="Video">Video</label>
+                    <div id="log"></div>*@
+            </select>
+
+            @*<script type="text/javascript">
+                    $("input").change(function () {
+                        $("#log").html($("input:checked").attr("id"));
+                    });
+                </script>*@
+
+        </div>
+    </div>
+
+    <div class="col-md-6 history-tools" style="height:300px">
+        <div class="row" id="ptvShowCam">
+            @Html.Partial("ptvShowCam", Model.ListCameras)
+        </div>
+
+        <div class="row" id="panelSearch">
+            <div class="row">
+                <div class="col-md-12 nomarginbottom">
+                    <div class="col-md-6 pull-right" id="listFunction" style="margin-bottom:10px">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" id="panelDateTime">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12" id="DetailImageByCamera" @*style="height: 300px;overflow: auto" *@>
+    </div>
+</div>
+<div id="ptvShowModelLiveView">
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('select#selectModeView').change(function () {
+            var values = $(this).attr("value");
+            if (values == "1") {
+                $("#show_detail_Image").removeClass("hidden").addClass("show");
+                $("#show_detail_video").removeClass("show").addClass("hidden");
+            }
+            else if (values == "2") {
+                $("#show_detail_video").removeClass("hidden").addClass("show");
+                $("#show_detail_Image").removeClass("show").addClass("hidden");
+                $('#panelSearch').addClass("hidden");
+
+            }
+        });
+    });
+
+    
+    //jQuery(function () {
+    //    $('#datetimepicker2').datetimepicker({
+    //        format: 'dd/MM/yyyy hh:mm:ss',
+    //        language: 'en',
+    //        weekStart: 1,
+    //        todayBtn: 1,
+    //        autoclose: 1,
+    //        todayHighlight: 1,
+    //        startView: 2,
+    //        forceParse: 0,
+    //        showMeridian: 1
+    //    });
+    //});
+    //$(".img-box").imageBox();
+    //get detail camera
+    function ShowDetailImages(id) {
+        $.ajax({
+            url: '@Url.Action("GetDetailImage","Home")',
+            type: 'post',
+            cache: false,
+            data: {
+                id: id
+            },
+            success: function (data) {
+                $('#refreshimage1').attr("src", data);
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    }
+    //get images by camera
+    function ShowImageByCamera(id) {
+        $('#hidCameraId').val(id);
+        $('#panelSearch').addClass("visible");
+        //$("#clik-cam-" + id).addClass('active-cam');
+        $.ajax({
+            url: '@Url.Action("GetDetailCameraImage","Home")',
+            type: 'post',
+            cache: false,
+            data: {
+                id: id
+            },
+            success: function (data) {
+                $('#DetailImageByCamera').html(data.listImage);
+                $("#listFunction").html(data.listFunction);
+                $('#panelDateTime').html(data.listDatetime);
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    }
+
+
+    //-----refresh img
+    function fnSetTimer(image, src, counter, limit) {
+        image.onload = null;
+
+        if (counter < limit) {
+            counter++;
+            setTimeout(function () { fnSetTimer(image, src, counter, limit); }, 500);
+            image.src = src + '?\\' + new Date().getMilliseconds();
+            //alert(counter); // show frame number
+        }
+    }
+    //------------video mode
+    function GetViewMode(idCamera) {
+        var viewmode = 1;
+        if ($("input[name='myRadio']:checked").length > 0) {
+            viewmode = $('input:radio[name=myRadio]:checked').val();
+        }
+        $.ajax({
+            url: '@Url.Action("GetCameraDetail", "Home")',
+            type: 'post',
+            cache: false,
+            data: {
+                idCamera: idCamera, viewmode: viewmode
+            },
+            success: function (data) {
+                if (viewmode == 1) {
+                    //$('#DetailImageByCamera').html(data.listImage);
+                    $("#DetailImageByCamera").empty();
+                    $("#DetailImageByCamera").append(data.html);
+                    $("#listFunction").html(data.listFunction);
+                } else {
+                    $('#DetailImageByCamera').html('');
+                    $('#show_detail_camera').html(data.listVideo);
+                    $("#listFunction").html(data.listFunction);
+                }
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    }
+    //room image
+    function roomImage(Imageurl) {
+        $.ajax({
+
+            type: 'POST',
+            url: '@Url.Action("GetModalLiveView", "PartialView")',
+            data: { Imageurl: Imageurl },
+            success: function (data) {
+                $('#imgroom').attr("src", data.ImageSrc);
+                $('#ptvShowModelLiveView').html(data);
+                $('#myModalViewVideo').modal('show');
+
+            },
+
+            error: function () {
+                MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+            },
+        });
+    };
+
+
+    //get detail camera
+    function ShowDetail(idHistoryImg) {
+        $.ajax({
+            url: '@Url.Action("GetDetail", "Home")',
+            type: 'post',
+            cache: false,
+            data: {
+                idHistoryImg: idHistoryImg
+            },
+            success: function (data) {
+                $('#refreshimage1').attr("src", data.ImageSrc);
+                //$('#refreshimage1').attr("data-value", data.ImageSrc);
+                //$('#srcVideo').attr("src", data.VideoSrc);
+                //-----
+                $('#control_video').get(0).pause();
+                $('#srcVideo').attr('src', data.VideoSrc);
+                $('#control_video').get(0).load();
+                $('#control_video').get(0).play();
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    }
+
+    //$('#selectdieukienloc').change(function () {
+    //    var idcam = $('#hidCameraId').val();
+    //    if (this.value == '2') {
+    //        $("#panelDateTime").removeClass("hidden").addClass("show");
+    //        $("#loctheongaythangnam").removeClass("show").addClass("hidden");
+    //        Search(idcam, null, null, null, null);
+    //    } else {
+    //        $("#panelDateTime").removeClass("show").addClass("hidden");
+    //        $("#loctheongaythangnam").removeClass("hidden").addClass("show");
+    //        Search(idcam, null, null, null, null);
+    //    }
+    //});
+    //$('input:radio[name=bedStatus]').change(function () {
+
+    //});
+    //----
+    //$('#panelDateTime').addClass("hidden");
+
+    //get search
+    function Search(id, day, month, functionid, pageIndex, itemperpage) {
+        $.ajax({
+            url: '@Url.Action("SearchFromTo", "Home")',
+            type: 'GET',
+            cache: false,
+            data: {
+                id: id, fromDate: fromdate, toDate: todate, functionid: functionid, page: pageIndex, rowperpage: itemperpage
+                //id: id, functionid: functionid,page: pageIndex, rowperpage: itemperpage
+            },
+            success: function (data) {
+                $('#TemplateContent').html(data);
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    }
+    //$("#ExpirationDay").change(function () {
+    //    var functionid = $('#selectFunction').val();
+    //    var cameraid = $('#hidCameraId').val();
+    //    //var date = $("#datetimepicker2").find("input").val();
+    //    var day = $(this).val();
+    //    var month = $('#ExpirationMonth').val();
+    //    //var year = $('#ExpirationYear').val();
+    //    if (cameraid != null && cameraid != '') {
+    //        Search(cameraid, day, month, functionid);
+    //    } else {
+    //        alert("Bạn chưa chọn camera");
+    //    }
+    //});
+    //$("#ExpirationYear").change(function () {
+    //    var functionid = $('#selectFunction').val();
+    //    var cameraid = $('#hidCameraId').val();
+    //    //var date = $("#datetimepicker2").find("input").val();
+    //    var day = $('#ExpirationDay').val();
+    //    var month = $('#ExpirationMonth').val();
+    //    var year = $(this).val();
+    //    if (cameraid != null && cameraid != '') {
+    //        Search(cameraid, day, month, year, functionid);
+    //    } else {
+    //        alert("Bạn chưa chọn camera");
+    //    }
+    //});
+    //$("#ExpirationMonth").change(function () {
+    //    var functionid = $('#selectFunction').val();
+    //    var cameraid = $('#hidCameraId').val();
+    //    //var date = $("#datetimepicker2").find("input").val();
+    //    var day = $('#ExpirationDay').val();
+    //    var month = $(this).val();
+    //    //var year = $('#ExpirationYear').val();
+    //    if (cameraid != null && cameraid != '') {
+    //        Search(cameraid, day, month, functionid);
+    //    } else {
+    //        alert("Bạn chưa chọn camera");
+    //    }
+    //});
+</script>

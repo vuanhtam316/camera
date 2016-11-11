@@ -1,0 +1,59 @@
+﻿@*<a id="menu-toggle" href="#" class="hidden-xs"><i class="fa fa-bars"></i></a>*@
+<ul class="nav navbar navbar-top-links navbar-right mbn">
+    <li class="dropdown topbar-user">
+        <a data-hover="dropdown" href="#" class="dropdown-toggle"><span>Xin chào: </span><span class="hidden-xs">@HttpContext.Current.User.Identity.Name</span>&nbsp;<span class="caret"></span></a>
+        <ul class="dropdown-menu dropdown-user pull-right">
+            <li class="custom-a"><a href="#" onclick="ShowUpdatePass('@HttpContext.Current.User.Identity.Name');"><i class="fa fa-key"></i>Đổi mật khẩu</a></li>
+            <li class="custom-a"><a href="#" onclick="ShowUpdateInfo('@HttpContext.Current.User.Identity.Name');"><i class="fa fa-pencil-square-o"></i>Cập nhật thông tin</a></li>
+            <li class="custom-a"><a href="#" onclick="Feedback();"><i class="fa fa-pencil-square-o"></i>Chăm sóc khách hàng</a></li>
+            @*<li class=""><a href="#manageCamera-tab" data-toggle="tab"><i class=" fa fa-pencil-square-o"></i>Quản lý camemra</a></li>*@
+            <li class="custom-a"><a href="/Account/Logout"><i class="fa fa-power-off"></i>Log Out</a></li>
+        </ul>
+    </li>
+</ul>
+<script>
+    function Feedback() {
+        //alert("acn");
+        $.ajax({
+            type: 'GET',
+            url: '/Account/Feedback/',
+            //data: { username: username },
+            success: function (data) {
+                $('#showModelFeedback').html(data);
+                $('#myModalFeedback').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+            },
+        });
+    };
+
+    function ShowUpdatePass(username) {
+        $.ajax({
+            type: 'GET',
+            url: '/Account/ChangePassword/',
+            data: { username: username },
+            success: function (data) {
+                $('#showModelUpdatePass').html(data);
+                $('#myModalUpdatePass').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+            },
+        });
+    }
+    function ShowUpdateInfo(username) {
+        $.ajax({
+            type: 'GET',
+            url: '/Account/AddFormUpdateInfo/',
+            data: { username: username },
+            success: function (data) {
+                $('#myUpdateInfo').html(data);
+                $('#myModalUpdateInfo').modal('show');
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+            },
+        });
+    }
+</script>

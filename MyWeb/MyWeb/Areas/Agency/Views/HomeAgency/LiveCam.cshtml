@@ -1,0 +1,278 @@
+﻿@model List<MyWeb.Areas.Agency.Models.CameraOfUser>
+@{
+    int reqvalues = 4;
+    if (Request.Form["values"] != null)
+    {
+        reqvalues = int.Parse(Request.Form["values"]);
+    }
+    reqvalues = reqvalues - Model.Count();
+}
+<div id="ptvShowLiveCam" style="width:900px; margin:auto; height:550px">
+    @{
+        //if (Model.Any() && Model != null)
+        //{
+        var count = Model.Count();
+        if (count == 1 || count == 9 || count == 16)
+        {
+            count = count + 1;
+        }
+        if (Request.Form["values"] != null)
+        {
+            count = int.Parse(Request.Form["values"]);
+        }
+        switch (count)
+        {
+            case 1:
+                foreach (var item in Model)
+                {
+                    string s = "id" + Convert.ToString(item.CameraId);
+                    <div class="col-md-1">
+                        <div class="video-div2">
+                            <div class="thumbnail thumbnail-video2" style="width:900px; height:550px; background-color:black">
+                                <div id="@s"></div>
+                                <script type="text/javascript" src="~/Scripts/jwplayer.js"></script>
+                                <script type="text/javascript">
+                                    jwplayer("@s").setup({
+                                        title: '@item.CameraName',
+                                        flashplayer: "/Scripts/Player2.swf",
+                                        streamer: "rtmp://101.99.21.215:1935/live",
+                                        file: '@item.Camera_Url_Stream' + '.stream',
+                                        width: "100%",
+                                        height: "540",
+                                        aspectratio: "16:9",
+                                        autostart: true
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                }
+                if (reqvalues > 0)
+                    {
+                        for (int i = 0; i < reqvalues; i++)
+                        {
+                            <div class="col-md-6">
+                                <div class="video-div2">
+                                    <div class="thumbnail thumbnail-video2" style="width:900px; height:550px; background-color:black">
+                                        <h6 class="text-center" style="color:white">No Camera</h6>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    }
+                break;
+
+            case 4:
+                //if (count <= 4)
+                //{
+                foreach (var item in Model)
+                {
+                    string s = "id" + Convert.ToString(item.CameraId);
+                    <div class="col-md-6">
+                        <div class="video-div2">
+                            <div class="thumbnail thumbnail-video2" style="width:450px; height:275px; background-color:black">
+                                <div id="@s"></div>
+                                <script type="text/javascript" src="~/Scripts/jwplayer.js"></script>
+                                <script type="text/javascript">
+                                    jwplayer("@s").setup({
+                                        title: '@item.CameraName',
+                                        flashplayer: "/Scripts/Player2.swf",
+                                        streamer: "rtmp://101.99.21.215:1935/live",
+                                        file: '@item.Camera_Url_Stream' + '.stream',
+                                        width: "100%",
+                                        height: "270px",
+                                        aspectratio: "16:9",
+                                        autostart: true
+                                    });
+
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                 }
+
+                    if (reqvalues > 0)
+                    {
+                        for (int i = 0; i < reqvalues; i++)
+                        {
+                            <div class="col-md-6">
+                                <div class="video-div2">
+                                    <div class="thumbnail thumbnail-video2" style="width:450px; height:275px; background-color:black">
+                                        <h6 class="text-center" style="color:white">No Camera</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    }
+                    break;
+
+            case 9:
+                    foreach (var item in Model)
+                    {
+                        string s = "id" + Convert.ToString(item.CameraId);
+                        <div class="col-md-4">
+                            <div class="video-div2">
+                                <div class="thumbnail thumbnail-video2" style="width: 300px; height: 180px; background-color: black">
+                                    <div id="@s"></div>
+                                    <script type="text/javascript" src="~/Scripts/jwplayer.js"></script>
+                                    <script type="text/javascript">
+                                        jwplayer("@s").setup({
+                                            flashplayer: "/Scripts/Player2.swf",
+                                            streamer: "rtmp://101.99.21.215:1935/live",
+                                            file: '@item.Camera_Url_Stream' + '.stream',
+                                            width: "100%",
+                                            height: "175px",
+                                            aspectratio: "16:9",
+                                            skin: "bekle",
+                                            autostart: true
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    if (reqvalues > 0)
+                    {
+                        for (int i = 0; i < reqvalues; i++)
+                        {
+                            <div class="col-md-4">
+                                <div class="video-div2">
+                                    <div class="thumbnail thumbnail-video2" style="width: 300px; height: 180px; background-color: black">
+                                        <h6 class="text-center" style="color:white">No Camera</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    }
+                    break;
+
+            case 16:
+                    foreach (var item in Model)
+                    {
+                        string s = "id" + Convert.ToString(item.CameraId);
+                        <div class="col-md-8" style="height:135px; width:225px">
+                            <div class="video-div2">
+                                <div class="thumbnail thumbnail-video2" style="width: 225px; height: 135px; background-color: black">
+                                    <div id="@s"></div>
+                                    <script type="text/javascript" src="~/Scripts/jwplayer.js"></script>
+                                    <script type="text/javascript">
+                                        jwplayer("@s").setup({
+                                            flashplayer: "/Scripts/Player2.swf",
+                                            streamer: "rtmp://101.99.21.215:1935/live",
+                                            file: '@item.Camera_Url_Stream' + '.stream',
+                                            width: "100%",
+                                            height: "135px",
+                                            aspectratio: "16:9",
+                                            autostart: true
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    if (reqvalues > 0)
+                    {
+                        for (int i = 0; i < reqvalues; i++)
+                        {
+                            <div class="col-md-8" style="height:135px; width:225px">
+                                <div class="video-div2">
+                                    <div class="thumbnail thumbnail-video2" style="width: 225px; height: 135px; background-color: black">
+                                        <h6 class="text-center" style="color:white">No Camera</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    }
+                    break;
+            default:
+                    foreach (var item in Model)
+                    {
+                        string s = "id" + Convert.ToString(item.CameraId);
+                        <div class="col-md-6">
+                            <div class="video-div2">
+                                <div class="thumbnail thumbnail-video2" style="width:450px; height:275px; background-color:black">
+                                    <div id="@s"></div>
+                                    <script type="text/javascript" src="~/Scripts/jwplayer.js"></script>
+                                    <script type="text/javascript">
+                                        jwplayer("@s").setup({
+                                            flashplayer: "/Scripts/Player2.swf",
+                                            streamer: "rtmp://101.99.21.215:1935/live",
+                                            file: '@item.Camera_Url_Stream' + '.stream',
+                                            width: "100%",
+                                            height: "270px",
+                                            aspectratio: "16:9",
+                                            autostart: true
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                     }
+                        if (reqvalues > 0)
+                        {
+                            for (int i = 0; i < reqvalues; i++)
+                            {
+                                <div class="col-md-6">
+                                    <div class="video-div2">
+                                        <div class="thumbnail thumbnail-video2" style="width:450px; height:275px; background-color:black">
+                                            <h6 class="text-center" style="color:white">No Camera</h6>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        }
+                        break;
+        }
+    }
+</div>
+@*<div id="ptvShowModelLiveView">
+    </div>*@
+@*<script src="@Url.Content("~/Content/Admin/script/bootstrap.min.js")"></script>
+    <script>
+        function ShowModalLiveVideo(url, camid) {
+            //var values = $(this).attr("title");
+            $('.vlc_1').hide();
+            $.ajax({
+
+                type: 'POST',
+                url: '@Url.Action("GetModalLiveView", "PartialView")',
+                data: { url: url, camid: camid },
+                success: function (data) {
+                    $('#ptvShowModelLiveView').html(data);
+                    $('#myModalViewVideo').modal('show');
+
+                },
+
+                error: function () {
+                    MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+                },
+            });
+
+            @*var count = @Model.Count();
+            for (var i = 1; i <= count; i++)
+            {
+            }*@
+@*}
+
+    function ShowModalLiveStream(url_stream, camid) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetModalLiveStream","PartialView")',
+            data: { data: url_stream, camid: camid },
+            success: function (data) {
+            $('#ptvShowModelLiveView').html(data);
+            $('#myModalViewVideo').modal('show');
+            },
+            error: function () {
+            MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+            },
+            });
+            }
+            </script>*@

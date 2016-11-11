@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MyWeb.Areas.Front.Models.HistoryImageModel>
+@{var numpage = MyWeb.Business.ProviderControllerBase.RowPerPage;}
+<div id="TemplateContent">
+    @Html.Partial("_ptvShowImages", Model)
+</div>
+<input type="hidden" id="page" />
+<script>
+    function ClickPage() {
+        var itemperpage = @numpage
+             console.log('');
+        var pageIndex = $("#page").val();
+        //alert(pageIndex);
+        var cameraid = $('#hidCameraId').val();
+        var functionid = $('#selectFunction').val();
+        //var fromdate = $('#hidDay').val();
+        var todate = $('#hidMonth').val();
+
+        var fromtime = $('.irs-from').text();
+        var totime = $('.irs-to').text();
+
+        var fromdate = $("#history_date_from").find("input").val()
+
+        //$('#TemplateContent').append($("<li style='list-style: none'>Loading...</li>"));
+
+        $.ajax({
+            url: '@Url.Action("SearchFromTo")',
+            type: 'get',
+            cache: false,
+            data: { id: cameraid, fromDate: fromdate, fromtime: fromtime, totime: totime, functionid: functionid, page: pageIndex, rowperpage: itemperpage },//
+            success: function (data) {
+                //$('#TemplateContent').append($("<li style='list-style: none'>Loading...</li>"));
+                $("#TemplateContent").html(data);
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+
+    }
+</script>

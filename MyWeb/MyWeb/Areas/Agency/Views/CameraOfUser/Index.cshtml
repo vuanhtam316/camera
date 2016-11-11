@@ -1,0 +1,381 @@
+﻿@using MyWeb.Models
+@*@model MyWeb.Areas.Agency.Models.CameraOfUserModel*@
+@model MyWeb.Areas.Agency.Models.UserAgencyModel
+@{
+    ViewBag.Title = "Camera của khách hàng";
+    Layout = "~/Areas/Agency/Views/Shared/_MasterAgencyLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+
+<style>
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, figcaption, figure,
+    footer, header, hgroup, menu, nav, section, summary,
+    time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    /*-------------
+    SEARCH
+    -------------*/
+
+    #searchForm fieldset {
+        width: 80%;
+        margin: auto;
+        position: relative;
+        display: block;
+    }
+
+    div.input {
+        width: 70%;
+        padding-right: 15px;
+        margin: auto;
+        padding: 5px 15px 7px 15px;
+        border-radius: 20px;
+        border: 1px solid #c6d2db;
+        border-top: 1px solid #b4c1cb;
+        box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+        background: #e8edf1;
+    }
+
+        div.input.focus {
+            border: 1px solid #9ecbe2;
+            box-shadow: 0 0 6px #abdcff, inset 0 1px 2px rgba(0,0,0,0.08);
+        }
+
+    input#s {
+        width: 100%;
+        border: 0;
+        border-radius: 20px;
+        background: transparent;
+        height: 16px;
+        color: #b4bdc4;
+        text-shadow: 0 1px 1px #fff;
+    }
+
+        input#s:focus {
+            outline: none;
+        }
+
+    input#searchSubmit {
+        width: 19px;
+        height: 19px;
+        text-indent: -9999px;
+        overflow: hidden;
+        background: url(../images/search-icon.png) no-repeat;
+        border: 0;
+        position: absolute;
+        top: 7px;
+        right: 13px;
+        z-index: 5;
+        display: none;
+        cursor: pointer;
+    }
+    /* Form CSS*/
+    select {
+        cursor: pointer;
+    }
+
+    .form-control {
+        width: 92%;
+        height: 51px;
+        border: none;
+        background: #73879C;
+        color: white;
+    }
+
+    .ccform {
+        margin: 0 auto;
+        width: 60%;
+    }
+
+    .ccfield-prepend {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .ccform-addon {
+        color: white;
+        float: left;
+        padding: 12px;
+        width: 10%;
+        background: #73879C;
+        text-align: center;
+    }
+
+    .ccformfield {
+        float: left;
+        color: white;
+        background: #73879C;
+        border: none;
+        padding: 15.5px;
+        width: 90%;
+        display: block;
+        font-family: 'Lato',Arial,sans-serif;
+        font-size: 14px;
+    }
+
+    .ccformfield {
+        font-family: 'Lato',Arial,sans-serif;
+    }
+
+    .ccbtn {
+        display: block;
+        border: none;
+        background: #73879C;
+        float: right;
+        color: #FFFFFF;
+        padding: 10px;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .ccbtn:hover {
+            background: #2990af;
+        }
+
+    .credit {
+        float: left;
+        margin: 25px;
+        text-align: center;
+    }
+
+        .credit em {
+            margin-right: 5px;
+        }
+
+        .credit a {
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+</style>
+<div class="row mbl">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-red" style="height: 550px;">
+                    <div class="panel-heading">
+                        <h1 style="text-align:center">QUẢN LÝ CAMERA</h1>
+                    </div>
+                    <hr />
+                    <div class="panel-body">
+                        @*@Html.Partial("_ptvSearch", Model)*@
+                        <div style="width:40%; float:left">
+                            <div>
+                                <form id="searchForm" action="SearchName">
+                                    <fieldset>
+                                        <div class="input">
+                                            <input type="text" name="SearchName" id="s" placeholder="Nhập tên khách hàng" style="color:black" disabled="disabled" />
+                                        </div>
+                                        <input type="submit" id="searchSubmit" value="" />
+                                    </fieldset>
+                                    @*@Html.Partial("_ptvShowSearch")*@
+                                </form>
+                            </div>
+                            <br />
+                            @Html.Partial("~/Areas/Agency/Views/CameraOfUser/_ptvShowUser.cshtml", Model.UserModel)
+                        </div>
+                        <div id="showCamera" style="width:55%; float:left">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="frmCreateCamera"></div>
+<div id="frmRegisterAllFunction"></div>
+<div id="frmShowFunction"></div>
+<div id="frmAddFunction"></div>
+
+
+@*<script src="~/Content/Agency/vendors/Flot/jquery.flot.resize.js"></script>*@
+@*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script src="http://pastebin.com/raw.php?i=J6Kpa2Pf"></script>
+    <script src="http://pastebin.com/raw.php?i=yu6FUA1L"></script>*@
+<script type="text/javascript">
+    $('#tbUser tr').click(function (event) {
+        $('tr').css('background', '#ffffff');
+        $(this).css('background', '#00B2BF');
+        $('thead tr').css('background', '#2A3F54');
+
+        var userid = $(".row", this).attr("value");
+        $.ajax({
+            url: '@Url.Action("GetLisCameraOfUser", "CameraOfUser")',
+            type: 'post',
+            cache: false,
+            data: { userid: userid },
+            success: function (data) {
+                $('#showCamera').html(data.listCamera);
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    });
+    //////////////add one function
+    function ViewFunction(cameraid) {
+        $.ajax({
+            url: '@Url.Action("ShowFunction", "CameraOfUser")',
+            type: 'GET',
+            //cache: false,
+            data: { cameraid: cameraid },
+            success: function (data) {
+                $('#frmShowFunction').html(data);
+                $('#ptvShowFunction').modal('show');
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    };
+    function AddFunction(FunctionID) {
+        var CameraID = $('#cameraid').val();
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("ActiveFunction", "CameraOfUser")",
+            data: { FunctionID: FunctionID, CameraID: CameraID },
+            success: function (data) {
+                $("#message").append("<h2>Kích hoạt thành công</h2>");
+                //$("#uploadFunction").html(data);
+                //$('#uploadFunction').html(data.listFunc);
+                //$("#upload").innerHTML = data;
+                //$("#frmAddFunction").html(data);
+                //$('#ptvActiveFunction').modal('show');
+                //$('#ptvShowFunction').modal('hide');
+            }
+            //error: function (xhr) {
+            //    alert(xhr.responseText);
+            //}
+        }).done(function (partialViewResult) {
+            $("#uploadFunction").html(partialViewResult);
+        });
+    };
+    ////////////////////// all function
+    function RegisterAllFunction(cameraid) {
+        $.ajax({
+            url: '@Url.Action("ActiveAllFunction", "CameraOfUser")',
+            type: 'GET',
+            //cache: false,
+            data: { cameraid: cameraid },
+            success: function (data) {
+                $('#frmRegisterAllFunction').html(data);
+                $('#ptvRegisterAllFunction').modal('show');
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    };
+    function ActiveAllFunction() {
+        //var CameraID = $('#cameraid').val();
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("ActiveAllFunction", "CameraOfUser")",
+            //data: { FunctionID: FunctionID, CameraID: CameraID }
+            success: function (data) {
+                //$("#upload").innerHTML = data;
+                //$("#frmAddFunction").html(data);
+                //$('#ptvActiveFunction').modal('show');
+                //alert("thanh cong");
+                //$('#ptvRegisterAllFunction').hide();
+                $('#btnOkFunction').hide();
+                $('#h2').hide();
+                $('#messageInfo').append("<h2>Kích hoạt thành công</h2>");
+                //$('#listcamera').html(data.listCamera);
+                //$('#listcamera').load();;
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+            //}).done(function (partialviewresult) {
+            //$('#listcamera').html(partialviewresult);
+        });
+    };
+    //$(window).load(function () {
+    //    $("#ptvRegisterAllFunction").submit(function () {
+    //        alert("Thành công");
+    //        //e.preventdefault();
+    //        $.ajax({
+    //            type: 'post',
+    //            success: function (data) {
+    //                //$('#showCamera').html(data.listCamera);
+    //                $('#ptvRegisterAllFunction').modal('hide');
+    //                //alert("Thành công");
+    //            },
+    //            error: function () {
+    //                messageerro('có lỗi xảy ra. xin vui lòng thử lại');
+    //            },
+    //        //}).done(function (partialViewResult) {
+    //        //    $('#listcamera').html(partialViewResult);
+    //        });
+    //    });
+    //});
+    ///////////////////////////
+
+
+
+
+
+
+
+    function CreateCamera() {
+        var userid = $("#txtUserId").val();
+        $.ajax({
+            url: '@Url.Action("CreateCamera", "CameraOfUser")',
+            type: 'GET',
+            data: { userid: userid },
+            success: function (data) {
+                $('#frmCreateCamera').html(data);
+                $('#ptvCreateCamera').modal('show');
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    };
+    function OnloadCamera() {
+        var userid = $("#txtUserId").val();
+        $.ajax({
+            type: "GET",
+            url: "@Url.Action("OnloadCamera", "CameraOfUser")",
+            data: "{}",
+            cache: false,
+            dataType: "html",
+            success: function (data) {
+                $("#gridShowCamera").html(data);
+            }
+        });
+    };
+
+
+    ///////search name
+    $(document).ready(function () {
+        $('#searchForm').submit(function () {
+            var name = $("#s").val();
+            $.ajax({
+                cache: false,
+                type: "GET",
+                data: { name: name },
+                url: "@Url.Action("SearchName", "CameraOfUser")",
+                success: function (data) {
+
+                }
+            })
+
+        });
+    });
+
+
+
+
+
+
+</script>

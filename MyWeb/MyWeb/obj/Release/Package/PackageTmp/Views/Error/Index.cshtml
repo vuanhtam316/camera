@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page Not Found</title>
+    @*<link href="~/Content/Front/Styles/more.css" rel="stylesheet" />*@
+</head>
+<body>
+    <div>
+        @if (@ViewBag.ActiveSite == null || @ViewBag.ActiveSite)
+        {
+            <h1 class="text-danger">@ViewBag.ErrorTitle</h1>
+            <h3 class="text-danger">@ViewBag.ErrorMsg</h3>
+            <a href="/">Go to home page</a>
+        }
+        
+    </div>
+</body>
+</html>

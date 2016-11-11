@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Loading bootstrap css-->
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/jquery-ui-1.10.4.custom.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/font-awesome.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/bootstrap.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/animate.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/all.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/main.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/style-responsive.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/zabuto_calendar.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/pace.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/jquery.news-ticker.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/Site.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/HoldOn.css")">
+    <script src="@Url.Content("~/Scripts/jquery-1.8.2.min.js")"></script>
+</head>
+<body>
+    <div>
+        <!--BEGIN BACK TO TOP-->
+        <a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
+        <!--END BACK TO TOP-->
+        <!--BEGIN TOPBAR-->
+        <div id="header-topbar-option-demo" class="page-header-topbar">
+            <nav id="topbar" role="navigation" style="margin-bottom: 0;" data-step="3" class="navbar navbar-default navbar-static-top">
+                <div class="navbar-header">
+                    <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                    <a id="logo" href="index.html" class="navbar-brand"><span class="fa fa-rocket"></span><span class="logo-text">MasterAdmin</span><span style="display: none" class="logo-text-icon">µ</span></a>
+                </div>
+                <!--BEGIN INFO LOGIN-->
+                <div class="topbar-main">
+                    @Html.Partial("_InfoAcountAdminPartial")
+                </div>
+                <!--END INFO LOGIN-->
+            </nav>
+        </div>
+        <!--END TOPBAR-->
+        <div id="wrapper">
+            <!--BEGIN SIDEBAR MENU-->
+            <nav id="sidebar" role="navigation" data-step="2" data-intro="Template has &lt;b&gt;many navigation styles&lt;/b&gt;"
+                 data-position="right" class="navbar-default navbar-static-side">
+                @Html.Partial("PartialAdminShared/_MenuLeftAdminPartial")
+            </nav>
+            <!--END SIDEBAR MENU-->
+            <!--BEGIN PAGE WRAPPER-->
+            <div id="page-wrapper">
+                <!--BEGIN TITLE & BREADCRUMB PAGE-->
+                <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+                    <div class="page-header pull-left">
+                        <div class="page-title">
+                            Dashboard
+                        </div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                        <li><i class="fa fa-home"></i>&nbsp;<a href="@Url.Action("Index","Home")">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                        <li class="hidden"><a href="#">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                        @Html.Raw(ViewBag.Dashboard)
+                    </ol>
+                    <div class="clearfix">
+                    </div>
+                </div>
+                <!--END TITLE & BREADCRUMB PAGE-->
+
+
+
+                <!--BEGIN CONTENT-->
+                <div class="page-content">
+                    <div id="tab-general">
+                        @RenderBody()
+                        @Html.AntiForgeryToken()
+                    </div>
+                </div>
+                <!--END CONTENT-->
+                <!--BEGIN FOOTER-->
+                <div id="footer">
+                    <div class="copyright">
+                        <a href="#">Quản trị Hệ Thống</a>
+                    </div>
+                </div>
+                <!--END FOOTER-->
+            </div>
+            <!--END PAGE WRAPPER-->
+        </div>
+    </div>
+
+
+
+    <div id="showModelUpdatePass"></div>
+    <div id="myUpdateInfo"></div>
+    @*<script src="@Url.Content("~/Content/Admin/script/jquery-1.10.2.min.js")"></script>*@
+    @*<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>*@
+    <script src="@Url.Content("~/Content/Admin/script/jquery-migrate-1.2.1.min.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery-ui.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/bootstrap-hover-dropdown.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/html5shiv.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/respond.min.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery.metisMenu.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery.slimscroll.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery.cookie.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/icheck.min.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/custom.min.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery.menu.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/pace.min.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/holder.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/responsive-tabs.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery.flot.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery.flot.categories.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery.flot.pie.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery.flot.tooltip.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery.flot.resize.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery.flot.fillbetween.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery.flot.stack.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery.flot.spline.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/zabuto_calendar.min.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/HoldOn.js")"></script>
+    <!--Validate-->
+    @*<script src="@Url.Content("~/Scripts/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>*@
+    @Scripts.Render("~/bundles/jqueryval")
+    <!--Editter-->
+    <script src="@Url.Content("~/Content/ckeditor/ckeditor.js")"></script>
+    <script src="@Url.Content("~/Content/ckfinder/ckfinder.js")"></script>
+    <!--CORE JAVASCRIPT-->
+    <script src="@Url.Content("~/Content/Admin/script/main.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/MasterAdmin.js")"></script>
+    @RenderSection("jsmore", false);
+    <script>
+        __RequestVerificationToken = '@Html.AntiForgeryToken()';
+        __ShowAjaxProcessing = true;
+        $(document).on({
+            ajaxStart: function () {
+                if (window.__ShowAjaxProcessing) {
+                    HoldOn.open({
+                        theme: "sk-circle",//If not given or inexistent theme throws default theme sk-rect
+                        message: "",//(you cand create HTML and css)
+                        content: "Your HTML Content", // If theme is set to "custom", this property is available - (you cand create HTML and css)
+                        // this will replace the theme by something customized.
+                        backgroundColor: "#000",//Change the background color of holdon with javascript
+                        // Keep in mind is necessary the .css file too.
+                        textColor: "#FFFFFF" // Change the font color of the message
+                    });
+                }
+                window.__ShowAjaxProcessing = true;
+            },
+            ajaxStop: function () {
+                HoldOn.close();
+                $("input[name=__RequestVerificationToken]").remove();
+                $("form").append(__RequestVerificationToken);
+            }
+        });
+        $(document).ready(function () {
+            $.ajaxSetup({
+                data: {
+                    __RequestVerificationToken: $("input[name=__RequestVerificationToken]").val()
+                }
+            });
+            //$(document).ajaxComplete(function (event, xhr, settings) {
+            //    if (xhr.responseText.indexOf(atob('PCEtLUxPR19JTl9QQUdFLS0+')) > 0) {
+            //        event.preventDefault();
+            //        console.log("login");
+            //        window.location.href = "/Account/Login";
+            //    }
+            //    if (xhr.responseText.indexOf(atob('PCEtLU1BSU5UQUlOX1BBR0UtLT4=')) > 0) {
+            //        event.preventDefault();
+            //        console.log("maintain");
+            //        window.location.href = "/Home/ServerMaintenance";
+            //    }
+            //});
+            $("input[name=__RequestVerificationToken]").remove();
+            $("form").append(__RequestVerificationToken);
+        });
+        function DisableAjaxProcessing() {
+            window.__ShowAjaxProcessing = false;
+        }
+    </script>
+</body>
+</html>

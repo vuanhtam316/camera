@@ -1,0 +1,45 @@
+﻿@{
+    @model MyWeb.Areas.Admin.Models.ListOrderModel
+}
+@using (Ajax.BeginForm("SearchResult", "Category", new AjaxOptions { HttpMethod = "GET", OnSuccess = "gridUpdate", OnFailure = "failure" }, new { id = "frmSearch" }))
+{
+    <div id="ptvSearch">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="text-filter-box">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Tìm theo tên khách hàng", @data_control_action = "filter", data_control_type = "textbox", @data_path = ".title" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-filter-box">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", @placeholder = "Tìm theo số điện thoại", @data_control_action = "filter", data_control_type = "textbox", @data_path = ".title" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-filter-box">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Tìm theo email", @data_control_action = "filter", data_control_type = "textbox", @data_path = ".title" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    function gridUpdate(data) {
+        $("#gridShow").parent().undelegate('#gridShow a[data-swhglnk="true"]', 'click');
+        $("#gridShow").html(data);
+    }
+</script>

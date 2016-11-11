@@ -1,0 +1,10 @@
+﻿@using MyWeb.Models
+@model MyWeb.Areas.Agency.Models.CameraOfUserModel
+@{
+    ViewBag.Title = "Camera của khách hàng";
+    //Layout = "~/Areas/Agency/Views/Shared/_MasterAgencyLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<div id="listcamera">
+    @Html.Partial("~/Areas/Agency/Views/CameraOfUser/_ptvShowCameraOfUser.cshtml", Model.CameraInUser)
+</div>

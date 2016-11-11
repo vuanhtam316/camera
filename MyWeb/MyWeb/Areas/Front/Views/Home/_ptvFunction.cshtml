@@ -1,0 +1,27 @@
+﻿@model MyWeb.Areas.Front.Models.Function
+
+@Html.DropDownListFor(m => m.FunctionId, new SelectList(Model.GetListItems, "Value", "Text"), "Chọn chức năng", new { @class = "form-control pull-right", @id = "selectFunction"  })
+
+
+<script>
+    $('select#selectFunction').change(function () {
+        var functionid = $(this).val();
+        var cameraid = $('#hidCameraId').val();
+        var itemperpage = @MyWeb.Business.ProviderControllerBase.RowPerPage
+        console.log('');
+        var pageIndex = $("#page").val();
+        if (pageIndex == '' || pageIndex == null) {
+            pageIndex = 1;
+        }
+        //var day = $('#ExpirationDay').val();
+        //var month = $('#ExpirationMonth').val();
+        //var year = $('#ExpirationYear').val();
+        var day = $('#hidDay').val();
+        var month = $('#hidMonth').val();
+        if (cameraid != null && cameraid != '') {
+            Search(cameraid, day, month, functionid, pageIndex, itemperpage);//
+        } else {
+            alert("Bạn chưa chọn camera");
+        }
+    });
+</script>

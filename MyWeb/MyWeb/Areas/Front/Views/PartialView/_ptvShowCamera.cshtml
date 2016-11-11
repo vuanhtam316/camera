@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MyWeb.Models.CameraModel>
+<style>
+    .text1 {
+        text-align:left;
+    }
+</style>
+<div>
+    <div class="panel-body" style="margin:auto">
+        @{
+            var grid = new WebGrid(Model,
+                rowsPerPage: 10,
+                canPage: true,
+                canSort: true,
+                ajaxUpdateContainerId: "gridShow2"
+                );
+        }
+        @if (Model.Any())
+        {
+            <div id="gridShow2" class="table-responsive" style="width:600px; margin:auto">
+                @grid.GetHtml(
+                                    tableStyle: "table webGrid table-hover table-bordered table-striped table-hover-color table-center",
+                                    headerStyle: "text-center hidden-sm hidden-xs",
+                                    alternatingRowStyle: "alt",
+                                    mode: WebGridPagerModes.All | WebGridPagerModes.FirstLast | WebGridPagerModes.NextPrevious | WebGridPagerModes.Numeric,
+                                    columns: grid.Columns(
+                                        grid.Column("STT", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, style: "text-center vertical-center"),
+                                         grid.Column("CAMERA_NAME", "Tên camera", style: "text1"),
+                                        grid.Column(format: item => new MvcHtmlString(string.Format("<a href='javascript:void(0)' title='Cập nhật và cài đặt' onclick='showUpdateCamera(" + item.CAMERA_ID + ")'><img src='/Images/edit2.png' style='width:20px; height:20px' /></a>")), header: "CẬP NHẬT", style: "text-center vertical-center"),
+                                        grid.Column(format: item => new MvcHtmlString(string.Format("<a href='javascript:void(0)' onclick='DeleteCamera(" + item.CAMERA_ID + ")'><img src='/Images/Delete.png' style='width:25px; height:25px' /></a>")), header: "XÓA", style: "text-center vertical-center")
+                                        ))
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="alert alert-warning">Chưa có dữ liệu hiển thị.</div>
+            </div>
+        }
+
+    </div>
+
+
+    @*<div style="margin:auto">
+            @Html.Partial("AddCamera")
+        </div>*@
+
+</div>
+
+
+
+<script>
+
+
+
+
+    //function DeleteCamera(idCamera) {
+    //    if (confirm("Bận có muốn xóa camera không?")) {
+    //        var data = { idCamera: idCamera }
+    //        $.post('/Home/DeleteCamera', data,
+
+    //        function (data) {
+    //            if (data == true)
+    //                location = location.href;
+    //            else
+    //                alert("Không thể xóa camera");
+    //        }
+    //        );
+    //    }
+    //}
+
+
+</script>

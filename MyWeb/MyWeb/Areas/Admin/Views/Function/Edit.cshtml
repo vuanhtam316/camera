@@ -1,0 +1,59 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Areas.Admin.Models.CreateFunctionModel
+@{
+    //Layout = "~/Areas/Admin/Views/Shared/_MasterAdminLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+@*@Scripts.Render("~/bundles/jqueryval")*@
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<div class="modal fade" id="myModalUpdateFunction" style="z-index: 9999999999" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content" style="border-radius: 6px !important;">
+            <div class="modal-header" style="background-color: #bf4346; border-radius: 5px 5px 0 0;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" style="color: white;">Cập nhật chức năng camera</h4>
+            </div>
+            @using (Ajax.BeginForm("Edit", "Function", new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST",
+                OnFailure = "failure",
+                UpdateTargetId = "frmUpdateFunctionModal",
+                OnSuccess = "success"
+            }, new { id = "frmUpdateFunction", @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(x => x.FunctionId)
+                <div class="modal-body" style="padding-top: 0">
+                    <div class="row mbl" style="margin-bottom: 0 !important;padding-bottom: 0 !important;">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pal">
+                                        <div class="form-group" id="frmUpdateFunctionModal">
+                                            @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.FunctionName, new { @class = "col-md-3" })
+                                            <div class="col-md-9">
+                                                @Html.ValidationHtmlMessageFor(model => model.FunctionName, "", new { @class = "field-validation-valid" })
+                                                @Html.TextBoxFor(model => model.FunctionName, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top: 0">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-red">Cập nhật</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

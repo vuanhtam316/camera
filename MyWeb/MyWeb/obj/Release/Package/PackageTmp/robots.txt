@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /bin/
+Disallow: /Areas/Admin/
+Disallow:/Uploads/
+Disallow: /Count_Visited.txt
+Disallow:/Web.config

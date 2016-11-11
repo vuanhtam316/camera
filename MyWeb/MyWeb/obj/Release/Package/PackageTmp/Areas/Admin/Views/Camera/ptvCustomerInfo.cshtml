@@ -1,0 +1,45 @@
+﻿@model MyWeb.Models.CustomerModel
+<style>
+    .bold-text{font-weight: bold}
+</style>
+<h3 class="box-header">Thông khách hàng</h3>
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.CustomerNumber, new { @class = "col-md-2 bold-text" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.CustomerNumber, new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.FullName, new { @class = "col-md-2 bold-text" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.FullName, new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Phone, new { @class = "col-md-2 bold-text" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Phone, new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, new { @class = "col-md-2 bold-text" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Email, new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address, new { @class = "col-md-2 bold-text" })
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Address, new { @class = "form-control" })
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@using MyWeb.Models
+@model MyWeb.Areas.Agency.Models.AgencyModel
+
+@{
+    //ViewBag.Title = "_Avatar";
+}
+@{
+    if (@Model.avatar != null)
+    {
+        <img src="@Model.avatar" title="@Model.Agency_Name" />
+    }
+}
+
+
+
+

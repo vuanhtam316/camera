@@ -1,0 +1,156 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Areas.Front.Models.AddCameraModel
+@{
+    //Layout = "~/Areas/Admin/Views/Shared/_MasterAdminLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+
+<link href="~/Content/Front/Styles/timepicki.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/timepicki.js"></script>
+<div class="modal fade" id="myModalAddCamera" tabindex='-1' style="z-index: 9999999999" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="border-radius: 6px !important;">
+            <div class="modal-header" style="background-color: #bf4346; border-radius: 5px 5px 0 0;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" style="color: white;">Thêm camera</h4>
+            </div>
+            @using (Ajax.BeginForm("AddCamera", "Camera", new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST",
+                OnFailure = "failure",
+                UpdateTargetId = "messageInfoModalAddNew",
+                OnSuccess = "success2"
+            }, new { id = "addNewCamera", @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @*@Html.HiddenFor(model => model.Cameramodel.CAMERA_ID)*@
+                @*@Html.HiddenFor(model => model.Cameramodel.USER_ID)*@
+                <div class="modal-body" style="padding-top: 30px">
+                    <div class="row mbl" style="margin-bottom: 0 !important;padding-bottom: 0 !important;">
+                        <div class="col-md-12">
+                            <div class="pal">
+                                <div class="" id="messageInfoModalAddNew">
+                                    @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                                </div>
+                                @*<div>
+                                    <label>Link RTSP:</label>
+                                    <input value="@ViewBag.Url" disabled style="cursor: default;border: none;background: white;color: black;margin-left: 77px;">
+                                </div>*@
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cameramodel.CAMERA_NAME, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.Cameramodel.CAMERA_NAME, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.Cameramodel.CAMERA_NAME, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cameramodel.MODEL_CAMERA, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @{
+                var listItems = new List<System.Web.UI.WebControls.ListItem>
+                                            { new System.Web.UI.WebControls.ListItem { Text = "Vantech", Value = "id1" },
+                                              new System.Web.UI.WebControls.ListItem { Text = "Foscam", Value = "id2" },
+                                              new System.Web.UI.WebControls.ListItem { Text = "Tiandy", Value = "id3" },
+                                                new System.Web.UI.WebControls.ListItem { Text = "DaHua", Value = "id4" },
+                                                new System.Web.UI.WebControls.ListItem{ Text="Hikvision", Value= "id5"}
+                                            };
+                                        }
+                                        @Html.ValidationHtmlMessageFor(model => model.Cameramodel.MODEL_CAMERA, "", new { @class = "field-validation-valid" })
+                                        @Html.DropDownListFor(model => model.Cameramodel.MODEL_CAMERA, new SelectList(listItems), "Chọn hãng camera", new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                @*<div class="form-group">
+                                        @Html.LabelFor(model => model.Cameramodel.CAMERA_URL, new { @class = "col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.ValidationHtmlMessageFor(model => model.Cameramodel.CAMERA_URL, "", new { @class = "field-validation-valid" })
+                                            @Html.TextBoxFor(model => model.Cameramodel.CAMERA_URL, new { @class = "form-control" })
+                                        </div>
+                                    </div>*@
+                                @*<div class="form-group">
+                                        @Html.LabelFor(model => model.Cameramodel.CAMERA_URL_STREAM, new { @class = "col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.ValidationHtmlMessageFor(model => model.Cameramodel.CAMERA_URL_STREAM, "", new { @class = "field-validation-valid" })
+                                            @Html.TextBoxFor(model => model.Cameramodel.CAMERA_URL_STREAM, new { @class = "form-control" })
+                                        </div>
+                                    </div>*@
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cameramodel.USERNAME_CAMERA, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.Cameramodel.USERNAME_CAMERA, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.Cameramodel.USERNAME_CAMERA, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cameramodel.PASSWORD_CAMERA, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.Cameramodel.PASSWORD_CAMERA, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.Cameramodel.PASSWORD_CAMERA, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cameramodel.IP_CAMERA, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.Cameramodel.IP_CAMERA, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.Cameramodel.IP_CAMERA, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Cameramodel.PORT_RTSP, new { @class = "col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.ValidationHtmlMessageFor(model => model.Cameramodel.PORT_RTSP, "", new { @class = "field-validation-valid" })
+                                        @Html.TextBoxFor(model => model.Cameramodel.PORT_RTSP, new { @class = "form-control", @type = "number" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer" style="margin-top: 0">
+                    <button type="submit" class="btn btn-red">Tạo mới</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Quay lại</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@*<div id="showImgFunction">
+        @Html.Partial("_ptvShowImgFunction")
+    </div>*@
+@*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>*@
+
+<script type="text/javascript">
+
+    //function ShowProgress() {
+    //    setTimeout(function () {
+    //        var modal = $('<div />');
+    //        modal.addClass("modal");
+    //        $('body').append(modal);
+    //        var loading = $(".loading");
+    //        loading.show();
+    //        var top = Math.max($(window).height() / 2 - loading[0].offsetHeight / 2, 0);
+    //        var left = Math.max($(window).width() / 2 - loading[0].offsetWidth / 2, 0);
+    //        loading.css({ top: top, left: left });
+    //    }, 200);
+    //}
+    //$('form').live("submit", function () {
+    //    ShowProgress();
+    //});
+
+
+    $('.timepicker').timepicki();
+    //$("#btnCapnhatFunction").click(function () {
+    //    document.getElementById("frmUpdateModal").submit();
+    //    $(this).prop('disabled', true);
+    //});
+
+    function CloseModal() {
+        $('#myModalAddCamera').modal('hide');
+    }
+</script>

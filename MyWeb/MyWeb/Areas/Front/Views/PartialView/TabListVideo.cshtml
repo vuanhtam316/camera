@@ -1,0 +1,252 @@
+﻿@model List<MyWeb.Models.CameraModel>
+@*<script src="@Url.Content("~/Scripts/jquery.imagebox.js")"></script>*@
+<style>
+    .effect8 {
+        position: relative;
+        -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    }
+
+        .effect8:before, .effect8:after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            -moz-box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            top: 10px;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            -moz-border-radius: 100px / 10px;
+            border-radius: 100px / 10px;
+        }
+
+        .effect8:after {
+            right: 10px;
+            left: auto;
+            -webkit-transform: skew(8deg) rotate(3deg);
+            -moz-transform: skew(8deg) rotate(3deg);
+            -ms-transform: skew(8deg) rotate(3deg);
+            -o-transform: skew(8deg) rotate(3deg);
+            transform: skew(8deg) rotate(3deg);
+        }
+</style>
+<div class="row img-box">
+    <div id="option" style=" width: 200px; float: left; height: 300px;">
+        <div class="row div-selectModeLive" style=" width: 60px; margin-left: 145px; ">
+
+            <ul class="modelive-ul-select">
+                <li class="modelive-li" id="modelive-li1" title="1">1</li>
+                <li class="modelive-li modelive-li-active" id="modelive-li4" title="4" style="margin-top:10px">4</li>
+                <li class="modelive-li" id="modelive-li9" title="9" style="margin-top:10px">9</li>
+                <li class="modelive-li" id="modelive-li16" title="16" style="margin-top:10px">16</li>
+            </ul>
+        </div>
+        <div style=" width: 30px; height: 30px; margin-left: 150px;">
+            <ul>
+                <li id="fullscreen" style="background:none; list-style:none; cursor:pointer" title="Phóng to">
+                    <img src="~/Images/room.png" style="height:30px; width:30px" />
+                </li>
+                <li id="exitFullscreen" style="background:none; list-style:none; cursor:pointer; display:none" title="Thu nhỏ">
+                    <img src="~/Images/roomin.png" style="height:30px; width:30px" />
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="ptvShowLiveCam2">
+        @Html.Partial("ptvShowLiveCam", Model)
+    </div>
+</div>
+<script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
+<script>
+    var full = 0;
+    $(function () {
+        $('#exitFullscreen').hide();//hide exit fullscreen image on page load
+
+        $('#exitFullscreen').click(function () {
+            exitFullscreen();//function to exit from full screen
+
+        });
+
+        $('#fullscreen').click(function () {
+            fullscreen();//function to get  full screen
+        });
+    });
+
+    //if user click f11 instead button we have to toggle ....
+    $(document).keyup(function (e) {
+        if (e.which == 122) {
+            e.preventDefault();//kill anything that browser may have assigned to it by default
+            if (full == 1) {
+                exitFullscreen();
+            }
+            else {
+                fullscreen();
+            }
+        }
+    });
+
+    function fullscreen() {
+
+        var docElm = document.documentElement;
+
+        if (docElm.requestFullscreen) {
+            docElm.requestFullscreen();
+
+        } else if (docElm.mozRequestFullScreen) {
+            docElm.mozRequestFullScreen();
+        } else if (docElm.webkitRequestFullScreen) {
+            docElm.webkitRequestFullScreen();
+        }
+        $(".headerdiv").hide();
+        $("#footer").hide();
+        $('#exitFullscreen').show();
+        $('#fullscreen').hide();
+        //document.getElementById("ptvShowLiveCam").setAttribute("style", "height:104%; width:104%");
+        //document.getElementById("thumbnail-video2").setAttribute("style", "height:105%; width:105%");
+
+        full = 1;
+
+    }
+
+    function exitFullscreen() {
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        }
+        else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        }
+        else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        }
+        else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+        $(".headerdiv").show();
+        $("#footer").show();
+        $('#exitFullscreen').hide();
+        $('#fullscreen').show();
+        //document.getElementById("ptvShowLiveCam").setAttribute("style", "height:100%; width:100%");
+        //document.getElementById("ptvShowLiveCam").setAttribute("style", "height:550px; width:900px");
+        full = 0;
+    }
+
+    function preload(camImage, idcamera) {
+        var buffer = {};
+        buffer = new Image();
+        // attaching the seconds breaks cache
+        buffer.src = camImage + '?' + (new Date()).getTime();
+        buffer.onload = function () {
+            setTimeout(preload, 500); // 30 seconds refresh
+            //document.getElementsByClassName("refreshimage").src = buffer.src;
+            $('#urlImg' + idcamera).attr("src", buffer.src);
+
+        }
+
+    }
+    //$(".img-box").imageBox();
+
+    //$(document).ready(function () {
+    //    $("img, input[type=image]").each(function () {
+    //        this.src = preload(this.src);
+    //    });
+    //$('#myModalViewVideo').on('show.bs.modal', function (event) {
+    //    var linkAction = $(event.relatedTarget);
+    //    var urlimg = linkAction.attr("identifier");
+    //    var idImg = 11012253;
+    //    var id = "urlImg" + idImg;
+    //    var url = "'" + urlimg + "'";
+    //    var idcam = "'" + idImg + "'";
+    //    //TO DO: init content for popup
+    //    var data = '<img id="' + id + '" src="' + urlimg + '" style="width: 100%;height: 90%" onload="preload(' + url + ',' + idcam + ')" alt="" title="" />';
+    //    $(this).find('.modal-title').html("Preview");
+    //    $(this).find('.modal-body').html(data);
+    //    //$(".modal-body #urldemo").val(url);
+    //    $(this).find('#_btnCancelConfirm').text('Close');
+    //});
+    //-----
+    @*$(".modelive-ul-select >li").click(function () {
+        var values = $(this).attr("title");
+        $.ajax({
+            url: '@Url.Action("SelectMode","PartialView")',
+            type: 'post',
+            cache: false,
+            data: {
+                values: values
+            },
+            success: function (data) {
+                $('#ptvShowLiveCam').html(data);
+                $(".modelive-ul-select >li").removeClass("modelive-li-active");
+                idstr = "#modelive-li" + values
+                $(idstr).addClass("modelive-li-active");
+                $(".video-div .thumbnail-video").height(($("body").height() - 205) / (values / 3) - 65);
+                if (values == 3) {
+                    $(".video-div .thumbnail-video img").height("100%");
+                }
+
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    });*@
+
+    $(".modelive-ul-select >li").click(function () {
+        var values = $(this).attr("title");
+        //var value = Math.sqrt(values);
+        $.ajax({
+            url: '@Url.Action("SelectMode","PartialView")',
+            type: 'post',
+            cache: false,
+            data: {
+                values: values
+            },
+            success: function (data) {
+                $('#ptvShowLiveCam2').html(data);
+                $(".modelive-ul-select >li").removeClass("modelive-li-active");
+                idstr = "#modelive-li" + values
+                $(idstr).addClass("modelive-li-active");
+
+                //$(".video-div .thumbnail-video").height(($("body").height() - 205) / (values / 3) - 65);
+                //$(".video-div .thumbnail-video").height(($("#ptvShowLiveCam").height()));
+                switch (values) {
+                    case 1:
+                        $(".video-div2 .thumbnail-video2").height("500px");
+                        $(".video-div2 .thumbnail-video2").width("800px");
+                        break;
+                    case 4:
+                        $(".video-div2 .thumbnail-video2").height("240px");
+                        $(".video-div2 .thumbnail-video2").width("390px");
+
+                        break;
+                    case 9:
+                        $(".video-div2 .thumbnail-video2").height("163px");
+                        $(".video-div2 .thumbnail-video2").width("265px");
+                        break;
+                    case 16:
+                        $(".video-div2 .thumbnail-video2").height("122px");
+                        $(".video-div2 .thumbnail-video2").width("190px");
+                        break;
+                }
+
+
+                //if (values == 1) {
+
+                //}
+                ////if (values == 4) {
+                ////
+                //if (values == 9) {
+
+                //}
+                //if (values == 16) {
+
+                //}
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    });
+</script>

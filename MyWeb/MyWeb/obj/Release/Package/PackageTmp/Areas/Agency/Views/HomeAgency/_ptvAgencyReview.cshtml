@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MyWeb.Models.UserModel>
+
+@{
+    if (Model.Any() && Model != null)
+    {
+        foreach (var item in Model)
+        {
+            if (item.REVIEW == 2 || item.REVIEW == 1)
+            {
+                if (item.REVIEW == 1)
+                {
+                    <button id="on" onclick="OnSetUp();" style="width: 150px; height: 35px; border: none; background: #33FF33; border-radius: 4px; color:white">Đại lý giám sát: Bật</button>
+                }
+                else
+                {
+                    <button id="off" onclick="OffSetUp();" style=" width: 150px; height: 35px; border: none; background: red; border-radius: 25px; color: white">Đại lý giám sát: Tắt</button>
+                }
+            }
+        }
+    }
+}
+<script>
+    function OnSetUp() {
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("OnSetUp", "HomeAgency")",
+            success: function (data) {
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+        })
+        //    .done(function (partialViewResult) {
+        //    $("#AgencyReview").html(partialViewResult);
+        //});
+    }
+    function OffSetUp() {
+        $.ajax({
+            type: 'GET',
+            url: "@Url.Action("OffSetUp", "HomeAgency")",
+            success: function (data) {
+            },
+            error: function () {
+                MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+            },
+        })
+        //    .done(function (partialViewResult) {
+        //    $("#AgencyReview").html(partialViewResult);
+        //});
+    }
+</script>
+
+
+
+

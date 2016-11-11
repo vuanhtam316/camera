@@ -1,0 +1,488 @@
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\Count_Visited.txt
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\MyWeb.dll.config
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\MyWeb.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\MyWeb.pdb
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\Antlr3.Runtime.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\CKFinder.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\DotNetOpenAuth.AspNet.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\DotNetOpenAuth.Core.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\EntityFramework.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\ImageResizer.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\Microsoft.Data.Edm.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\Microsoft.Data.OData.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\Microsoft.Web.Infrastructure.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\Newtonsoft.Json.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Net.Http.Formatting.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Spatial.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.Helpers.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.Http.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.Http.OData.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.Http.WebHost.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.Mvc.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.Optimization.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.Razor.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.WebPages.Deployment.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.WebPages.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.WebPages.Razor.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\WebGrease.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\WebMatrix.Data.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\WebMatrix.WebData.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\CKFinder.pdb
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\ImageResizer.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\EntityFramework.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\Newtonsoft.Json.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Net.Http.Formatting.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.Helpers.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.Http.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.Http.WebHost.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.Mvc.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.Razor.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.WebPages.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.WebPages.Deployment.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.WebPages.Razor.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\WebMatrix.Data.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\WebMatrix.WebData.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\DotNetOpenAuth.AspNet.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\DotNetOpenAuth.Core.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Web.Http.OData.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\Microsoft.Data.Edm.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\Microsoft.Data.OData.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\System.Spatial.xml
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\de\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\es\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\fr\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\it\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\ja\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\ko\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\ru\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\de\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\es\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\fr\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\it\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\ja\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\ko\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\ru\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\de\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\es\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\fr\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\it\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\ja\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\ko\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\ru\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\zh-Hans\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\bin\zh-Hant\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\obj\Release\MyWeb.dll
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\obj\Release\MyWeb.pdb
+D:\Project\NET\MVC4\Oto thanh hoa\New\MyWeb\MyWeb\obj\Release\MyWeb.csprojResolveAssemblyReference.cache
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\Count_Visited.txt
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\MyWeb.dll.config
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\MyWeb.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\MyWeb.pdb
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\Antlr3.Runtime.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\CKFinder.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\DotNetOpenAuth.AspNet.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\DotNetOpenAuth.Core.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.Consumer.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\EntityFramework.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\ImageResizer.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\Microsoft.Data.Edm.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\Microsoft.Data.OData.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\Microsoft.Web.Infrastructure.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\Microsoft.Web.WebPages.OAuth.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\Newtonsoft.Json.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\Oracle.ManagedDataAccess.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\Oracle.ManagedDataAccess.EntityFramework.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Net.Http.Formatting.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Spatial.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.Helpers.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.Http.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.Http.OData.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.Http.WebHost.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.Mvc.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.Optimization.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.Razor.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.WebPages.Deployment.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.WebPages.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.WebPages.Razor.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\WebGrease.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\WebMatrix.Data.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\WebMatrix.WebData.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\CKFinder.pdb
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\ImageResizer.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\Newtonsoft.Json.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Net.Http.Formatting.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.Helpers.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.Http.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.Http.WebHost.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.Mvc.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.Razor.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.WebPages.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.WebPages.Deployment.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.WebPages.Razor.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\WebMatrix.Data.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\Microsoft.Web.WebPages.OAuth.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\WebMatrix.WebData.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\DotNetOpenAuth.AspNet.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\DotNetOpenAuth.Core.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.Consumer.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Web.Http.OData.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\Microsoft.Data.Edm.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\Microsoft.Data.OData.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\System.Spatial.xml
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\de\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\es\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\fr\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\it\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\ja\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\ko\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\ru\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\de\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\es\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\fr\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\it\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\ja\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\ko\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\ru\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\de\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\es\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\fr\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\it\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\ja\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\ko\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\ru\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\zh-Hans\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\zh-Hant\System.Spatial.resources.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\obj\Release\MyWeb.csprojResolveAssemblyReference.cache
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\obj\Release\MyWeb.dll
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\obj\Release\MyWeb.pdb
+D:\Project\NET\MVC4\Romte Camera\New\MyWeb\MyWeb\bin\log4net.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\Count_Visited.txt
+C:\camera\SourceCode\MyWeb\MyWeb\bin\MyWeb.dll.config
+C:\camera\SourceCode\MyWeb\MyWeb\bin\MyWeb.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\MyWeb.pdb
+C:\camera\SourceCode\MyWeb\MyWeb\bin\Antlr3.Runtime.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\CKFinder.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.AspNet.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.Core.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\ImageResizer.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\log4net.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Data.Edm.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Data.OData.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\Newtonsoft.Json.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Net.Http.Formatting.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Spatial.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Helpers.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Http.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Http.OData.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Http.WebHost.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Mvc.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Optimization.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Razor.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.WebPages.Deployment.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.WebPages.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.WebPages.Razor.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\WebGrease.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\WebMatrix.Data.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\WebMatrix.WebData.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\CKFinder.pdb
+C:\camera\SourceCode\MyWeb\MyWeb\bin\ImageResizer.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\Newtonsoft.Json.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Net.Http.Formatting.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Helpers.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Http.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Http.WebHost.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Mvc.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Razor.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.WebPages.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.WebPages.Deployment.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.WebPages.Razor.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\WebMatrix.Data.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\WebMatrix.WebData.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.AspNet.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.Core.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Http.OData.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Data.Edm.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Data.OData.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\System.Spatial.xml
+C:\camera\SourceCode\MyWeb\MyWeb\bin\de\Microsoft.Data.Edm.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\es\Microsoft.Data.Edm.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\fr\Microsoft.Data.Edm.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\it\Microsoft.Data.Edm.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\ja\Microsoft.Data.Edm.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\ko\Microsoft.Data.Edm.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\ru\Microsoft.Data.Edm.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\de\Microsoft.Data.OData.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\es\Microsoft.Data.OData.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\fr\Microsoft.Data.OData.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\it\Microsoft.Data.OData.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\ja\Microsoft.Data.OData.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\ko\Microsoft.Data.OData.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\ru\Microsoft.Data.OData.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\de\System.Spatial.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\es\System.Spatial.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\fr\System.Spatial.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\it\System.Spatial.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\ja\System.Spatial.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\ko\System.Spatial.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\ru\System.Spatial.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\zh-Hans\System.Spatial.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\bin\zh-Hant\System.Spatial.resources.dll
+C:\camera\SourceCode\MyWeb\MyWeb\obj\Release\MyWeb.csprojResolveAssemblyReference.cache
+C:\camera\SourceCode\MyWeb\MyWeb\obj\Release\MyWeb.dll
+C:\camera\SourceCode\MyWeb\MyWeb\obj\Release\MyWeb.pdb
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Count_Visited.txt
+E:\camera\SourceCode\MyWeb\MyWeb\bin\MyWeb.dll.config
+E:\camera\SourceCode\MyWeb\MyWeb\bin\MyWeb.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\MyWeb.pdb
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Antlr3.Runtime.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\CKFinder.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.AspNet.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.Core.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.Consumer.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\ImageResizer.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\log4net.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Data.Edm.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Data.OData.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Web.Infrastructure.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Web.WebPages.OAuth.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Newtonsoft.Json.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Net.Http.Formatting.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Spatial.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Helpers.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Http.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Http.OData.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Http.WebHost.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Mvc.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Optimization.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Razor.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.WebPages.Deployment.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.WebPages.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.WebPages.Razor.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\WebGrease.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\WebMatrix.Data.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\WebMatrix.WebData.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\CKFinder.pdb
+E:\camera\SourceCode\MyWeb\MyWeb\bin\ImageResizer.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Newtonsoft.Json.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Net.Http.Formatting.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Helpers.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Http.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Http.WebHost.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Mvc.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Razor.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.WebPages.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.WebPages.Deployment.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.WebPages.Razor.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\WebMatrix.Data.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Web.WebPages.OAuth.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\WebMatrix.WebData.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.AspNet.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.Core.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.Consumer.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Web.Http.OData.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Data.Edm.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Data.OData.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\System.Spatial.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\de\Microsoft.Data.Edm.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\es\Microsoft.Data.Edm.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\fr\Microsoft.Data.Edm.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\it\Microsoft.Data.Edm.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\ja\Microsoft.Data.Edm.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\ko\Microsoft.Data.Edm.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\ru\Microsoft.Data.Edm.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\de\Microsoft.Data.OData.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\es\Microsoft.Data.OData.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\fr\Microsoft.Data.OData.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\it\Microsoft.Data.OData.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\ja\Microsoft.Data.OData.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\ko\Microsoft.Data.OData.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\ru\Microsoft.Data.OData.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\de\System.Spatial.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\es\System.Spatial.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\fr\System.Spatial.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\it\System.Spatial.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\ja\System.Spatial.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\ko\System.Spatial.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\ru\System.Spatial.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\zh-Hans\System.Spatial.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\zh-Hant\System.Spatial.resources.dll
+E:\camera\SourceCode\MyWeb\MyWeb\obj\Release\MyWeb.csprojResolveAssemblyReference.cache
+E:\camera\SourceCode\MyWeb\MyWeb\obj\Release\MyWeb.dll
+E:\camera\SourceCode\MyWeb\MyWeb\obj\Release\MyWeb.pdb
+E:\camera\SourceCode\MyWeb\MyWeb\bin\EntityFramework.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Oracle.ManagedDataAccess.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Oracle.ManagedDataAccess.EntityFramework.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Crypto.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Owin.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Owin.Security.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Owin.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Owin.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Microsoft.Owin.Security.xml
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Emgu.CV.dll
+E:\camera\SourceCode\MyWeb\MyWeb\bin\Emgu.Util.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Count_Visited.txt
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\MyWeb.dll.config
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\MyWeb.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\MyWeb.pdb
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Antlr3.Runtime.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\CKFinder.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Crypto.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\DotNetOpenAuth.Core.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Emgu.CV.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Emgu.Util.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\EntityFramework.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\ImageResizer.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.Data.Edm.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.Data.OData.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.Owin.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.Owin.Security.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Newtonsoft.Json.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Oracle.ManagedDataAccess.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Owin.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Net.Http.Formatting.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Spatial.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.Helpers.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.Http.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.Http.OData.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.Http.WebHost.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.Mvc.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.Optimization.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.Razor.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.WebPages.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.WebPages.Razor.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\WebGrease.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\WebMatrix.Data.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\WebMatrix.WebData.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\CKFinder.pdb
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\ImageResizer.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.Owin.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.Owin.Security.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Newtonsoft.Json.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Net.Http.Formatting.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.Helpers.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.Http.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.Http.WebHost.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.Mvc.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.Razor.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.WebPages.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.WebPages.Razor.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\WebMatrix.Data.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\WebMatrix.WebData.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\DotNetOpenAuth.Core.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Web.Http.OData.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.Data.Edm.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\Microsoft.Data.OData.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\System.Spatial.xml
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\de\Microsoft.Data.Edm.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\es\Microsoft.Data.Edm.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\fr\Microsoft.Data.Edm.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\it\Microsoft.Data.Edm.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\ja\Microsoft.Data.Edm.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\ko\Microsoft.Data.Edm.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\ru\Microsoft.Data.Edm.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\de\Microsoft.Data.OData.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\es\Microsoft.Data.OData.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\fr\Microsoft.Data.OData.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\it\Microsoft.Data.OData.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\ja\Microsoft.Data.OData.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\ko\Microsoft.Data.OData.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\ru\Microsoft.Data.OData.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\de\System.Spatial.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\es\System.Spatial.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\fr\System.Spatial.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\it\System.Spatial.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\ja\System.Spatial.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\ko\System.Spatial.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\ru\System.Spatial.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\zh-Hans\System.Spatial.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\obj\Release\MyWeb.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\obj\Release\MyWeb.dll
+C:\Users\Administrator\Documents\GitHub\camera\MyWeb\MyWeb\obj\Release\MyWeb.pdb

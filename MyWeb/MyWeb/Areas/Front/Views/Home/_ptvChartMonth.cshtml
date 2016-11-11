@@ -1,0 +1,80 @@
+﻿@*@using MyWeb.Areas.Front.ModelChart;
+    @model IEnumerable<month>*@
+@model IEnumerable<MyWeb.Areas.Front.Models.ViewModel>
+<canvas id="MyChartMonth"></canvas>
+@if (@ViewBag.idcam != null)
+{
+    <div>
+        <input type="text" id="idcam" value="@ViewBag.idcam" hidden="hidden"/>
+    </div>
+}
+<script>
+    @{
+        int k = Model.Count();
+        string[] month = new string[k];
+        int[] soAnh=new int[k];
+        int i = 0;
+        foreach (var item in Model)
+        {
+            month[i] = item.month;
+            soAnh[i] = item.totaFile;
+            i++;
+        }
+    }
+    var strMon = '@string.Join(",",month)';
+    var strSoAnh = '@string.Join(",",@soAnh)';
+    var ctx = document.getElementById("MyChartMonth");
+    var soAnh1 = [];
+    soAnh1 = strSoAnh.split(',');
+    var lblMon = [];
+    lblMon = strMon.split(',');
+    
+    var myChar = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: lblMon,
+            datasets: [{
+                label: "Tổng số ảnh",
+                data: soAnh1,
+                backgroundColor: [
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                ],
+                borderColor: [
+     'rgba(255,99,132,1)',
+     'rgba(255,99,132,1)',
+     'rgba(255,99,132,1)',
+     'rgba(255,99,132,1)',
+     'rgba(255,99,132,1)',
+      'rgba(255,99,132,1)',
+      'rgba(255,99,132,1)',
+      'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>

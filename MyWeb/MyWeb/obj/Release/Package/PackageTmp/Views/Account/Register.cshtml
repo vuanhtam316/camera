@@ -1,0 +1,122 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Models.NewCustomer
+@{
+    Layout = null;
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/jquery-ui-1.10.4.custom.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/font-awesome.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/bootstrap.min.css")">
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/Admin/styles/AdminLTE.min.css")">
+
+</head>
+<body class="hold-transition login-page body-login">
+    <div class="register-box">
+        <div class="login-box-body panl-register text-center">
+            <div class="form-group" id="messageInfo">
+                <img src="/Images/logo-login.png" />
+            </div>
+            @using (Html.BeginForm("RegisterForm", "Account"))
+            {
+                <div class="form-group">
+                    <div class="form-group" id="messageInfoModalUpdate">
+                        @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                    </div>
+                    <div class="row">
+                        <div class="form-group has-feedback">
+                            @Html.ValidationHtmlMessageFor(model => model.NAME_USERS, "", new { @class = "field-validation-valid" })
+                            <div class="col-md-12">
+
+                                <input type="text" style="width: 100%;" name="NAME_USERS" placeholder="Họ và tên">
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="row">
+                            <div class="form-group has-feedback">
+
+                                <div class="col-md-12">
+                                    <input type="text" style="width: 100%;" name="DISPLAY_NAME" placeholder="Display name">
+                                </div>
+                            </div>
+                        </div>*@
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            @Html.ValidationHtmlMessageFor(model => model.EMAIL, "", new { @class = "field-validation-valid" })
+                            <div class="col-md-12">
+
+                                <input type="text" style="width: 100%;" name="EMAIL" placeholder="Email">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            @Html.ValidationHtmlMessageFor(model => model.USER_NAME, "", new { @class = "field-validation-valid" })
+
+
+                            <div class="col-md-12" style="margin-top:5px">
+                                <input type="text" style="width: 100%;" name="USER_NAME" placeholder="Tài khoản">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            @Html.ValidationHtmlMessageFor(model => model.PASSWORDS, "", new { @class = "field-validation-valid" })
+
+
+                            <div class="col-md-12">
+                                <input type="password" style="width: 100%;" name="PASSWORDS" placeholder="Mật khẩu">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+
+                            @Html.ValidationHtmlMessageFor(model => model.CONFIGPASSWORDS, "", new { @class = "field-validation-valid" })
+
+
+                            <div class="col-md-12">
+                                <input type="password" style="width: 100%;" name="CONFIGPASSWORDS" placeholder="Nhập lại mật khẩu">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:5px">
+                        <div class="form-group has-feedback">
+                            <div class="col-md-12">
+                                <button type="submit" class="loginBtn">Đăng ký</button>
+                            </div>
+                            <div class="col-md-12" style="margin-top:5px">
+                                <a href="/Account/Login">
+                                    <button type="button" class="registerBtn">Đăng nhập</button>
+                                </a>
+                                @*<a href="#">
+                                        Lấy lại mật khẩu?
+                                    </a>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+    <div class="row backgroundLogo text-center">Hệ thống giám sát và cảnh báo thông minh iNSC</div>
+    <script src="@Url.Content("~/Scripts/jquery-1.8.2.min.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/jquery-ui.js")"></script>
+    <script src="@Url.Content("~/Content/Admin/script/bootstrap.min.js")"></script>
+</body>
+</html>
+@if (Session["erro"] != null)
+{
+    @Html.Raw(ViewBag.thongbao)
+}

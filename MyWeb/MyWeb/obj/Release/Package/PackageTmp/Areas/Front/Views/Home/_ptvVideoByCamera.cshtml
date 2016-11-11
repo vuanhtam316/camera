@@ -1,0 +1,21 @@
+﻿@model IEnumerable<MyWeb.Models.CameraModel>
+@{
+    if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-md-2">
+                <a href="javascrip:void(0)" onclick="ShowDetailImages('@item.CAMERA_ID');" class="thumbnail thumbnail-img text-center">
+                    <iframe width="100%" height="100%" src="@item.CAMERA_URL" frameborder="0" allowfullscreen></iframe>
+                    <span>@item.CAMERA_NAME</span>
+                </a>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="form-group">
+            <div class="alert alert-warning">Chưa có dữ liệu hiển thị.</div>
+        </div>
+    }
+}

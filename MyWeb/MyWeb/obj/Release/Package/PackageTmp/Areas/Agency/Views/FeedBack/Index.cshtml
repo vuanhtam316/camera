@@ -1,0 +1,110 @@
+﻿@using MyWeb.Models
+@model MyWeb.Areas.Agency.Models.FeedBackModel
+@{
+    ViewBag.Title = "Phản hồi";
+    Layout = "~/Areas/Agency/Views/Shared/_MasterAgencyLayout.cshtml";
+}
+<style>
+    .input {
+        background: white;
+        color: black;
+        /*border-style: ridge;*/
+        height: 35px;
+        width: 60%;
+        padding: 10px;
+        border: 1px solid #2A3F54; /* some kind of blue border */
+        /* other CSS styles */
+        /* round the corners */
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+        /* make it glow! */
+        -webkit-box-shadow: 0px 0px 0px #2A3F54;
+        -moz-box-shadow: 0px 0px 0px #2A3F54;
+        box-shadow: 0px 0px 0px #2A3F54; /* some variation of blue for the shadow */
+    }
+
+    #textarea {
+        background: white;
+        color: black;
+        /*border-style: ridge;*/
+        height: auto;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #2A3F54; /* some kind of blue border */
+        /* other CSS styles */
+        /* round the corners */
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+        /* make it glow! */
+        -webkit-box-shadow: 0px 0px 0px #2A3F54;
+        -moz-box-shadow: 0px 0px 0px #2A3F54;
+        box-shadow: 0px 0px 0px #2A3F54; /* some variation of blue for the shadow */
+    }
+</style>
+<div class="row mbl">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-red" style="height: 550px;">
+                    @*<div class="panel-heading">
+                            <h1 style="text-align:center">DANH SÁCH KHÁCH HÀNG</h1>
+                        </div>
+                        <hr />*@
+                    <div class="panel-body">
+                        <div style="width:55%;float:left">
+                            @Html.Partial("~/Areas/Agency/Views/FeedBack/_ptvFeedBack.cshtml", Model.ListFeedBack)
+                        </div>
+                        <div id="infoFeedback" style="width:40%;float:left; margin-left:3%">
+                            <h1 style="text-align:center">THÔNG TIN</h1>
+                            <input type="text" disabled="disabled" class="input" style="display:none">
+                            <div>
+                                <label>Tên khách hàng:</label>
+                                <br />
+                                <input type="text" disabled="disabled" class="input" style="width:430px">
+                            </div>
+                            <div>
+                                <label>Thời gian:</label>
+                                <br />
+                                <input type="text" disabled="disabled" class="input" style="width:430px">
+                            </div>
+                            <div>
+                                <label>Tiêu đề:</label>
+                                <br />
+                                <input type="text" disabled="disabled" class="input" style="width:430px">
+                            </div>
+                            <div>
+                                <input type="text" disabled="disabled" class="input" style="display:none">
+                            </div>
+                            <div>
+                                <label>Nội dung:</label>
+                                <br />
+                                <textarea disabled="disabled" class="input" id="textarea" style="height:270px"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $('#tbFeedBack tr').click(function (event) {
+        $('tr').css('background', '#ffffff');
+        $(this).css('background', '#00B2BF');
+        $('thead tr').css('background', '#2A3F54');
+        $('tfoot tr').css('background', '#2A3F54');
+        $('td', this).each(function (i) {
+            $('#infoFeedback .input').eq(i).val(this.textContent);
+        });
+    });
+
+    (function () {
+        $('#tbFeedBack tbody tr:first').find('td.hidden-column').each(function (i, td) {
+            var indexOfHiddenColumn = $(td).index();
+            $('#tbFeedBack thead th').eq(indexOfHiddenColumn).addClass('hidden');
+        });
+    }());
+</script>

@@ -1,0 +1,147 @@
+﻿@model List<MyWeb.Models.FunctionsModel>
+<style>
+    .lazy {
+        -ms-border-radius: 10px;
+        border-radius: 10px;
+        width: 50%;
+        height: 100px;
+    }
+</style>
+
+<h2 style="margin-left:200px">Chức năng mở rộng</h2>
+<div class="row" style="width:900px; margin:auto">
+    @Html.Partial("_ptvShowFunc", Model)
+</div>
+
+
+<div>
+    @*@Html.Partial("_ptvSetUp", Model)*@
+    @{Html.RenderAction("AgencyReView", "PartialView");}
+</div>
+
+@*<div class="col-md-2">
+        <div class="thumbnail" style="border:none">
+            <div class="picCard">
+                <a href="https://www.dropbox.com/s/48l0chq70idnrhh/win32_11gR2_client.zip?dl=0" target="_blank"><img class="lazy" alt="" style="background :url('/Images/icon-tool-negatech.png') no-repeat center;" src="/Images/icon-tool-negatech.png"><span class="mask"></span></a>
+            </div>
+            <div class="caption" style="text-align: center">
+                <h5 class="titleCard">
+                    <a href="#">Database Tool</a>
+                </h5>
+
+                <p class="subCard"><a href="#">NSC</a></p>
+                <p class="btnCard text-center" id="no-download-29675">
+                    <a class="btn btn-default" href="https://www.dropbox.com/s/48l0chq70idnrhh/win32_11gR2_client.zip?dl=0" target="_blank">Tải về</a>
+                </p>
+            </div>
+        </div>
+    </div>*@
+
+@*@{
+    if (Model.Any() && Model != null)
+    {
+        var count = Model.Count();
+        foreach (var item in Model)
+        {
+            <div class="col-md-2">
+                <div class="thumbnail" style="border:none">
+                    <div class="picCard">
+                        <a href="#"><img class="lazy" alt="" style="background :url('http://static.appvn.com/i/uploads/thumbnails/102014/2c787138d9a933ff7cb490492ca57151-4-icon.png') no-repeat center;" src="@item.FunctionImage"><span class="mask"></span></a>
+                    </div>
+                    <div class="caption" style="text-align: center">
+                        <h5 class="titleCard">
+                            <a href="#">@item.FunctionName</a>
+                        </h5>
+
+                        //<p class="subCard"><a href="#">NSC</a></p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    }*@
+@*<div class="col-md-2">
+        <div class="thumbnail" style="border:none">
+            <div class="picCard">
+                <a href="#"><img class="lazy" alt="" style="background :url('http://static.appvn.com/i/uploads/thumbnails/102014/2c787138d9a933ff7cb490492ca57151-4-icon.png') no-repeat center;" src="http://appvn.com/public/frontend/images/default-app.png"><span class="mask"></span></a>
+            </div>
+            <div class="caption" style="text-align: center">
+                <h5 class="titleCard">
+                    <a href="#">Giám sát chức năng</a>
+                </h5>
+
+                <p class="subCard"><a href="#">NSC</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="thumbnail" style="border:none">
+            <div class="picCard">
+                <a href="#"><img class="lazy" alt="" style="background :url('http://static.appvn.com/i/uploads/thumbnails/102014/2c787138d9a933ff7cb490492ca57151-4-icon.png') no-repeat center;" src="http://appvn.com/public/frontend/images/default-app.png"><span class="mask"></span></a>
+            </div>
+            <div class="caption" style="text-align: center">
+                <h5 class="titleCard">
+                    <a href="#">Giám sát chức năng</a>
+                </h5>
+
+                <p class="subCard"><a href="#">NSC</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="thumbnail" style="border:none">
+            <div class="picCard">
+                <a href="#"><img class="lazy" alt="" style="background :url('http://static.appvn.com/i/uploads/thumbnails/102014/2c787138d9a933ff7cb490492ca57151-4-icon.png') no-repeat center;" src="http://appvn.com/public/frontend/images/default-app.png"><span class="mask"></span></a>
+            </div>
+            <div class="caption" style="text-align: center">
+                <h5 class="titleCard">
+                    <a href="#">Giám sát chức năng</a>
+                </h5>
+
+                <p class="subCard"><a href="#">NSC</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="thumbnail" style="border:none">
+            <div class="picCard">
+                <a href="#"><img class="lazy" alt="" style="background :url('http://static.appvn.com/i/uploads/thumbnails/102014/2c787138d9a933ff7cb490492ca57151-4-icon.png') no-repeat center;" src="http://appvn.com/public/frontend/images/default-app.png"><span class="mask"></span></a>
+            </div>
+            <div class="caption" style="text-align: center">
+                <h5 class="titleCard">
+                    <a href="#">Giám sát chức năng</a>
+                </h5>
+
+                <p class="subCard"><a href="#">NSC</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="thumbnail" style="border:none">
+            <div class="picCard">
+                <a href="#"><img class="lazy" alt="" style="background :url('http://static.appvn.com/i/uploads/thumbnails/102014/2c787138d9a933ff7cb490492ca57151-4-icon.png') no-repeat center;" src="http://appvn.com/public/frontend/images/default-app.png"><span class="mask"></span></a>
+            </div>
+            <div class="caption" style="text-align: center">
+                <h5 class="titleCard">
+                    <a href="#">Giám sát chức năng</a>
+                </h5>
+
+                <p class="subCard"><a href="#">NSC</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="thumbnail" style="border:none">
+            <div class="picCard">
+                <a href="#"><img class="lazy" alt="" style="background :url('http://static.appvn.com/i/uploads/thumbnails/102014/2c787138d9a933ff7cb490492ca57151-4-icon.png') no-repeat center;" src="http://appvn.com/public/frontend/images/default-app.png"><span class="mask"></span></a>
+            </div>
+            <div class="caption" style="text-align: center">
+                <h5 class="titleCard">
+                    <a href="#">Giám sát chức năng</a>
+                </h5>
+
+                <p class="subCard"><a href="#">NSC</a></p>
+            </div>
+        </div>
+    </div>*@

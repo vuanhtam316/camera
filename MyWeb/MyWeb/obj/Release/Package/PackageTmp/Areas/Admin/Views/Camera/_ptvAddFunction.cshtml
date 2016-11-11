@@ -1,0 +1,70 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Areas.Admin.Models.AddFunctionModel
+@{
+    //Layout = "~/Areas/Admin/Views/Shared/_MasterAdminLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<div class="modal fade" id="myModalAddfunction" style="z-index: 9999999999" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content" style="border-radius: 6px !important;">
+            <div class="modal-header" style="background-color: #bf4346; border-radius: 5px 5px 0 0;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" style="color: white;">Thêm chức năng</h4>
+            </div>
+            @using (Ajax.BeginForm("CreateFunction", "Camera", new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST",
+                OnFailure = "failure",
+                UpdateTargetId = "messageInfoModalUpdate",
+                OnSuccess = "success"
+            }, new { id = "frmUpdateModal", @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(x => x.CameraId)
+                <div class="modal-body" style="padding-top: 0">
+                    <div class="row mbl" style="margin-bottom: 0 !important;padding-bottom: 0 !important;">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pal">
+                                        <div class="form-group" id="messageInfoModalUpdate">
+                                            @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                                        </div>
+                                        @for (var i = 0; i < Model.Functions.Count; i++)
+                                        {
+                                            <div class="form-group">
+                                                @if (Model.Functions[i].Status == true)
+                                                {
+                                                    <label class="col-md-8" style="color: red">@Model.Functions[i].FunctionName</label>
+                                                }
+                                                else
+                                                {
+                                                    <label class="col-md-8">@Model.Functions[i].FunctionName</label>
+                                                }
+                                                <div class="col-md-4">
+                                                    @Html.CheckBoxFor(m => m.Functions[i].Status)
+                                                    @Html.HiddenFor(m => m.Functions[i].FunctionId)
+                                                </div>
+                                            </div>
+                                        }
+                                        @*@Html.ValidationHtmlMessageFor(model => model.FunctionId, "", new { @class = "field-validation-valid" })
+                                            @Html.DropDownListFor(m => m.FunctionId, new SelectList(Model.FunctionsModel, "Value", "Text"), "-- Chọn chức năng --", new { @class = "form-control", @id = "selectFunction" })*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top: 0">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-red">Lưu lại</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

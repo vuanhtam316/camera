@@ -1,0 +1,75 @@
+﻿@using MyWeb.Areas.Front.ModelChart;
+@model IEnumerable<month>
+@*@model IEnumerable<MyWeb.Areas.Front.Models.ViewModel>*@
+<canvas id="ChartMonth"></canvas>
+
+<script>
+    @{
+        int k = Model.Count();
+        string[] month = new string[k];
+        int[] soAnh=new int[k];
+        int i = 0;
+        foreach (var item in Model)
+        {
+            month[i] = Convert.ToString(item.ID);
+            soAnh[i] = item.DataImg;
+            i++;
+        }
+    }
+    var strMon = '@string.Join(",",month)';
+    var strSoAnh = '@string.Join(",",@soAnh)';
+    var ctx = document.getElementById("ChartMonth");
+    var soAnh1 = [];
+    soAnh1 = strSoAnh.split(',');
+    var lblMon = [];
+    lblMon = strMon.split(',');
+
+    var myChar = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: lblMon,
+            datasets: [{
+                label: "Tổng số ảnh",
+                data: soAnh1,
+                backgroundColor: [
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                    'rgba(255, 0, 0, 0.7)',
+                ],
+                borderColor: [
+     'rgba(255,99,132,1)',
+     'rgba(255,99,132,1)',
+     'rgba(255,99,132,1)',
+     'rgba(255,99,132,1)',
+     'rgba(255,99,132,1)',
+      'rgba(255,99,132,1)',
+      'rgba(255,99,132,1)',
+      'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+       'rgba(255,99,132,1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>

@@ -1,0 +1,39 @@
+﻿@using MyWeb.HtmlHelpers
+@model IEnumerable<MyWeb.Models.CustomerModel>
+@{
+    var grid = new WebGrid(Model,
+           rowsPerPage: 10,
+           canPage: true,
+           canSort: true,
+           ajaxUpdateContainerId: "gridShow"
+           );
+}
+@if (Model.Any())
+{
+    <div id="gridShow" class="table-responsive">
+        @grid.GetHtml(
+        tableStyle: "table webGrid table-hover table-bordered table-striped table-hover-color",
+        headerStyle: "text-center hidden-sm hidden-xs",
+        alternatingRowStyle: "alt",
+        mode: WebGridPagerModes.All | WebGridPagerModes.FirstLast | WebGridPagerModes.NextPrevious | WebGridPagerModes.Numeric,
+         columns: grid.Columns(
+         grid.Column("STT", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, style: "text-center vertical-center"),
+         grid.Column("CustomerNumber", "Mã khách hàng", style: "vertical-center"),
+         grid.Column("DisplayName", "Tên khách hàng", style: "text-center  vertical-center"),
+         grid.Column("UserName", "Tên đăng nhập", style: "text-center  vertical-center hidden-sm hidden-xs"),
+         //grid.Column("Address", "Địa chỉ", style: "text-center  vertical-center hidden-sm hidden-xs"),
+         grid.Column("Phone", "Điện thoại", style: "text-center  vertical-center hidden-sm hidden-xs"),
+         //grid.Column("Email", "Email", style: "text-center  vertical-center hidden-sm hidden-xs"),
+         grid.Column("TotalCamera", "Số camera", style: "text-center  vertical-center hidden-sm hidden-xs"),
+         grid.Column(format: (item) => new MvcHtmlString(item.Active == true ? "<span class='label label-success'>Enable</span>" : "<span class='label label-danger'>Disible</span>"), header: "Trạng thái", style: "text-center  vertical-center hidden-sm hidden-xs"),
+          grid.Column(format: item => new MvcHtmlString(string.Format("<a title='Chi tiết' href='../../Admin/Camera/Index/" + item.Id + "'><i class='fa fa-search-plus'></i></a>&nbsp;|&nbsp;<a title='Xóa khách hàng' href='' data-toggle='modal' identifier='" + item.Id + "' data-target='#myModal'  ><i class='fa fa-trash-o'></i></a>")), header: "Chức năng", style: "text-center vertical-center")
+         
+                            ))
+    </div>
+}
+else
+{
+    <div class="form-group">
+        <div class="alert alert-warning">Chưa có dữ liệu hiển thị.</div>
+    </div>
+}

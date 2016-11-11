@@ -1,0 +1,76 @@
+﻿@using MyWeb.HtmlHelpers
+@model IEnumerable<MyWeb.Areas.Agency.Models.UserOfAgency>
+@{
+    var grid = new WebGrid(Model,
+           rowsPerPage: 8,
+           canPage: true,
+           canSort: true,
+           ajaxUpdateContainerId: "gridShowUser2"
+           );
+}
+<style>
+    .hidden-column {
+        display: none;
+    }
+
+    tr {
+        cursor: pointer;
+    }
+
+    th {
+        color: white;
+        text-align: center;
+    }
+
+    thead, tfoot {
+        background: #2A3F54;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    a:hover {
+        color: #BFCAE6;
+    }
+
+    tbody {
+        color: black;
+        background: white;
+    }
+</style>
+
+@if (Model.Any())
+{
+    <div id="gridShowUser2" class="table-responsive" style="width:90%; margin:auto">
+        @grid.GetHtml(
+         htmlAttributes: new { id = "tbUser" },
+        tableStyle: "table webGrid table-hover table-bordered table-striped table-hover-color",
+        headerStyle: "text-left hidden-sm hidden-xs",
+        alternatingRowStyle: "alt",
+        mode: WebGridPagerModes.All | WebGridPagerModes.FirstLast | WebGridPagerModes.NextPrevious | WebGridPagerModes.Numeric,
+         columns: grid.Columns(
+         grid.Column("STT", format: item => item.WebGrid.Rows.IndexOf(item) + 1 + Math.Round(Convert.ToDouble(grid.TotalRowCount / grid.PageCount) / grid.RowsPerPage) * grid.RowsPerPage * grid.PageIndex, style: "text-center vertical-center", canSort: false),
+         grid.Column("FullName", "Tên khách hàng", style: "text-center  vertical-center", canSort: false),
+          grid.Column("TotalCamera", "Số camera", style: "text-center  vertical-center", canSort: false),
+        //grid.Column(format: item => new MvcHtmlString(string.Format("<a title='Xem camera' href='javascript:void(0)' onclick='ViewInfoCamera(" + item.UserId + ")' style='color:black'><i class='fa fa-camera' style='font-size: 20px; color:#2A3F54'></i>  " + @item.TotalCamera + "</a>")), header: "Số camera", style: "text-center vertical-center"),
+        //grid.Column(format: item => new MvcHtmlString(string.Format("<input type='text' class='row' name='UserId' value='" + @item.UserId + "' />")), header: "", style: "text-center vertical-center")
+                grid.Column(null, null, format: @<input type='hidden' class='row' name='UserId' value='@item.UserId' />, style: "hidden-column")
+         ))
+    </div>
+}
+else
+{
+    <div class="form-group">
+        <div class="alert alert-warning">Chưa có dữ liệu hiển thị.</div>
+    </div>
+}
+@*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="http://pastebin.com/raw.php?i=J6Kpa2Pf"></script>
+<script src="http://pastebin.com/raw.php?i=yu6FUA1L"></script>*@
+<script>
+    (function () {
+        $('#tbUser tbody tr:first').find('td.hidden-column').each(function (i, td) {
+            var indexOfHiddenColumn = $(td).index();
+            $('#tbUser thead th').eq(indexOfHiddenColumn).addClass('hidden');
+        });
+    }());
+</script>

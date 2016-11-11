@@ -1,0 +1,14 @@
+﻿@model IEnumerable<MyWeb.Models.CameraModel>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <h1 style="text-align:center">
+                    Danh sách camera của bạn
+                </h1>
+            </div>
+            @Html.Partial("_ptvShow", Model)
+        </div>
+    </div>
+</div>

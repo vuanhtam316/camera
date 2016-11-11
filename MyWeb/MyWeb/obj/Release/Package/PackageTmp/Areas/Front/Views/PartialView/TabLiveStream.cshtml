@@ -1,0 +1,24 @@
+﻿@using System.Globalization
+@model MyWeb.Areas.Front.Models.HistoryModel
+
+<div class="row">
+    <div class="col-md-6 livestream-detail">
+        <div class="col-md-12" id="">
+            <object width="300" height="300"
+                    data="rtsp://xuantruong:xuantruong@hr2109.myfoscam.org:6868/videoMain"
+                    events="True"
+                    id="vlc_1"
+                    codebase="http://downloads.videolan.org/pub/videolan/vlc/latest/win32/axvlc.cab"
+                    classid="clsid:4AD27CDD-8C2B-455E-8E2A-463E550B718F">
+                <param value="rtsp://xuantruong:xuantruong@hr2109.myfoscam.org:6868/videoMain" name="Src">
+                <param value="transparent" name="wmode">
+                <param value="True" name="ShowDisplay">
+                <param value="False" name="AutoLoop">
+                <param value="True" name="AutoPlay">
+                <embed width="300" height="300" target="rtsp://xuantruong:xuantruong@hr2109.myfoscam.org:6868/videoMain" loop="no" autoplay="yes" version="VideoLAN.VLCPlugin.2" pluginspage="http://www.videolan.org" type="application/x-vlc-plugin" id="vlc_1_embed" wmode="transparent">
+            </object>
+        </div>
+    </div>
+
+
+</div>

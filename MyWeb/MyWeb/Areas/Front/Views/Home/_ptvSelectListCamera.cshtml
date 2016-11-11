@@ -1,0 +1,20 @@
+﻿@model MyWeb.Areas.Front.Models.SelectListCamera
+
+@Html.DropDownListFor(m => m.CameraId, new SelectList(Model.GetListCameras, "Value", "Text"), "Chọn camera", new { @class = "form-control pull-right", @id = "selectCamera" })
+<script>
+    $('select#selectCamera').change(function () {
+        var cameraid = $(this).val();
+        $.ajax({
+            url: '@Url.Action("_ptvChartMonth", "Home")',
+            type: 'post',
+            cache: false,
+            data: { cameraid: cameraid },
+            success: function (data) {
+                $('#chartMonth').html(data.listMonth);
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    });
+</script>

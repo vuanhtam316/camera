@@ -1,0 +1,79 @@
+﻿@using MyWeb.Models
+@model IEnumerable<MyWeb.Areas.Admin.Models.RolesModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MasterAdminLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<div class="row mbl">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        Danh sách quyền
+                    </div>
+                    <div class="panel-body">
+                        <a class="btn-primary  padding510" onclick="ShowAddRole();" href="#"><i class="fa fa-plus"></i>&nbsp; Thêm quyền</a>
+                        <hr />
+                        @*@Html.Partial("_ptvSearch", Model)*@
+                        <div class="form-group" id="messageInfo">
+                            @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                        </div>
+                        @Html.Partial("_ptvShowAllRole", Model)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@using (Ajax.BeginForm("DeleteRole", "RoleManager", new AjaxOptions { HttpMethod = "Post", UpdateTargetId = "messageInfo", OnFailure = "failure", OnSuccess = "success" }, new { id = "frmRemoveRoles" }))
+{
+    @Html.AntiForgeryToken()
+    <input id="identifierDelete" name="roleName" type="hidden" value="" />
+}
+<div id="frmAddRole"></div>
+@Html.Partial("~/Views/Shared/_ModalPatial.cshtml")
+@section jsmore
+    {
+    <script type="text/javascript">
+        $('#myModal').on('show.bs.modal', function (event) {
+            var linkAction = $(event.relatedTarget);
+            var roleName = linkAction.attr("identifier");
+            $("#identifierDelete").val(roleName);
+            //TO DO: init content for popup
+            $(this).find('.modal-title').html("Are you sure ?");
+            $(this).find('.modal-body').html("Bạn có chắc chắn muốn xóa quyền này ?");
+            $(this).find('#_btnCancelConfirm').text('Cancel');
+            $(this).find('#_btnOkConfirm').text('OK');
+        });
+        $('#myModal').on('click', '#_btnOkConfirm', function () {
+            $('#myModal').modal('hide');
+            $("#frmRemoveRoles").submit();
+        });
+        //--------
+        function failure() {
+            MessageErro('Có lỗi xảy ra trong quá trình xử lý. Xin vui lòng thử lại');
+        }
+        function success() {
+            reloadGrid('/Admin/RoleManager/SearchResultRole');
+        }
+        //--------------
+        function ShowAddRole() {
+            $("#messageInfo").html('');
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Action("CreateRole", "RoleManager")",
+                success: function (data) {
+                    $('#frmAddRole').html(data);
+                    $('#myModalAddRole').modal('show');
+                },
+                error: function () {
+                    MessageErro('Có lỗi xảy ra. Xin vui lòng thử lại');
+                },
+            });
+        }
+    </script>
+}
+
+

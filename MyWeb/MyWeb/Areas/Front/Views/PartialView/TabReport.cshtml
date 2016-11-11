@@ -1,0 +1,77 @@
+﻿@using MyWeb.Areas.Front.ModelChart;
+@model IEnumerable<MyWeb.Areas.Front.Models.ViewModel>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js"></script>
+<div class="row">
+    <div class="col-md-4">
+        <div id="chartCamera">
+            <h4 style="text-align:center">Biểu đồ thống kê tổng số ảnh của camera</h4>
+            @Html.Partial("~/Areas/Front/Views/Home/_ptvBarChar.cshtml", Model)
+        </div>
+
+        <hr style="margin-top: 18px; margin-bottom: 18px; border: 0; border-top: 1px solid red" />
+
+        <h5 style="text-align:center; margin-bottom:10px">Biểu đồ thống kê tổng số ảnh theo tháng của từng camera</h5>
+
+        <div id="select">
+        </div>
+        <script type="text/javascript">
+            var url = "/Home/GetSelectListCamera";
+            $.post(url, null, function (data) {
+                $("#select").html(data.listcam);
+            });
+        </script>
+
+
+        <div id="chartMonth">
+            @Html.Partial("~/Areas/Front/Views/Home/ptvChartMonth.cshtml", DataMonth.LoadDataMon())
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="row div-selectModeLive1">
+            <div style="width:12%; float:left; margin-left:90px"><h4>Chọn tháng</h4></div>
+            <div style="float:left">
+                <ul class="modelive1-ul-select" style="width:100%; margin:0; margin-top:5px">
+                    <li class="modelive-li" id="modelive1-li1" title="1">1</li>
+                    <li class="modelive-li" id="modelive1-li2" title="2">2</li>
+                    <li class="modelive-li" id="modelive1-li3" title="3">3</li>
+                    <li class="modelive-li" id="modelive1-li4" title="4">4</li>
+                    <li class="modelive-li" id="modelive1-li5" title="5">5</li>
+                    <li class="modelive-li" id="modelive1-li6" title="6">6</li>
+                    <li class="modelive-li" id="modelive1-li7" title="7">7</li>
+                    <li class="modelive-li" id="modelive1-li8" title="8">8</li>
+                    <li class="modelive-li" id="modelive1-li9" title="9">9</li>
+                    <li class="modelive-li" id="modelive1-li10" title="10">10</li>
+                    <li class="modelive-li" id="modelive1-li11" title="11">11</li>
+                    <li class="modelive-li" id="modelive1-li12" title="12">12</li>
+                </ul>
+            </div>
+        </div>
+        <h3 style="text-align:center">Biểu đồ thống kê tổng số ảnh theo ngày của từng camera</h3>
+        <div id="chartDay" style="margin-top:20px">
+            @Html.Partial("~/Areas/Front/Views/Home/ptvChartDay.cshtml", DataDay.LoadDataDay())
+        </div>
+    </div>
+</div>
+<script>
+    $(".modelive1-ul-select >li").click(function () {
+        var month = $(this).attr("title");
+        var cameraid = $("#idcam").val();
+        $.ajax({
+            url: '@Url.Action("_ptvLineChart", "Home")',
+            type: 'post',
+            cache: false,
+            data: { cameraid: cameraid, month: month },
+            success: function (data) {
+                $("#chartDay").html(data.listDay);
+                $(".modelive1-ul-select >li").removeClass("modelive1-li-active");
+                idstr = "#modelive1-li" + month
+                $(idstr).addClass("modelive1-li-active");
+            },
+            error: function (xhr) {
+                alert(xhr.responseText);
+            }
+        });
+    });
+</script>

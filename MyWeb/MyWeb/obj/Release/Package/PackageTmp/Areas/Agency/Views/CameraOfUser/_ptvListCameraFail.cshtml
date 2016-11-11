@@ -1,0 +1,23 @@
+﻿@using MyWeb.Models
+@model MyWeb.Areas.Agency.Models.CameraOfUserModel
+@{
+    ViewBag.Title = "Danh sách camera không hoạt động";
+    Layout = "~/Areas/Agency/Views/Shared/_MasterAgencyLayout.cshtml";
+}
+<div class="row mbl">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-red" style="height: 550px;">
+                    <div class="panel-heading">
+                        <h1 style="text-align:center">DANH SÁCH CAMERA KHÔNG HOẠT ĐỘNG</h1>
+                    </div>
+                    <hr />
+                    <div class="panel-body">
+                        @Html.Partial("~/Areas/Agency/Views/CameraOfUser/ListCameraFail.cshtml", Model.CameraInUser)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

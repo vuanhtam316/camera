@@ -1,0 +1,102 @@
+﻿span.field-validation-error {
+    color: #FF0500;
+    font-size: smaller;
+}
+/* Cheat class field-validation-error */
+div.field-validation-error {
+    display: block;
+    font-weight: normal;
+    margin-bottom: 0.75em;
+    padding: 0.75em;
+    background: #fbd9d2;
+    color: #8e230d;
+}
+
+    div.field-validation-error :before {
+        font-family: 'FontAwesome';
+        display: inline-block;
+        font-size: 1em;
+        color: inherit;
+        vertical-align: middle;
+        margin-right: .3em;
+        font-style: normal;
+        font-weight: normal !important;
+        -webkit-font-smoothing: antialiased;
+        content: "\f00d";
+    }
+
+    div.field-validation-error a:before {
+        font-size: 0 !important;
+    }
+/* /Cheat class field-validation-error */
+.isa_info, .isa_success, .isa_warning, .isa_error {
+    margin: 10px 0px;
+    padding: 12px;
+}
+
+.isa_info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+
+.isa_success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+
+.isa_warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+
+.isa_error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+
+    .isa_info i, .isa_success i, .isa_warning i, .isa_error i {
+        margin: 10px 22px;
+        font-size: 2em;
+        vertical-align: middle;
+    }
+
+.ajax_overlay {
+}
+
+.ajax_loader {
+    background: url("/Content/Admin/images/icons/loading.gif") no-repeat center center transparent;
+    width: 100%;
+    height: 100%;
+}
+
+table.webGrid tfoot {
+    text-align: right;
+}
+
+    table.webGrid tfoot a, .pagination a {
+        background: none repeat scroll 0 0 #cccccc;
+        border: 1px solid #c0c0c0;
+        color: #ffffff;
+        display: inline-block;
+        margin: 0 5px;
+        text-align: center;
+        text-decoration: none !important;
+        width:30px;
+        height:30px;
+        border-radius:30px;
+        line-height:30px;
+        }
+
+        table.webGrid tfoot a:hover, .pagination a:hover, .currentPage {
+          background-color: #fff !important;
+    border: 1px solid #ff0000 !important;
+    color: red !important;
+        }
+
+.vertical-center {
+    vertical-align: middle !important;
+}
+#panelDateTime .events-content ol {
+    margin:0;
+    padding:0;
+}

@@ -1,0 +1,65 @@
+﻿@using MyWeb.Models
+@using MyWeb.HtmlHelpers
+@model MyWeb.Areas.Front.Models.FeedbackModel
+@{
+    //Layout = "~/Areas/Admin/Views/Shared/_MasterAdminLayout.cshtml";
+    var mess = ViewBag.MessageCommand as MesageModel.MessagesModel ?? new MesageModel.MessagesModel();
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<div class="modal fade" id="myModalFeedback" style="z-index: 9999999999" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content" style="border-radius: 6px !important;">
+            <div class="modal-header" style="background-color: #bf4346; border-radius: 5px 5px 0 0;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title text-center" style="color: white;">Ý kiến khách hàng</h4>
+            </div>
+            @using (Ajax.BeginForm("Feedback", "Account", new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST",
+                OnFailure = "failure",
+                UpdateTargetId = "message",
+                //OnSuccess = "success"
+            }, new { id = "frmUpdateModal", @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="modal-body" style="padding-top: 0">
+                    <div class="row mbl" style="margin-bottom: 0 !important;padding-bottom: 0 !important;">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="pal">
+                                        <div class="form-group" id="message">
+                                            @Html.Partial("~/Views/Shared/_Message.cshtml", mess)
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Title, new { @class = "col-md-4", @style="width:15%" })
+                                            <div class="col-md-8">
+                                                @Html.ValidationHtmlMessageFor(model => model.Title, "", new { @class = "field-validation-valid" })
+                                                @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Content, new { @class = "col-md-4", @style="width:15%" })
+                                            <div class="col-md-8">
+                                                @Html.ValidationHtmlMessageFor(model => model.Content, "", new { @class = "field-validation-valid" })
+                                                @Html.TextAreaFor(model => model.Content, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="margin-top: 0">
+                    <button type="submit" class="btn btn-red">Gửi</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Quay lại</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
